@@ -32,7 +32,7 @@ These sit behind the giant words (BUILD. AUTOMATE. CUT. BRAND. SCALE.), so keep 
 |---|---|
 | `img/studio.webp` | A calm, premium studio desk at night: a laptop, a monitor, a camera and a notebook, cyan LED strip behind the desk, shot straight on and centred. This sits inside the glowing "layers" frame, so keep the subject centred. |
 
-## 4. Team (2 new photos) — 4:5 portrait, 1080×1350
+## 4. Team (4 new photos) — 4:5 portrait, 1080×1350
 
 The team frame is shaped like the logo, so the **bottom-right corner of the photo gets cut away**. Keep the face in the top-middle. Match the three photos you already have: same office, same "Innovation solves problems" poster, same black Nexlyr polo with blue stripes, same laptop and mug. Upload a real photo of the person to ChatGPT/Gemini **and** one of the existing team photos as the style reference.
 
@@ -40,6 +40,8 @@ The team frame is shaped like the logo, so the **bottom-right corner of the phot
 |---|---|
 | `img/team-zamil.webp` | Use the first attached photo for the person's face and identity, and the second attached photo for the exact setting, lighting, framing and outfit. The person sits at the same office desk wearing the same black polo with blue stripes and the Nexlyr logo on the chest, laptop open, relaxed confident expression, looking at the camera. Keep the face identical to the reference. |
 | `img/team-hammad.webp` | Same prompt as above, with Hammad's photo as the identity reference. |
+| `img/team-rayyan.webp` | Same prompt as above, with Rayyan's photo as the identity reference. |
+| `img/team-tech.webp` | Style block + "Five people working at desks in the same office, seen from behind and the side, faces not visible, black polos with blue stripes, monitors glowing." Or a real group photo of the tech team. |
 
 (Hashir, Raahym and Raza are already done from your existing photos.)
 
@@ -80,3 +82,8 @@ Already in your repo, nothing to make: the five social posts (`post1.jpg` to `po
 | File | Prompt |
 |---|---|
 | `og-home.jpg` (1200×630, in the root folder) | The link preview when someone shares the site on WhatsApp. Style block + "Five tall vertical glowing cyan-to-azure glass bars standing side by side in a dark void, the two on the right shorter than the other three, soft reflections on a glossy black floor." Then put the Nexlyr logo on it yourself in Canva. |
+
+
+## 8. More reels
+
+Drop up to three more vertical videos into `media/` named `reel-video-4.mp4`, `reel-video-5.mp4` and `reel-video-6.mp4`, each with a cover frame of the same name ending in `.webp`. They appear on the home page and the Video Editing page automatically. To rename them, change the titles in the `REELS` list near the top of the script on any page.
