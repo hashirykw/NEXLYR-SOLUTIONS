@@ -342,7 +342,7 @@ p{margin:0}
 @media (max-width:520px){.bot-launch__l{display:none}.bot-launch{padding:0 16px}}
 
 /* ==========================================================================
-   v2 — LAYER SYSTEM
+   v2, LAYER SYSTEM
    One card style (.lc) and one entrance (rise + clip) used across the page,
    ambient "logo blur" orbs behind sections, and four feature sections:
    standard (spec list + layer rings) · words (big-word service stack)
@@ -528,7 +528,7 @@ p{margin:0}
 .tease span{color:var(--color-mute);font-size:13px}
 
 /* ==========================================================================
-   v3 — SHARED MULTI-PAGE COMPONENTS
+   v3, SHARED MULTI-PAGE COMPONENTS
    ========================================================================== */
 /* inline page links (desktop) */
 .nav__links{display:none;align-items:center;gap:2px;padding:5px;border-radius:var(--radius-pill);background:rgb(10 17 25 / .55);border:1px solid var(--color-line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
@@ -611,7 +611,7 @@ p{margin:0}
 .note b{color:var(--color-white)}
 
 /* ==========================================================================
-   v4 — BRAND PASS: logo typeface, new buttons, nav bar, ribbon, stats,
+   v4, BRAND PASS: logo typeface, new buttons, nav bar, ribbon, stats,
    footer, FAQ, contact, assistant, loader, mobile performance
    ========================================================================== */
 :root{--font-brand:'Orbitron','Bricolage Grotesque',system-ui,sans-serif}
@@ -832,6 +832,49 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 @keyframes mIn{from{opacity:0;transform:translateY(8px)}}
 @media (max-width:760px){.menu{top:calc(78px + env(safe-area-inset-top,0px));right:var(--gutter);border-radius:20px}.menu__side{grid-template-columns:1fr}}
 
+/* ==========================================================================
+   v5, quieter, more finished: no floating badges, no mono labels,
+   no placeholder captions, the real logo used throughout
+   ========================================================================== */
+.grain{display:none}
+.kick{font-family:var(--font-body);font-size:.92rem;font-weight:600;letter-spacing:0;text-transform:none;color:var(--color-cyan-lt);gap:0}
+.kick::before{display:none}
+.head-row .hint{display:none}
+.mono{font-family:var(--font-body);letter-spacing:0;font-size:.82rem;text-transform:none}
+.chip-row{gap:6px 0}
+.chip-row span{border:0;background:none;padding:0;border-radius:0;color:var(--color-soft)}
+.chip-row span:not(:last-child)::after{content:"·";margin:0 12px;color:var(--color-mute)}
+.chips{gap:4px 0}
+.chips li{border:0;background:none!important;padding:0;border-radius:0;color:var(--color-soft);backdrop-filter:none!important}
+.chips li:not(:last-child)::after{content:"·";margin:0 10px;color:var(--color-mute)}
+.badge{background:none;padding:0;margin-left:8px;color:var(--color-cyan-lt)}
+.tease{display:none!important}
+.orb{opacity:calc(var(--o,.22) * .6)}
+.hero h1 .grad,.phero h1 .grad{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#18C8F0;-webkit-text-fill-color:#18C8F0}
+.ph.is-empty::after{content:""!important;display:block!important;position:absolute;inset:0!important;background:url("nexlyr-mark.webp") center/clamp(28px,16%,90px) auto no-repeat;opacity:.16}
+.ph::before{background:radial-gradient(60% 70% at 70% 30%,rgb(24 200 240 / .12),transparent 70%),linear-gradient(160deg,#101B28,#0A1119)}
+.card__sub,.frame__kick,.day__who,.pc__cap .mono{font-family:var(--font-body);letter-spacing:0;text-transform:none}
+.card__sub{font-size:12.5px;font-weight:600}
+.pc__cap .mono{font-size:12.5px}
+.tag{display:none}
+
+/* the logo, everywhere it belongs */
+.nxlogo{display:block;height:auto;overflow:visible}
+.brand__mark{width:20px;height:26px;object-fit:contain}
+.loader .nxlogo{width:clamp(96px,10vw,132px);filter:drop-shadow(0 0 24px rgb(24 200 240 / .45))}
+.loader__tag{font-family:var(--font-body);letter-spacing:.02em;text-transform:none;font-size:.95rem;color:var(--color-soft)}
+.loader__foot{justify-content:center}
+.loader__line{max-width:420px}
+.foot__brand{display:flex;align-items:center;gap:16px}
+.foot__brand .nxlogo{height:58px;width:auto}
+.foot__brand small{font-size:12.5px;color:var(--color-mute);max-width:12ch;line-height:1.35}
+.contact2__side{position:relative}
+.contact2__logo{width:clamp(34px,3vw,42px)}
+.contact2__logo .nxlogo{width:100%}
+.menu__logo{display:flex;align-items:center;gap:14px;margin:6px 0 0;padding:16px 14px 4px;border-top:1px solid var(--color-line)}
+.menu__logo .nxlogo{height:46px;width:auto}
+.menu__logo span{font-size:12.5px;color:var(--color-mute)}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:150ms!important;scroll-behavior:auto!important}
   .ticker__row{animation:none}
@@ -897,12 +940,15 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .person h3{font-size:1.2rem}
 @media (max-width:1000px){.people{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.people{grid-template-columns:1fr}}
+
+.board__art{position:relative}
+.board__logo{position:absolute;left:50%;top:50%;width:clamp(70px,9vw,104px);transform:translate(-50%,-52%);filter:drop-shadow(0 0 20px rgb(24 200 240 / .35))}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
-<script src="assets/nexlyr-config.js"></script>
-<script src="assets/nexlyr-analytics.js" defer></script>
-<script src="assets/nexlyr-leads.js" defer></script>
+<script src="nexlyr-config.js"></script>
+<script src="nexlyr-analytics.js" defer></script>
+<script src="nexlyr-leads.js" defer></script>
 </head>
 <body class="pg-design-and-ads">
 <a class="sr-only" href="#main">Skip to content</a>
@@ -912,23 +958,17 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 <div class="loader" aria-hidden="true">
   <div class="loader__panels"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="loader__center">
-    <svg class="loader__mark" viewBox="0 0 64 74">
-      <defs><linearGradient id="ldg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#43DCFA"/><stop offset="1" stop-color="#0C7FC4"/></linearGradient>
-      <clipPath id="ldc"><rect x="0" y="0" width="8" height="74"/><rect x="14" y="0" width="8" height="74"/><rect x="28" y="0" width="8" height="74"/><rect x="42" y="0" width="8" height="48"/><rect x="56" y="0" width="8" height="48"/></clipPath></defs>
-      <g class="loader__outline" fill="none" stroke="#18C8F0" stroke-width=".9"><rect x=".5" y=".5" width="7" height="73" pathLength="1"/><rect x="14.5" y=".5" width="7" height="73" pathLength="1"/><rect x="28.5" y=".5" width="7" height="73" pathLength="1"/><rect x="42.5" y=".5" width="7" height="47" pathLength="1"/><rect x="56.5" y=".5" width="7" height="47" pathLength="1"/></g>
-      <g clip-path="url(#ldc)"><rect class="loader__fill" x="0" y="0" width="64" height="74" fill="url(#ldg)"/></g>
-    </svg>
-    <div class="loader__word"><span>N</span><span>E</span><span>X</span><span>L</span><span>Y</span><span>R</span></div>
+    <svg class="nxlogo" viewBox="0 0 1985 3170" role="img" aria-label="Nexlyr"><defs><linearGradient id="nxlg1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#nxlg1)">NEXLYR</text><g fill="url(#nxlg1)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg>
     <div class="loader__tag">The next layer of digital</div>
   </div>
-  <div class="loader__foot"><span class="loader__count">000</span><span class="loader__line"><i></i></span><span class="loader__note">Digital agency · Worldwide</span></div>
+  <div class="loader__foot"><span class="loader__count">000</span><span class="loader__line"><i></i></span></div>
 </div>
 
 <!-- ============ NAV ============ -->
 <header class="nav">
   <div class="wrap nav__wrap"><div class="nav__in">
     <a class="brand" href="index.html" aria-label="Nexlyr Solutions, home">
-      <svg viewBox="0 0 26 30" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#27D6F8"/><stop offset="1" stop-color="#0C7FC4"/></linearGradient></defs><g fill="url(#lg)"><rect x="0" y="0" width="3.6" height="30"/><rect x="5.6" y="0" width="3.6" height="30"/><rect x="11.2" y="0" width="3.6" height="30"/><rect x="16.8" y="0" width="3.6" height="20"/><rect x="22.4" y="0" width="3.6" height="20"/></g></svg>
+      <img class="brand__mark" src="nexlyr-mark.webp" alt="" width="20" height="26">
       <b>NEXLYR</b>
     </a>
     <nav class="nav__links" aria-label="Main">
@@ -980,6 +1020,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
         </ul>
       </div>
     </div>
+    <div class="menu__logo" aria-hidden="true"><svg class="nxlogo" viewBox="0 0 1985 3170" role="img" aria-label="Nexlyr"><defs><linearGradient id="nxlg2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#nxlg2)">NEXLYR</text><g fill="url(#nxlg2)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg><span>The next layer of digital</span></div>
   </div>
 </nav>
 <div class="curtain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -1006,14 +1047,8 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
               <circle cx="200" cy="130" r="92" pathLength="1"/><circle cx="200" cy="130" r="58" pathLength="1"/>
               <line x1="80" y1="10" x2="320" y2="250" pathLength="1"/><line x1="320" y1="10" x2="80" y2="250" pathLength="1"/>
             </g>
-            <g class="mark">
-              <rect x="152" y="62" width="14" height="136" rx="1"/><rect x="172" y="62" width="14" height="136" rx="1"/><rect x="192" y="62" width="14" height="136" rx="1"/><rect x="212" y="62" width="14" height="90" rx="1"/><rect x="232" y="62" width="14" height="90" rx="1"/>
-            </g>
-            <g class="dims" font-family="JetBrains Mono, monospace" font-size="8" fill="#7FEBFF">
-              <text x="152" y="54">14</text><text x="252" y="158">⅔ h</text><text x="104" y="134">1 : 1.5</text>
-            </g>
           </svg>
-          <div class="board__word" id="boardWord">NEXLYR</div>
+          <div class="board__logo"><svg class="nxlogo" viewBox="0 0 1985 3170" role="img" aria-label="Nexlyr"><defs><linearGradient id="nxlg3" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#nxlg3)">NEXLYR</text><g fill="url(#nxlg3)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg></div>
         </div>
         <div class="board__foot">
           <div class="swatches"><span style="--c:#060A10"><i></i><b>Ink</b><em>#060A10</em></span><span style="--c:#18C8F0"><i></i><b>Cyan</b><em>#18C8F0</em></span><span style="--c:#0C7FC4"><i></i><b>Azure</b><em>#0C7FC4</em></span><span style="--c:#EEF6FB"><i></i><b>Paper</b><em>#EEF6FB</em></span></div>
@@ -1053,8 +1088,8 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
       <p class="lede">Drag the handle. On the left, a mark as it looks in a presentation. On the right, the same mark on a shopfront, a story frame and a till receipt. We design for the right-hand side.</p>
     </div>
     <div class="ba" id="ba">
-      <figure class="ph ba__img" data-file="img/design-before.webp"><img data-img="img/design-before.webp" alt="A logo on a plain presentation slide" loading="lazy" decoding="async"></figure>
-      <div class="ba__after" id="baAfter"><figure class="ph ba__img" data-file="img/design-after.webp"><img data-img="img/design-after.webp" alt="The same logo on a shopfront sign, a phone story and a receipt" loading="lazy" decoding="async"></figure></div>
+      <figure class="ph ba__img" data-file="design-before.webp"><img data-img="design-before.webp" alt="A logo on a plain presentation slide" loading="lazy" decoding="async"></figure>
+      <div class="ba__after" id="baAfter"><figure class="ph ba__img" data-file="design-after.webp"><img data-img="design-after.webp" alt="The same logo on a shopfront sign, a phone story and a receipt" loading="lazy" decoding="async"></figure></div>
       <div class="ba__handle" id="baHandle" aria-hidden="true"><i></i></div>
       <span class="ba__l mono">Slide</span><span class="ba__r mono">Street</span>
       <input class="ba__range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Compare the slide version and the real-world version">
@@ -1109,7 +1144,8 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
   <div class="wrap">
     <div class="contact2 lc lc-in">
       <div class="contact2__side">
-        <span class="kick">Contact · Nexlyr Solutions</span>
+        <div class="contact2__logo" aria-hidden="true"><svg class="nxlogo" viewBox="0 0 1985 3170" role="img" aria-label="Nexlyr"><defs><linearGradient id="nxlg4" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#nxlg4)">NEXLYR</text><g fill="url(#nxlg4)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg></div>
+        <span class="kick">Contact Nexlyr Solutions</span>
         <h2 class="split">Tell us the brand. Tell us the goal.</h2>
         <p class="lede">Design and campaign work is scoped per project, never off a price list. Send the details and Hashir comes back personally with an honest number and a timeline.</p>
         <ul class="cinfo">
@@ -1159,7 +1195,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 <!-- ============ FOOTER ============ -->
 <footer class="foot">
   <div class="wrap foot__in">
-    <a class="foot__brand" href="index.html" aria-label="Nexlyr Solutions, home"><svg viewBox="0 0 26 30" aria-hidden="true"><defs><linearGradient id="lgf" x1="0" x2="1"><stop offset="0" stop-color="#27D6F8"/><stop offset="1" stop-color="#0C7FC4"/></linearGradient></defs><g fill="url(#lgf)"><rect x="0" y="0" width="3.6" height="30"/><rect x="5.6" y="0" width="3.6" height="30"/><rect x="11.2" y="0" width="3.6" height="30"/><rect x="16.8" y="0" width="3.6" height="20"/><rect x="22.4" y="0" width="3.6" height="20"/></g></svg><span><b>NEXLYR</b><small>The next layer of digital.</small></span></a>
+    <a class="foot__brand" href="index.html" aria-label="Nexlyr Solutions, home"><svg class="nxlogo" viewBox="0 0 1985 3170" role="img" aria-label="Nexlyr"><defs><linearGradient id="nxlg5" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#nxlg5)">NEXLYR</text><g fill="url(#nxlg5)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg><small>The next layer of digital.</small></a>
     <nav class="foot__links" aria-label="Footer">
       <a href="web-development.html">Web</a><a href="business-software.html">Software</a><a href="video-editing.html">Video</a><a href="design-and-ads.html">Design &amp; Ads</a><a href="social-media-marketing.html">Social</a><a href="index.html#tap">NFC &amp; Reviews</a><a href="index.html#team">Team</a>
     </nav>
@@ -1205,7 +1241,7 @@ const D_SVC = [
   { name:'Full brand kits', kick:'Launch', sub:'For a business starting from nothing', body:['Identity, social system, templates and print assets delivered together, so the launch looks deliberate instead of assembled over six months.'], lists:[{h:'What you get',items:['Identity plus full asset library','Social and print templates','Organised, named file handover','Guidelines for consistency','Pitch decks built to the same identity']}] }
 ];
 const ADS = [['Meta campaigns','Facebook and Instagram campaigns built around a real offer: audience structure, creative variants, and enough testing to find what works before the budget is spent finding out.'],['Google campaigns','Search and Performance Max aimed at people already looking for what you sell, with keyword and negative-keyword work that stops budget leaking to the wrong clicks.'],['Creative that gets tested','The creative decides the result more than the targeting does. Multiple hooks, formats and angles run against each other.'],['Social media management','Content planning, posting schedules, caption writing and community replies, so the account stays alive between campaigns.'],['Reporting you can read','What was spent, what came back, what is working and what we are changing next. In plain language.'],['Landing pages that match','Paid traffic sent to a page built for that specific offer, not a generic homepage.']];
-const PEOPLE = [['M. Hashir','Founder · design, social &amp; ads','Designs logos and identity systems personally, manages the social accounts and runs the Meta and Google campaigns, then writes the landing pages they point at.','img/team-hashir.webp','https://hashir.nexlyr.solutions/'],['Zamil Shaikh','Co-Founder · ads manager','Runs paid campaigns alongside Hashir: audiences, creative testing and the numbers that decide where budget goes next.','img/team-zamil.webp','https://zamil.nexlyr.solutions/'],['Hammad Naved','Operations &amp; social media','Keeps every campaign and content calendar on schedule, and manages client social accounts day to day.','img/team-hammad.webp'],['Syed M. Raza','Video edit','Cuts the ad video and the reels, including new hooks the same day a campaign needs them.','img/team-raza.webp']];
+const PEOPLE = [['M. Hashir','Founder · design, social &amp; ads','Designs logos and identity systems personally, manages the social accounts and runs the Meta and Google campaigns, then writes the landing pages they point at.','team-hashir.webp','https://hashir.nexlyr.solutions/'],['Zamil Shaikh','Co-Founder · ads manager','Runs paid campaigns alongside Hashir: audiences, creative testing and the numbers that decide where budget goes next.','team-zamil.webp','https://zamil.nexlyr.solutions/'],['Hammad Naved','Operations &amp; social media','Keeps every campaign and content calendar on schedule, and manages client social accounts day to day.','team-hammad.webp'],['Syed M. Raza','Video edit','Cuts the ad video and the reels, including new hooks the same day a campaign needs them.','team-raza.webp']];
 NX.faq = [
   ['How many logo concepts do I get?','Enough to make a real decision, not so many that it becomes a lottery. We present a small set of genuinely different directions, then refine the one you respond to until it is right. Delivery includes every file format and variant you will need.'],
   ['Do you handle the ad spend or do I?','The budget stays in your own ad account, paid on your own card, so you keep full ownership and visibility of the spend. We build, run and optimise the campaigns inside it. If we ever stop working together, the account and its history remain yours.'],
@@ -1240,10 +1276,9 @@ NX.intro = (tl, api) => {
     .add(step('Laying the grid…'), .5)
     .fromTo('#board .guides > *', { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: .08 }, .5)
     .add(step('Building the mark…'), 1.5)
-    .from('#board .mark rect', { scaleY: 0, transformOrigin: '50% 0%', duration: .9, ease: 'expo.out', stagger: .1 }, 1.5)
-    .from('#board .dims text', { opacity: 0, duration: .4, stagger: .15 }, 1.9)
-    .add(step('Setting the wordmark…'), 2.3)
-    .fromTo('#boardWord', { letterSpacing: '1.2em', opacity: 0 }, { letterSpacing: '.32em', opacity: 1, duration: 1.1, ease: 'expo.out' }, 2.3)
+    .fromTo('#board .lg-bar', { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: 1, ease: 'expo.out', stagger: .1 }, 1.5)
+    .add(step('Setting the wordmark…'), 2.2)
+    .fromTo('#board .lg-word', { opacity: 0, y: 220 }, { opacity: 1, y: 0, duration: 1, ease: 'expo.out' }, 2.2)
     .add(step('Palette & type'), 3)
     .from('.swatches span', { y: 20, opacity: 0, duration: .6, ease: 'back.out(2)', stagger: .1 }, 3)
     .from('.specimen > *', { y: 14, opacity: 0, duration: .5, ease: 'power3.out', stagger: .08 }, 3.2)
@@ -1264,7 +1299,7 @@ NX.motion = api => {
 </script>
 <script>
 /* ============================================================
-   NEXLYR BASE — shared by every page. Page files set window.NX
+   NEXLYR BASE, shared by every page. Page files set window.NX
    hooks before this runs:
      NX.page      = 'web-development'      (marks the active nav link)
      NX.svc       = 'Web Development'      (preselects the brief form)
@@ -1276,37 +1311,37 @@ NX.motion = api => {
    ============================================================ */
 const WA = 'https://wa.me/923053687680';
 const SERVICES = [
-  { t:'Web Development', img:'img/svc-web.webp', h:'Custom websites and web apps, hand-coded.',
+  { t:'Web Development', img:'svc-web.webp', h:'Custom websites and web apps, hand-coded.',
     p:'Our core discipline. Written from scratch with no builders or bloated themes, so it loads fast on a mid-range Android over 4G, ranks properly and can grow later without a rebuild.',
     c:['Business & brand sites','Web apps & portals','3D & scroll motion','E-commerce'], link:'web-development.html' },
-  { t:'Business Software', img:'img/svc-software.webp', h:'Internal tools built around how you already work.',
+  { t:'Business Software', img:'svc-software.webp', h:'Internal tools built around how you already work.',
     p:'Inventory, bookings, quotations, job tracking and staff records, on a Supabase backend you own outright. Your team stops bending to someone else’s software.',
     c:['Inventory & CRM','Booking & scheduling','Role-based logins','POS & memberships'], link:'business-software.html' },
-  { t:'Admin Panels', img:'img/svc-admin.webp', h:'You update the site. No developer needed.',
+  { t:'Admin Panels', img:'svc-admin.webp', h:'You update the site. No developer needed.',
     p:'Edit pages, upload photos, reorder sections and read enquiries as they land. Already running live for schools, academies and tuition platforms.',
     c:['Edit content yourself','Enquiries inbox','Roles & secure access'] },
-  { t:'AI Chatbots', img:'img/svc-chatbot.webp', h:'A trained assistant that never sleeps.',
+  { t:'AI Chatbots', img:'svc-chatbot.webp', h:'A trained assistant that never sleeps.',
     p:'It knows your services, hours and policies, answers visitors instantly and hands warm leads straight to your WhatsApp.',
     c:['Trained on your content','English, Urdu & Roman Urdu','WhatsApp bots','CRM handoff'] },
-  { t:'AI Calling Agents', img:'img/svc-calling.webp', h:'A voice that dials, books and follows up.',
+  { t:'AI Calling Agents', img:'svc-calling.webp', h:'A voice that dials, books and follows up.',
     p:'Calls new leads within minutes of them enquiring, qualifies them, books appointments into your calendar and chases the ones who went quiet. Every call is transcribed.',
     c:['Inbound & outbound','Appointment booking','Reminders','Full transcripts'] },
-  { t:'Video Editing', img:'img/svc-video.webp', h:'Reels, Shorts and podcast-level cuts.',
+  { t:'Video Editing', img:'svc-video.webp', h:'Reels, Shorts and podcast-level cuts.',
     p:'Retention-first editing with real sound design, colour and motion graphics, not clips stitched together.',
     c:['Reels & Shorts','Podcasts & long-form','Motion graphics','Thumbnails'], link:'video-editing.html' },
-  { t:'Logo & Brand Design', img:'img/svc-brand.webp', h:'Identity that works at every size.',
+  { t:'Logo & Brand Design', img:'svc-brand.webp', h:'Identity that works at every size.',
     p:'Logos and brand systems that hold up on a signboard, a story frame, an app icon and an invoice header.',
     c:['Logos & identity','Social creatives','Print & packaging','Pitch decks'], link:'design-and-ads.html' },
-  { t:'Ads & Social Media', img:'img/svc-ads.webp', h:'Campaigns judged on leads, not likes.',
+  { t:'Ads & Social Media', img:'svc-ads.webp', h:'Campaigns judged on leads, not likes.',
     p:'Meta and Google campaigns run end to end: creative, targeting, testing and honest reporting, plus the accounts managed in between.',
     c:['Meta & Google ads','Creative testing','Account management','Content calendars'], link:'social-media-marketing.html' },
-  { t:'SEO', img:'img/svc-seo.webp', h:'Set up properly on every site we build.',
+  { t:'SEO', img:'svc-seo.webp', h:'Set up properly on every site we build.',
     p:'Titles, structured data, sitemap and speed are part of the build, not a monthly add-on bolted on afterwards.',
     c:['Schema & Open Graph','Core Web Vitals','Local Karachi search','Search Console'] },
-  { t:'Google Reviews', img:'img/svc-reviews.webp', isNew:true, h:'Get found on Maps, then get reviewed.',
+  { t:'Google Reviews', img:'svc-reviews.webp', isNew:true, h:'Get found on Maps, then get reviewed.',
     p:'Google Business Profile set up and managed, plus tap-to-review stands and cards that take customers straight to your review form.',
     c:['Business Profile setup','Tap-to-review stands','Review replies'], link:'#tap' },
-  { t:'NFC Business Cards', img:'img/svc-nfc.webp', isNew:true, h:'One tap shares everything.',
+  { t:'NFC Business Cards', img:'svc-nfc.webp', isNew:true, h:'One tap shares everything.',
     p:'A card that opens your number, WhatsApp, socials and location on any NFC phone, with a QR on the back for everyone else.',
     c:['Custom printed','Your own profile page','QR backup'], link:'#tap' }
 ];
@@ -1395,12 +1430,12 @@ const SERVICES = [
 
   /* reels: add a file to /media and add a line here, it shows up; missing files hide themselves */
   const REELS = NX.reels || [
-    { t:'Market update reel', src:'media/reel-video-1.mp4', poster:'media/reel-video-1.webp' },
-    { t:'Motion-graphics promo', src:'media/reel-video-2.mp4', poster:'media/reel-video-2.webp' },
-    { t:'Cinematic cut', src:'media/reel-video-3.mp4', poster:'media/reel-video-3.webp' },
-    { t:'New reel', src:'media/reel-video-4.mp4', poster:'media/reel-video-4.webp' },
-    { t:'New reel', src:'media/reel-video-5.mp4', poster:'media/reel-video-5.webp' },
-    { t:'New reel', src:'media/reel-video-6.mp4', poster:'media/reel-video-6.webp' }
+    { t:'Market update reel', src:'reel-video-1.mp4', poster:'reel-video-1.webp' },
+    { t:'Motion-graphics promo', src:'reel-video-2.mp4', poster:'reel-video-2.webp' },
+    { t:'Cinematic cut', src:'reel-video-3.mp4', poster:'reel-video-3.webp' },
+    { t:'New reel', src:'reel-video-4.mp4', poster:'reel-video-4.webp' },
+    { t:'New reel', src:'reel-video-5.mp4', poster:'reel-video-5.webp' },
+    { t:'New reel', src:'reel-video-6.mp4', poster:'reel-video-6.webp' }
   ];
   api.reels = el => {
     if (!el) return;
@@ -1489,7 +1524,7 @@ const SERVICES = [
     const done = sent => { if (!sent) { btn.removeAttribute('aria-busy'); btn.textContent = 'Send the brief'; } };
     if (window.NexlyrLeads) NexlyrLeads.submit({ values: v, onStatus, onDone: done });
     else {
-      const text = `New enquiry — Nexlyr Solutions\n\nName: ${v.name}\nBusiness: ${v.biz}\nPhone: ${v.phone}\nEmail: ${v.email}\nService: ${v.svc}${v.msg ? '\n\nNotes:\n' + v.msg : ''}`;
+      const text = `New enquiry, Nexlyr Solutions\n\nName: ${v.name}\nBusiness: ${v.biz}\nPhone: ${v.phone}\nEmail: ${v.email}\nService: ${v.svc}${v.msg ? '\n\nNotes:\n' + v.msg : ''}`;
       window.open(waLink(text), '_blank', 'noopener'); onStatus('Opening WhatsApp with your brief written out.', 'ok'); done(false);
     }
   });
@@ -1530,20 +1565,6 @@ const SERVICES = [
   launch.addEventListener('click', () => setBot(!bot.classList.contains('is-open')));
   $('#botClose').addEventListener('click', () => { setBot(false); launch.focus(); });
   log.addEventListener('click', e => { if (e.target.matches('a[href^="#"]')) setBot(false); });
-
-  let teased = false; try { teased = !!sessionStorage.getItem('nx_tease'); } catch (e) {}
-  if (!teased) setTimeout(() => {
-    if (bot.classList.contains('is-open')) return;
-    const t = d.createElement('button'); t.type = 'button'; t.className = 'tease lc';
-    t.innerHTML = '<b>Got a question?</b><span>Ask here. Replies are instant.</span>';
-    d.body.appendChild(t); requestAnimationFrame(() => t.classList.add('is-on'));
-    const kill = () => { t.classList.remove('is-on'); setTimeout(() => t.remove(), 400); };
-    t.addEventListener('click', () => { kill(); setBot(true); });
-    launch.addEventListener('click', kill, { once: true });
-    setTimeout(kill, 8000);
-    try { sessionStorage.setItem('nx_tease', '1'); } catch (e) {}
-  }, 9000);
-
 
   /* ---------- nav hide/show ---------- */
   const nav = $('.nav'); let lastY = 0;
@@ -1601,16 +1622,18 @@ const SERVICES = [
     requestAnimationFrame(() => requestAnimationFrame(() => { root.classList.remove('is-covered'); root.classList.add('is-revealing'); }));
   };
 
-  /* ============ motion (GSAP) — every page works fully without it ============ */
+  /* ============ motion (GSAP), every page works fully without it ============ */
   const loader = $('.loader');
   const finishStill = () => { loader && loader.remove(); reveal(); NX.still && NX.still(api); };
   if (!HAS_GSAP) { finishStill(); return; }
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  gsap.defaults({ overwrite: 'auto' });
   api.gsap = gsap;
 
   let lenis = null;
   if (!RM && window.Lenis) {
-    lenis = new Lenis({ lerp: .1, smoothWheel: true });
+    lenis = new Lenis({ lerp: .085, smoothWheel: true, wheelMultiplier: .95 });
     window.__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
@@ -1645,13 +1668,12 @@ const SERVICES = [
   } else {
     const count = $('.loader__count'), cnt = { v: 0 };
     gsap.timeline({ onComplete: () => { loader.remove(); try { sessionStorage.setItem('nx_seen', 1); } catch (e) {} } })
-      .fromTo('.loader__outline rect', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .9, ease: 'power2.inOut', stagger: .1 })
-      .fromTo('.loader__fill', { scaleY: 0 }, { scaleY: 1, duration: 1.1, ease: 'expo.inOut' }, .45)
-      .from('.loader__word span', { yPercent: 120, opacity: 0, filter: 'blur(8px)', duration: .7, ease: 'expo.out', stagger: .06 }, .7)
-      .from('.loader__tag', { opacity: 0, letterSpacing: '.6em', duration: .9, ease: 'expo.out' }, 1)
-      .to(cnt, { v: 100, duration: 1.7, ease: 'power2.inOut', onUpdate: () => count.textContent = String(Math.round(cnt.v)).padStart(3, '0') }, 0)
-      .fromTo('.loader__line i', { scaleX: 0 }, { scaleX: 1, duration: 1.7, ease: 'power2.inOut' }, 0)
-      .to('.loader__center', { scale: .92, opacity: 0, filter: 'blur(6px)', duration: .45, ease: 'power3.in' }, '+=.15')
+      .fromTo('.loader .lg-bar', { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: 1.1, ease: 'expo.out', stagger: .09 })
+      .fromTo('.loader .lg-word', { opacity: 0, y: 260 }, { opacity: 1, y: 0, duration: .9, ease: 'expo.out' }, .45)
+      .from('.loader__tag', { opacity: 0, y: 12, duration: .8, ease: 'expo.out' }, .8)
+      .to(cnt, { v: 100, duration: 1.6, ease: 'power2.inOut', onUpdate: () => count.textContent = String(Math.round(cnt.v)).padStart(3, '0') }, 0)
+      .fromTo('.loader__line i', { scaleX: 0 }, { scaleX: 1, duration: 1.6, ease: 'power2.inOut' }, 0)
+      .to('.loader__center', { scale: .94, opacity: 0, duration: .45, ease: 'power3.in' }, '+=.15')
       .to('.loader__foot', { opacity: 0, duration: .3 }, '<')
       .to('.loader__panels i', { yPercent: -100, duration: .85, ease: 'expo.inOut', stagger: { each: .07, from: 'center' } }, '-=.1')
       .add(() => intro.play(), '-=.55');

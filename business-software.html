@@ -342,7 +342,7 @@ p{margin:0}
 @media (max-width:520px){.bot-launch__l{display:none}.bot-launch{padding:0 16px}}
 
 /* ==========================================================================
-   v2 — LAYER SYSTEM
+   v2, LAYER SYSTEM
    One card style (.lc) and one entrance (rise + clip) used across the page,
    ambient "logo blur" orbs behind sections, and four feature sections:
    standard (spec list + layer rings) · words (big-word service stack)
@@ -528,7 +528,7 @@ p{margin:0}
 .tease span{color:var(--color-mute);font-size:13px}
 
 /* ==========================================================================
-   v3 — SHARED MULTI-PAGE COMPONENTS
+   v3, SHARED MULTI-PAGE COMPONENTS
    ========================================================================== */
 /* inline page links (desktop) */
 .nav__links{display:none;align-items:center;gap:2px;padding:5px;border-radius:var(--radius-pill);background:rgb(10 17 25 / .55);border:1px solid var(--color-line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
@@ -611,7 +611,7 @@ p{margin:0}
 .note b{color:var(--color-white)}
 
 /* ==========================================================================
-   v4 — BRAND PASS: logo typeface, new buttons, nav bar, ribbon, stats,
+   v4, BRAND PASS: logo typeface, new buttons, nav bar, ribbon, stats,
    footer, FAQ, contact, assistant, loader, mobile performance
    ========================================================================== */
 :root{--font-brand:'Orbitron','Bricolage Grotesque',system-ui,sans-serif}
@@ -832,6 +832,49 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 @keyframes mIn{from{opacity:0;transform:translateY(8px)}}
 @media (max-width:760px){.menu{top:calc(78px + env(safe-area-inset-top,0px));right:var(--gutter);border-radius:20px}.menu__side{grid-template-columns:1fr}}
 
+/* ==========================================================================
+   v5, quieter, more finished: no floating badges, no mono labels,
+   no placeholder captions, the real logo used throughout
+   ========================================================================== */
+.grain{display:none}
+.kick{font-family:var(--font-body);font-size:.92rem;font-weight:600;letter-spacing:0;text-transform:none;color:var(--color-cyan-lt);gap:0}
+.kick::before{display:none}
+.head-row .hint{display:none}
+.mono{font-family:var(--font-body);letter-spacing:0;font-size:.82rem;text-transform:none}
+.chip-row{gap:6px 0}
+.chip-row span{border:0;background:none;padding:0;border-radius:0;color:var(--color-soft)}
+.chip-row span:not(:last-child)::after{content:"·";margin:0 12px;color:var(--color-mute)}
+.chips{gap:4px 0}
+.chips li{border:0;background:none!important;padding:0;border-radius:0;color:var(--color-soft);backdrop-filter:none!important}
+.chips li:not(:last-child)::after{content:"·";margin:0 10px;color:var(--color-mute)}
+.badge{background:none;padding:0;margin-left:8px;color:var(--color-cyan-lt)}
+.tease{display:none!important}
+.orb{opacity:calc(var(--o,.22) * .6)}
+.hero h1 .grad,.phero h1 .grad{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#18C8F0;-webkit-text-fill-color:#18C8F0}
+.ph.is-empty::after{content:""!important;display:block!important;position:absolute;inset:0!important;background:url("nexlyr-mark.webp") center/clamp(28px,16%,90px) auto no-repeat;opacity:.16}
+.ph::before{background:radial-gradient(60% 70% at 70% 30%,rgb(24 200 240 / .12),transparent 70%),linear-gradient(160deg,#101B28,#0A1119)}
+.card__sub,.frame__kick,.day__who,.pc__cap .mono{font-family:var(--font-body);letter-spacing:0;text-transform:none}
+.card__sub{font-size:12.5px;font-weight:600}
+.pc__cap .mono{font-size:12.5px}
+.tag{display:none}
+
+/* the logo, everywhere it belongs */
+.nxlogo{display:block;height:auto;overflow:visible}
+.brand__mark{width:20px;height:26px;object-fit:contain}
+.loader .nxlogo{width:clamp(96px,10vw,132px);filter:drop-shadow(0 0 24px rgb(24 200 240 / .45))}
+.loader__tag{font-family:var(--font-body);letter-spacing:.02em;text-transform:none;font-size:.95rem;color:var(--color-soft)}
+.loader__foot{justify-content:center}
+.loader__line{max-width:420px}
+.foot__brand{display:flex;align-items:center;gap:16px}
+.foot__brand .nxlogo{height:58px;width:auto}
+.foot__brand small{font-size:12.5px;color:var(--color-mute);max-width:12ch;line-height:1.35}
+.contact2__side{position:relative}
+.contact2__logo{width:clamp(34px,3vw,42px)}
+.contact2__logo .nxlogo{width:100%}
+.menu__logo{display:flex;align-items:center;gap:14px;margin:6px 0 0;padding:16px 14px 4px;border-top:1px solid var(--color-line)}
+.menu__logo .nxlogo{height:46px;width:auto}
+.menu__logo span{font-size:12.5px;color:var(--color-mute)}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:150ms!important;scroll-behavior:auto!important}
   .ticker__row{animation:none}
@@ -904,9 +947,9 @@ tr.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
-<script src="assets/nexlyr-config.js"></script>
-<script src="assets/nexlyr-analytics.js" defer></script>
-<script src="assets/nexlyr-leads.js" defer></script>
+<script src="nexlyr-config.js"></script>
+<script src="nexlyr-analytics.js" defer></script>
+<script src="nexlyr-leads.js" defer></script>
 </head>
 <body class="pg-business-software">
 <a class="sr-only" href="#main">Skip to content</a>
@@ -916,23 +959,17 @@ tr.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
 <div class="loader" aria-hidden="true">
   <div class="loader__panels"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="loader__center">
-    <svg class="loader__mark" viewBox="0 0 64 74">
-      <defs><linearGradient id="ldg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#43DCFA"/><stop offset="1" stop-color="#0C7FC4"/></linearGradient>
-      <clipPath id="ldc"><rect x="0" y="0" width="8" height="74"/><rect x="14" y="0" width="8" height="74"/><rect x="28" y="0" width="8" height="74"/><rect x="42" y="0" width="8" height="48"/><rect x="56" y="0" width="8" height="48"/></clipPath></defs>
-      <g class="loader__outline" fill="none" stroke="#18C8F0" stroke-width=".9"><rect x=".5" y=".5" width="7" height="73" pathLength="1"/><rect x="14.5" y=".5" width="7" height="73" pathLength="1"/><rect x="28.5" y=".5" width="7" height="73" pathLength="1"/><rect x="42.5" y=".5" width="7" height="47" pathLength="1"/><rect x="56.5" y=".5" width="7" height="47" pathLength="1"/></g>
-      <g clip-path="url(#ldc)"><rect class="loader__fill" x="0" y="0" width="64" height="74" fill="url(#ldg)"/></g>
-    </svg>
-    <div class="loader__word"><span>N</span><span>E</span><span>X</span><span>L</span><span>Y</span><span>R</span></div>
+    <svg class="nxlogo" viewBox="0 0 1985 3170" role="img" aria-label="Nexlyr"><defs><linearGradient id="nxlg1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#nxlg1)">NEXLYR</text><g fill="url(#nxlg1)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg>
     <div class="loader__tag">The next layer of digital</div>
   </div>
-  <div class="loader__foot"><span class="loader__count">000</span><span class="loader__line"><i></i></span><span class="loader__note">Digital agency · Worldwide</span></div>
+  <div class="loader__foot"><span class="loader__count">000</span><span class="loader__line"><i></i></span></div>
 </div>
 
 <!-- ============ NAV ============ -->
 <header class="nav">
   <div class="wrap nav__wrap"><div class="nav__in">
     <a class="brand" href="index.html" aria-label="Nexlyr Solutions, home">
-      <svg viewBox="0 0 26 30" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#27D6F8"/><stop offset="1" stop-color="#0C7FC4"/></linearGradient></defs><g fill="url(#lg)"><rect x="0" y="0" width="3.6" height="30"/><rect x="5.6" y="0" width="3.6" height="30"/><rect x="11.2" y="0" width="3.6" height="30"/><rect x="16.8" y="0" width="3.6" height="20"/><rect x="22.4" y="0" width="3.6" height="20"/></g></svg>
+      <img class="brand__mark" src="nexlyr-mark.webp" alt="" width="20" height="26">
       <b>NEXLYR</b>
     </a>
     <nav class="nav__links" aria-label="Main">
@@ -984,6 +1021,7 @@ tr.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
         </ul>
       </div>
     </div>
+    <div class="menu__logo" aria-hidden="true"><svg class="nxlogo" viewBox="0 0 1985 3170" role="img" aria-label="Nexlyr"><defs><linearGradient id="nxlg2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#nxlg2)">NEXLYR</text><g fill="url(#nxlg2)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg><span>The next layer of digital</span></div>
   </div>
 </nav>
 <div class="curtain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -1001,7 +1039,7 @@ tr.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
     </div>
     <div class="phero__vis">
       <div class="dash lc" id="dash" aria-label="Illustration of a live stock dashboard">
-        <div class="dash__head"><span class="dash__live"><i></i>Live</span><b>Stock · Main branch</b><span class="mono">Illustration</span></div>
+        <div class="dash__head"><span class="dash__live"><i></i>Live</span><b>Stock · Main branch</b><span class="mono">Example</span></div>
         <div class="dash__kpis">
           <div><span>Today</span><b>Rs <em id="kToday">0</em></b></div>
           <div><span>Orders</span><b id="kOrders">0</b></div>
@@ -1096,7 +1134,8 @@ tr.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
   <div class="wrap">
     <div class="contact2 lc lc-in">
       <div class="contact2__side">
-        <span class="kick">Contact · Nexlyr Solutions</span>
+        <div class="contact2__logo" aria-hidden="true"><svg class="nxlogo" viewBox="0 0 1985 3170" role="img" aria-label="Nexlyr"><defs><linearGradient id="nxlg3" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#nxlg3)">NEXLYR</text><g fill="url(#nxlg3)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg></div>
+        <span class="kick">Contact Nexlyr Solutions</span>
         <h2 class="split">Tell us how your day runs. We will show you the screen.</h2>
         <p class="lede">No requirements document and no discovery invoice. Describe the business and you get back a plain list of screens, a number and a timeline.</p>
         <ul class="cinfo">
@@ -1146,7 +1185,7 @@ tr.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
 <!-- ============ FOOTER ============ -->
 <footer class="foot">
   <div class="wrap foot__in">
-    <a class="foot__brand" href="index.html" aria-label="Nexlyr Solutions, home"><svg viewBox="0 0 26 30" aria-hidden="true"><defs><linearGradient id="lgf" x1="0" x2="1"><stop offset="0" stop-color="#27D6F8"/><stop offset="1" stop-color="#0C7FC4"/></linearGradient></defs><g fill="url(#lgf)"><rect x="0" y="0" width="3.6" height="30"/><rect x="5.6" y="0" width="3.6" height="30"/><rect x="11.2" y="0" width="3.6" height="30"/><rect x="16.8" y="0" width="3.6" height="20"/><rect x="22.4" y="0" width="3.6" height="20"/></g></svg><span><b>NEXLYR</b><small>The next layer of digital.</small></span></a>
+    <a class="foot__brand" href="index.html" aria-label="Nexlyr Solutions, home"><svg class="nxlogo" viewBox="0 0 1985 3170" role="img" aria-label="Nexlyr"><defs><linearGradient id="nxlg4" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#nxlg4)">NEXLYR</text><g fill="url(#nxlg4)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg><small>The next layer of digital.</small></a>
     <nav class="foot__links" aria-label="Footer">
       <a href="web-development.html">Web</a><a href="business-software.html">Software</a><a href="video-editing.html">Video</a><a href="design-and-ads.html">Design &amp; Ads</a><a href="social-media-marketing.html">Social</a><a href="index.html#tap">NFC &amp; Reviews</a><a href="index.html#team">Team</a>
     </nav>
@@ -1183,7 +1222,7 @@ tr.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
 window.NX = window.NX || {};
 NX.page = "business-software";
 NX.svc = 'Business Software';
-const SYSTEMS = [{"id": "stock", "ac": "95,225,255", "kick": "Most requested", "name": "Stock &amp; Inventory", "who": "Retail &middot; wholesale &middot; distributors", "card": "Live stock counts, purchase and sale entry, supplier ledgers and reorder alerts that fire before you run out.", "time": "Typically 4–6 weeks", "desc": "The system most shops need first. Every sale and every purchase moves the count, so the number on screen is the number on the shelf — and when a line drops under its reorder level, you hear about it before a customer does.", "own": ["Live stock across one or many branches", "Reorder alerts with supplier details attached", "Purchase entry, returns and damage records", "Supplier ledgers and outstanding balances", "Sales reports by day, item or staff member", "Barcode scanning from a phone camera"], "cus": ["Sees what is genuinely in stock online", "Reserves an item before coming in", "Gets told when something is back", "Receipt and warranty record by WhatsApp"], "ico": "<path d=\"M3 7.5l9-4.3 9 4.3v9L12 20.8 3 16.5z\"/><path d=\"M3 7.5l9 4.3 9-4.3\"/><path d=\"M12 11.8v9\"/>"}, {"id": "pos", "ac": "79,227,176", "kick": "Counter software", "name": "POS &amp; Billing", "who": "Shops &middot; pharmacies &middot; cafés", "card": "A till that works on a tablet, prints or WhatsApps the receipt, and keeps working when the internet drops.", "time": "Typically 3–5 weeks", "desc": "Built for the person standing at the counter with a queue behind the customer. Big touch targets, keyboard shortcuts for the regulars, and an offline mode so a dropped connection never stops a sale.", "own": ["Fast counter entry, touch or keyboard", "Offline mode that syncs when it reconnects", "Daily cash reconciliation and shift close", "Discounts, returns and split payments", "Per-staff sales so commission is not guesswork", "Printed or WhatsApp receipts"], "cus": ["Faster queue at the counter", "Digital receipt they will not lose", "Loyalty points tracked automatically", "Purchase history for returns"], "ico": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"13\" rx=\"2.6\"/><path d=\"M3 9h18\"/><path d=\"M7.5 13h4\"/><path d=\"M2 20.5h20\"/>"}, {"id": "barber", "ac": "255,201,120", "kick": "Bookings", "name": "Barber &amp; Salon", "who": "Barbers &middot; salons &middot; spas", "card": "Customers pick a barber and a slot. You get the day laid out chair by chair, with takings and no-shows tracked.", "time": "Typically 2–4 weeks", "desc": "The clearest example of the two-sided build. The customer side is four taps and a WhatsApp confirmation. Your side is the whole day laid out chair by chair, with the customer history that turns a walk-in into a regular.", "own": ["The day laid out chair by chair", "Per-barber schedules, breaks and days off", "Customer history — last cut, preferred barber", "Takings per chair and per service", "No-show and cancellation record", "Automatic WhatsApp reminders"], "cus": ["Books a specific barber, not just a slot", "Sees genuinely free times, not a wishlist", "Confirmation and reminder on WhatsApp", "Reschedules without phoning anyone"], "ico": "<circle cx=\"6.4\" cy=\"6.4\" r=\"2.9\"/><circle cx=\"6.4\" cy=\"17.6\" r=\"2.9\"/><path d=\"M8.6 8.4L19 19\"/><path d=\"M8.6 15.6L19 5\"/>"}, {"id": "clinic", "ac": "127,235,255", "kick": "Records", "name": "Clinic &amp; Patient Records", "who": "Doctors &middot; dentists &middot; therapists", "card": "Appointments, patient histories, prescriptions and follow-up reminders in one place instead of four registers.", "time": "Typically 5–8 weeks", "desc": "Appointment scheduling on top of a proper patient record, with the access control that kind of data demands. Reception sees the diary and nothing else; the doctor sees the history.", "own": ["Appointment diary across multiple doctors", "Patient history, notes and attached files", "Prescription records and repeat tracking", "Follow-up reminders sent automatically", "Strict access separation for reception", "Daily and monthly patient reports"], "cus": ["Books without calling during clinic hours", "Reminder the day before the appointment", "Own visit and prescription history", "Follow-up prompts they would have forgotten"], "ico": "<rect x=\"3.4\" y=\"5\" width=\"17.2\" height=\"15\" rx=\"3\"/><path d=\"M8 2.8v4M16 2.8v4\"/><path d=\"M12 10.6v5.4\"/><path d=\"M9.3 13.3h5.4\"/>"}, {"id": "gym", "ac": "127,168,255", "kick": "Memberships", "name": "Gym &amp; Membership", "who": "Gyms &middot; academies &middot; clubs", "card": "Memberships, expiry dates, attendance and class bookings — with renewal reminders that go out on their own.", "time": "Typically 4–6 weeks", "desc": "Membership businesses lose most of their money to expiries nobody chased. The system knows who lapses this week and messages them before they drift, which is usually the feature that pays for the build.", "own": ["Member list with plan and expiry dates", "Automatic renewal reminders before lapse", "Attendance and check-in tracking", "Class schedules and capacity limits", "Trainer assignment and session records", "Revenue by plan, and churn you can see"], "cus": ["Books classes from their phone", "Sees their own attendance and plan status", "Renewal reminders before access stops", "Freezes or upgrades without a phone call"], "ico": "<path d=\"M4.5 9v6\"/><path d=\"M7.5 6.5v11\"/><path d=\"M16.5 6.5v11\"/><path d=\"M19.5 9v6\"/><path d=\"M7.5 12h9\"/>"}, {"id": "school", "ac": "79,227,176", "kick": "Education", "name": "School &amp; Tuition Admin", "who": "Academies &middot; tutors &middot; institutes", "card": "Students, batches, attendance, fees and results — with a parent portal so the phone stops ringing.", "time": "Typically 5–8 weeks", "desc": "Built from real Cambridge tuition work. Fee tracking is usually the part that transforms an academy, because outstanding payments become a list instead of a memory.", "own": ["Student records, batches and timetables", "Attendance with absence alerts to parents", "Fee tracking and outstanding balances", "Results entry and progress reports", "Notes, past papers and lecture uploads", "Parent communication that logs itself"], "cus": ["Parents see attendance and results", "Fee status and receipts without asking", "Timetable and holiday announcements", "Access to notes and recorded lectures"], "ico": "<path d=\"M2.8 8.6L12 4.2l9.2 4.4L12 13z\"/><path d=\"M6.4 10.4v5.2c0 1.6 2.5 2.9 5.6 2.9s5.6-1.3 5.6-2.9v-5.2\"/><path d=\"M20.6 9v5.6\"/>"}, {"id": "resto", "ac": "255,201,120", "kick": "Orders", "name": "Restaurant &amp; Orders", "who": "Restaurants &middot; cafés &middot; cloud kitchens", "card": "A menu you edit yourself, table and delivery orders straight to the kitchen, and a live order status for the customer.", "time": "Typically 4–6 weeks", "desc": "Orders come off the site straight onto a kitchen screen, and the customer can see where their food is without phoning. The menu is yours to edit — no more PDF from two price rises ago.", "own": ["Menu you edit yourself, prices and all", "Kitchen display of incoming orders", "Table management and reservations", "Delivery zones and charges", "Item-level sales — what actually sells", "Daily takings by channel"], "cus": ["Real menu with prices and photos", "Orders for delivery, pickup or a table", "Live order status without phoning", "Reorders their usual in two taps"], "ico": "<path d=\"M6 3v8.5a2.5 2.5 0 005 0V3\"/><path d=\"M8.5 11.5V21\"/><path d=\"M17 3c-1.6 1.3-2.4 3-2.4 5.2 0 1.7.8 2.8 2.4 3.1V21\"/>"}, {"id": "estate", "ac": "127,212,255", "kick": "Listings", "name": "Property &amp; Listings", "who": "Estate agents &middot; car dealers &middot; rentals", "card": "A searchable catalogue you control, with enquiries landing in a panel instead of scattered across three phones.", "time": "Typically 4–6 weeks", "desc": "Any business with a catalogue that changes weekly. Listings you add yourself with photos and filters, and every enquiry captured against the exact listing it came from.", "own": ["Add and edit listings with photo galleries", "Mark sold, reserved or off-market instantly", "Enquiries tied to the specific listing", "Agent assignment and follow-up status", "Which listings actually get viewed", "Featured placement you control"], "cus": ["Filters by price, area, size or type", "Full galleries and detail on every listing", "Enquires about one specific property", "Saves and compares what they liked"], "ico": "<path d=\"M3.5 10.4L12 3.8l8.5 6.6\"/><path d=\"M5.6 12v8.2h12.8V12\"/><path d=\"M10 20.2v-5h4v5\"/>"}, {"id": "panelonly", "ac": "95,225,255", "kick": "For an existing site", "name": "Admin Panel Only", "who": "Already have a website", "card": "A panel bolted onto the site you already have, so you can edit it yourself instead of messaging a developer.", "time": "Typically 2–3 weeks", "desc": "For businesses whose site is fine but frozen — every change needs a developer. We put a proper panel behind it so text, photos, prices and listings become yours to edit, without rebuilding the front end.", "own": ["Edit text, images and prices yourself", "Manage listings, menus or galleries", "Enquiries inbox with read state", "Roles for you and your staff", "CSV export of everything", "Works with the site you already have"], "cus": ["Information that is finally current", "Prices that match the actual prices", "Fresh photos and real availability", "A site that stops looking abandoned"], "ico": "<rect x=\"3\" y=\"3.5\" width=\"18\" height=\"17\" rx=\"3\"/><path d=\"M7 8.5h4\"/><path d=\"M7 12h7\"/><path d=\"M7 15.5h5\"/><circle cx=\"17\" cy=\"8.5\" r=\"1.4\"/>"}];
+const SYSTEMS = [{"id": "stock", "ac": "95,225,255", "kick": "Most requested", "name": "Stock &amp; Inventory", "who": "Retail &middot; wholesale &middot; distributors", "card": "Live stock counts, purchase and sale entry, supplier ledgers and reorder alerts that fire before you run out.", "time": "Typically 4–6 weeks", "desc": "The system most shops need first. Every sale and every purchase moves the count, so the number on screen is the number on the shelf, and when a line drops under its reorder level, you hear about it before a customer does.", "own": ["Live stock across one or many branches", "Reorder alerts with supplier details attached", "Purchase entry, returns and damage records", "Supplier ledgers and outstanding balances", "Sales reports by day, item or staff member", "Barcode scanning from a phone camera"], "cus": ["Sees what is genuinely in stock online", "Reserves an item before coming in", "Gets told when something is back", "Receipt and warranty record by WhatsApp"], "ico": "<path d=\"M3 7.5l9-4.3 9 4.3v9L12 20.8 3 16.5z\"/><path d=\"M3 7.5l9 4.3 9-4.3\"/><path d=\"M12 11.8v9\"/>"}, {"id": "pos", "ac": "79,227,176", "kick": "Counter software", "name": "POS &amp; Billing", "who": "Shops &middot; pharmacies &middot; cafés", "card": "A till that works on a tablet, prints or WhatsApps the receipt, and keeps working when the internet drops.", "time": "Typically 3–5 weeks", "desc": "Built for the person standing at the counter with a queue behind the customer. Big touch targets, keyboard shortcuts for the regulars, and an offline mode so a dropped connection never stops a sale.", "own": ["Fast counter entry, touch or keyboard", "Offline mode that syncs when it reconnects", "Daily cash reconciliation and shift close", "Discounts, returns and split payments", "Per-staff sales so commission is not guesswork", "Printed or WhatsApp receipts"], "cus": ["Faster queue at the counter", "Digital receipt they will not lose", "Loyalty points tracked automatically", "Purchase history for returns"], "ico": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"13\" rx=\"2.6\"/><path d=\"M3 9h18\"/><path d=\"M7.5 13h4\"/><path d=\"M2 20.5h20\"/>"}, {"id": "barber", "ac": "255,201,120", "kick": "Bookings", "name": "Barber &amp; Salon", "who": "Barbers &middot; salons &middot; spas", "card": "Customers pick a barber and a slot. You get the day laid out chair by chair, with takings and no-shows tracked.", "time": "Typically 2–4 weeks", "desc": "The clearest example of the two-sided build. The customer side is four taps and a WhatsApp confirmation. Your side is the whole day laid out chair by chair, with the customer history that turns a walk-in into a regular.", "own": ["The day laid out chair by chair", "Per-barber schedules, breaks and days off", "Customer history, last cut, preferred barber", "Takings per chair and per service", "No-show and cancellation record", "Automatic WhatsApp reminders"], "cus": ["Books a specific barber, not just a slot", "Sees genuinely free times, not a wishlist", "Confirmation and reminder on WhatsApp", "Reschedules without phoning anyone"], "ico": "<circle cx=\"6.4\" cy=\"6.4\" r=\"2.9\"/><circle cx=\"6.4\" cy=\"17.6\" r=\"2.9\"/><path d=\"M8.6 8.4L19 19\"/><path d=\"M8.6 15.6L19 5\"/>"}, {"id": "clinic", "ac": "127,235,255", "kick": "Records", "name": "Clinic &amp; Patient Records", "who": "Doctors &middot; dentists &middot; therapists", "card": "Appointments, patient histories, prescriptions and follow-up reminders in one place instead of four registers.", "time": "Typically 5–8 weeks", "desc": "Appointment scheduling on top of a proper patient record, with the access control that kind of data demands. Reception sees the diary and nothing else; the doctor sees the history.", "own": ["Appointment diary across multiple doctors", "Patient history, notes and attached files", "Prescription records and repeat tracking", "Follow-up reminders sent automatically", "Strict access separation for reception", "Daily and monthly patient reports"], "cus": ["Books without calling during clinic hours", "Reminder the day before the appointment", "Own visit and prescription history", "Follow-up prompts they would have forgotten"], "ico": "<rect x=\"3.4\" y=\"5\" width=\"17.2\" height=\"15\" rx=\"3\"/><path d=\"M8 2.8v4M16 2.8v4\"/><path d=\"M12 10.6v5.4\"/><path d=\"M9.3 13.3h5.4\"/>"}, {"id": "gym", "ac": "127,168,255", "kick": "Memberships", "name": "Gym &amp; Membership", "who": "Gyms &middot; academies &middot; clubs", "card": "Memberships, expiry dates, attendance and class bookings, with renewal reminders that go out on their own.", "time": "Typically 4–6 weeks", "desc": "Membership businesses lose most of their money to expiries nobody chased. The system knows who lapses this week and messages them before they drift, which is usually the feature that pays for the build.", "own": ["Member list with plan and expiry dates", "Automatic renewal reminders before lapse", "Attendance and check-in tracking", "Class schedules and capacity limits", "Trainer assignment and session records", "Revenue by plan, and churn you can see"], "cus": ["Books classes from their phone", "Sees their own attendance and plan status", "Renewal reminders before access stops", "Freezes or upgrades without a phone call"], "ico": "<path d=\"M4.5 9v6\"/><path d=\"M7.5 6.5v11\"/><path d=\"M16.5 6.5v11\"/><path d=\"M19.5 9v6\"/><path d=\"M7.5 12h9\"/>"}, {"id": "school", "ac": "79,227,176", "kick": "Education", "name": "School &amp; Tuition Admin", "who": "Academies &middot; tutors &middot; institutes", "card": "Students, batches, attendance, fees and results, with a parent portal so the phone stops ringing.", "time": "Typically 5–8 weeks", "desc": "Built from real Cambridge tuition work. Fee tracking is usually the part that transforms an academy, because outstanding payments become a list instead of a memory.", "own": ["Student records, batches and timetables", "Attendance with absence alerts to parents", "Fee tracking and outstanding balances", "Results entry and progress reports", "Notes, past papers and lecture uploads", "Parent communication that logs itself"], "cus": ["Parents see attendance and results", "Fee status and receipts without asking", "Timetable and holiday announcements", "Access to notes and recorded lectures"], "ico": "<path d=\"M2.8 8.6L12 4.2l9.2 4.4L12 13z\"/><path d=\"M6.4 10.4v5.2c0 1.6 2.5 2.9 5.6 2.9s5.6-1.3 5.6-2.9v-5.2\"/><path d=\"M20.6 9v5.6\"/>"}, {"id": "resto", "ac": "255,201,120", "kick": "Orders", "name": "Restaurant &amp; Orders", "who": "Restaurants &middot; cafés &middot; cloud kitchens", "card": "A menu you edit yourself, table and delivery orders straight to the kitchen, and a live order status for the customer.", "time": "Typically 4–6 weeks", "desc": "Orders come off the site straight onto a kitchen screen, and the customer can see where their food is without phoning. The menu is yours to edit, no more PDF from two price rises ago.", "own": ["Menu you edit yourself, prices and all", "Kitchen display of incoming orders", "Table management and reservations", "Delivery zones and charges", "Item-level sales, what actually sells", "Daily takings by channel"], "cus": ["Real menu with prices and photos", "Orders for delivery, pickup or a table", "Live order status without phoning", "Reorders their usual in two taps"], "ico": "<path d=\"M6 3v8.5a2.5 2.5 0 005 0V3\"/><path d=\"M8.5 11.5V21\"/><path d=\"M17 3c-1.6 1.3-2.4 3-2.4 5.2 0 1.7.8 2.8 2.4 3.1V21\"/>"}, {"id": "estate", "ac": "127,212,255", "kick": "Listings", "name": "Property &amp; Listings", "who": "Estate agents &middot; car dealers &middot; rentals", "card": "A searchable catalogue you control, with enquiries landing in a panel instead of scattered across three phones.", "time": "Typically 4–6 weeks", "desc": "Any business with a catalogue that changes weekly. Listings you add yourself with photos and filters, and every enquiry captured against the exact listing it came from.", "own": ["Add and edit listings with photo galleries", "Mark sold, reserved or off-market instantly", "Enquiries tied to the specific listing", "Agent assignment and follow-up status", "Which listings actually get viewed", "Featured placement you control"], "cus": ["Filters by price, area, size or type", "Full galleries and detail on every listing", "Enquires about one specific property", "Saves and compares what they liked"], "ico": "<path d=\"M3.5 10.4L12 3.8l8.5 6.6\"/><path d=\"M5.6 12v8.2h12.8V12\"/><path d=\"M10 20.2v-5h4v5\"/>"}, {"id": "panelonly", "ac": "95,225,255", "kick": "For an existing site", "name": "Admin Panel Only", "who": "Already have a website", "card": "A panel bolted onto the site you already have, so you can edit it yourself instead of messaging a developer.", "time": "Typically 2–3 weeks", "desc": "For businesses whose site is fine but frozen, every change needs a developer. We put a proper panel behind it so text, photos, prices and listings become yours to edit, without rebuilding the front end.", "own": ["Edit text, images and prices yourself", "Manage listings, menus or galleries", "Enquiries inbox with read state", "Roles for you and your staff", "CSV export of everything", "Works with the site you already have"], "cus": ["Information that is finally current", "Prices that match the actual prices", "Fresh photos and real availability", "A site that stops looking abandoned"], "ico": "<rect x=\"3\" y=\"3.5\" width=\"18\" height=\"17\" rx=\"3\"/><path d=\"M7 8.5h4\"/><path d=\"M7 12h7\"/><path d=\"M7 15.5h5\"/><circle cx=\"17\" cy=\"8.5\" r=\"1.4\"/>"}];
 
 const SIDES = {
   own: [['The morning number','You open the panel and the first thing on screen is what happened yesterday: takings, orders, what sold, what didn’t. Not a wall of menus.'],['It tells you before you notice','Stock under its reorder level, a booking nobody confirmed, a membership expiring on Friday. The system raises these itself.'],['Staff see only their part','Owner sees everything including money, manager sees stock and operations, staff see their own shift. Enforced at the database.'],['Everything exports','Any list in the panel comes out as a CSV your accountant can open. Month-end stops being an evening of copying numbers.'],['Runs on your phone','Built mobile-first, so you can check the day’s takings from anywhere. No app to install.'],['A record of who changed what','Every edit is written to an audit log with a name and a timestamp.']],
@@ -1274,7 +1313,7 @@ NX.motion = api => {
 </script>
 <script>
 /* ============================================================
-   NEXLYR BASE — shared by every page. Page files set window.NX
+   NEXLYR BASE, shared by every page. Page files set window.NX
    hooks before this runs:
      NX.page      = 'web-development'      (marks the active nav link)
      NX.svc       = 'Web Development'      (preselects the brief form)
@@ -1286,37 +1325,37 @@ NX.motion = api => {
    ============================================================ */
 const WA = 'https://wa.me/923053687680';
 const SERVICES = [
-  { t:'Web Development', img:'img/svc-web.webp', h:'Custom websites and web apps, hand-coded.',
+  { t:'Web Development', img:'svc-web.webp', h:'Custom websites and web apps, hand-coded.',
     p:'Our core discipline. Written from scratch with no builders or bloated themes, so it loads fast on a mid-range Android over 4G, ranks properly and can grow later without a rebuild.',
     c:['Business & brand sites','Web apps & portals','3D & scroll motion','E-commerce'], link:'web-development.html' },
-  { t:'Business Software', img:'img/svc-software.webp', h:'Internal tools built around how you already work.',
+  { t:'Business Software', img:'svc-software.webp', h:'Internal tools built around how you already work.',
     p:'Inventory, bookings, quotations, job tracking and staff records, on a Supabase backend you own outright. Your team stops bending to someone else’s software.',
     c:['Inventory & CRM','Booking & scheduling','Role-based logins','POS & memberships'], link:'business-software.html' },
-  { t:'Admin Panels', img:'img/svc-admin.webp', h:'You update the site. No developer needed.',
+  { t:'Admin Panels', img:'svc-admin.webp', h:'You update the site. No developer needed.',
     p:'Edit pages, upload photos, reorder sections and read enquiries as they land. Already running live for schools, academies and tuition platforms.',
     c:['Edit content yourself','Enquiries inbox','Roles & secure access'] },
-  { t:'AI Chatbots', img:'img/svc-chatbot.webp', h:'A trained assistant that never sleeps.',
+  { t:'AI Chatbots', img:'svc-chatbot.webp', h:'A trained assistant that never sleeps.',
     p:'It knows your services, hours and policies, answers visitors instantly and hands warm leads straight to your WhatsApp.',
     c:['Trained on your content','English, Urdu & Roman Urdu','WhatsApp bots','CRM handoff'] },
-  { t:'AI Calling Agents', img:'img/svc-calling.webp', h:'A voice that dials, books and follows up.',
+  { t:'AI Calling Agents', img:'svc-calling.webp', h:'A voice that dials, books and follows up.',
     p:'Calls new leads within minutes of them enquiring, qualifies them, books appointments into your calendar and chases the ones who went quiet. Every call is transcribed.',
     c:['Inbound & outbound','Appointment booking','Reminders','Full transcripts'] },
-  { t:'Video Editing', img:'img/svc-video.webp', h:'Reels, Shorts and podcast-level cuts.',
+  { t:'Video Editing', img:'svc-video.webp', h:'Reels, Shorts and podcast-level cuts.',
     p:'Retention-first editing with real sound design, colour and motion graphics, not clips stitched together.',
     c:['Reels & Shorts','Podcasts & long-form','Motion graphics','Thumbnails'], link:'video-editing.html' },
-  { t:'Logo & Brand Design', img:'img/svc-brand.webp', h:'Identity that works at every size.',
+  { t:'Logo & Brand Design', img:'svc-brand.webp', h:'Identity that works at every size.',
     p:'Logos and brand systems that hold up on a signboard, a story frame, an app icon and an invoice header.',
     c:['Logos & identity','Social creatives','Print & packaging','Pitch decks'], link:'design-and-ads.html' },
-  { t:'Ads & Social Media', img:'img/svc-ads.webp', h:'Campaigns judged on leads, not likes.',
+  { t:'Ads & Social Media', img:'svc-ads.webp', h:'Campaigns judged on leads, not likes.',
     p:'Meta and Google campaigns run end to end: creative, targeting, testing and honest reporting, plus the accounts managed in between.',
     c:['Meta & Google ads','Creative testing','Account management','Content calendars'], link:'social-media-marketing.html' },
-  { t:'SEO', img:'img/svc-seo.webp', h:'Set up properly on every site we build.',
+  { t:'SEO', img:'svc-seo.webp', h:'Set up properly on every site we build.',
     p:'Titles, structured data, sitemap and speed are part of the build, not a monthly add-on bolted on afterwards.',
     c:['Schema & Open Graph','Core Web Vitals','Local Karachi search','Search Console'] },
-  { t:'Google Reviews', img:'img/svc-reviews.webp', isNew:true, h:'Get found on Maps, then get reviewed.',
+  { t:'Google Reviews', img:'svc-reviews.webp', isNew:true, h:'Get found on Maps, then get reviewed.',
     p:'Google Business Profile set up and managed, plus tap-to-review stands and cards that take customers straight to your review form.',
     c:['Business Profile setup','Tap-to-review stands','Review replies'], link:'#tap' },
-  { t:'NFC Business Cards', img:'img/svc-nfc.webp', isNew:true, h:'One tap shares everything.',
+  { t:'NFC Business Cards', img:'svc-nfc.webp', isNew:true, h:'One tap shares everything.',
     p:'A card that opens your number, WhatsApp, socials and location on any NFC phone, with a QR on the back for everyone else.',
     c:['Custom printed','Your own profile page','QR backup'], link:'#tap' }
 ];
@@ -1405,12 +1444,12 @@ const SERVICES = [
 
   /* reels: add a file to /media and add a line here, it shows up; missing files hide themselves */
   const REELS = NX.reels || [
-    { t:'Market update reel', src:'media/reel-video-1.mp4', poster:'media/reel-video-1.webp' },
-    { t:'Motion-graphics promo', src:'media/reel-video-2.mp4', poster:'media/reel-video-2.webp' },
-    { t:'Cinematic cut', src:'media/reel-video-3.mp4', poster:'media/reel-video-3.webp' },
-    { t:'New reel', src:'media/reel-video-4.mp4', poster:'media/reel-video-4.webp' },
-    { t:'New reel', src:'media/reel-video-5.mp4', poster:'media/reel-video-5.webp' },
-    { t:'New reel', src:'media/reel-video-6.mp4', poster:'media/reel-video-6.webp' }
+    { t:'Market update reel', src:'reel-video-1.mp4', poster:'reel-video-1.webp' },
+    { t:'Motion-graphics promo', src:'reel-video-2.mp4', poster:'reel-video-2.webp' },
+    { t:'Cinematic cut', src:'reel-video-3.mp4', poster:'reel-video-3.webp' },
+    { t:'New reel', src:'reel-video-4.mp4', poster:'reel-video-4.webp' },
+    { t:'New reel', src:'reel-video-5.mp4', poster:'reel-video-5.webp' },
+    { t:'New reel', src:'reel-video-6.mp4', poster:'reel-video-6.webp' }
   ];
   api.reels = el => {
     if (!el) return;
@@ -1499,7 +1538,7 @@ const SERVICES = [
     const done = sent => { if (!sent) { btn.removeAttribute('aria-busy'); btn.textContent = 'Send the brief'; } };
     if (window.NexlyrLeads) NexlyrLeads.submit({ values: v, onStatus, onDone: done });
     else {
-      const text = `New enquiry — Nexlyr Solutions\n\nName: ${v.name}\nBusiness: ${v.biz}\nPhone: ${v.phone}\nEmail: ${v.email}\nService: ${v.svc}${v.msg ? '\n\nNotes:\n' + v.msg : ''}`;
+      const text = `New enquiry, Nexlyr Solutions\n\nName: ${v.name}\nBusiness: ${v.biz}\nPhone: ${v.phone}\nEmail: ${v.email}\nService: ${v.svc}${v.msg ? '\n\nNotes:\n' + v.msg : ''}`;
       window.open(waLink(text), '_blank', 'noopener'); onStatus('Opening WhatsApp with your brief written out.', 'ok'); done(false);
     }
   });
@@ -1540,20 +1579,6 @@ const SERVICES = [
   launch.addEventListener('click', () => setBot(!bot.classList.contains('is-open')));
   $('#botClose').addEventListener('click', () => { setBot(false); launch.focus(); });
   log.addEventListener('click', e => { if (e.target.matches('a[href^="#"]')) setBot(false); });
-
-  let teased = false; try { teased = !!sessionStorage.getItem('nx_tease'); } catch (e) {}
-  if (!teased) setTimeout(() => {
-    if (bot.classList.contains('is-open')) return;
-    const t = d.createElement('button'); t.type = 'button'; t.className = 'tease lc';
-    t.innerHTML = '<b>Got a question?</b><span>Ask here. Replies are instant.</span>';
-    d.body.appendChild(t); requestAnimationFrame(() => t.classList.add('is-on'));
-    const kill = () => { t.classList.remove('is-on'); setTimeout(() => t.remove(), 400); };
-    t.addEventListener('click', () => { kill(); setBot(true); });
-    launch.addEventListener('click', kill, { once: true });
-    setTimeout(kill, 8000);
-    try { sessionStorage.setItem('nx_tease', '1'); } catch (e) {}
-  }, 9000);
-
 
   /* ---------- nav hide/show ---------- */
   const nav = $('.nav'); let lastY = 0;
@@ -1611,16 +1636,18 @@ const SERVICES = [
     requestAnimationFrame(() => requestAnimationFrame(() => { root.classList.remove('is-covered'); root.classList.add('is-revealing'); }));
   };
 
-  /* ============ motion (GSAP) — every page works fully without it ============ */
+  /* ============ motion (GSAP), every page works fully without it ============ */
   const loader = $('.loader');
   const finishStill = () => { loader && loader.remove(); reveal(); NX.still && NX.still(api); };
   if (!HAS_GSAP) { finishStill(); return; }
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  gsap.defaults({ overwrite: 'auto' });
   api.gsap = gsap;
 
   let lenis = null;
   if (!RM && window.Lenis) {
-    lenis = new Lenis({ lerp: .1, smoothWheel: true });
+    lenis = new Lenis({ lerp: .085, smoothWheel: true, wheelMultiplier: .95 });
     window.__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
@@ -1655,13 +1682,12 @@ const SERVICES = [
   } else {
     const count = $('.loader__count'), cnt = { v: 0 };
     gsap.timeline({ onComplete: () => { loader.remove(); try { sessionStorage.setItem('nx_seen', 1); } catch (e) {} } })
-      .fromTo('.loader__outline rect', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .9, ease: 'power2.inOut', stagger: .1 })
-      .fromTo('.loader__fill', { scaleY: 0 }, { scaleY: 1, duration: 1.1, ease: 'expo.inOut' }, .45)
-      .from('.loader__word span', { yPercent: 120, opacity: 0, filter: 'blur(8px)', duration: .7, ease: 'expo.out', stagger: .06 }, .7)
-      .from('.loader__tag', { opacity: 0, letterSpacing: '.6em', duration: .9, ease: 'expo.out' }, 1)
-      .to(cnt, { v: 100, duration: 1.7, ease: 'power2.inOut', onUpdate: () => count.textContent = String(Math.round(cnt.v)).padStart(3, '0') }, 0)
-      .fromTo('.loader__line i', { scaleX: 0 }, { scaleX: 1, duration: 1.7, ease: 'power2.inOut' }, 0)
-      .to('.loader__center', { scale: .92, opacity: 0, filter: 'blur(6px)', duration: .45, ease: 'power3.in' }, '+=.15')
+      .fromTo('.loader .lg-bar', { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: 1.1, ease: 'expo.out', stagger: .09 })
+      .fromTo('.loader .lg-word', { opacity: 0, y: 260 }, { opacity: 1, y: 0, duration: .9, ease: 'expo.out' }, .45)
+      .from('.loader__tag', { opacity: 0, y: 12, duration: .8, ease: 'expo.out' }, .8)
+      .to(cnt, { v: 100, duration: 1.6, ease: 'power2.inOut', onUpdate: () => count.textContent = String(Math.round(cnt.v)).padStart(3, '0') }, 0)
+      .fromTo('.loader__line i', { scaleX: 0 }, { scaleX: 1, duration: 1.6, ease: 'power2.inOut' }, 0)
+      .to('.loader__center', { scale: .94, opacity: 0, duration: .45, ease: 'power3.in' }, '+=.15')
       .to('.loader__foot', { opacity: 0, duration: .3 }, '<')
       .to('.loader__panels i', { yPercent: -100, duration: .85, ease: 'expo.inOut', stagger: { each: .07, from: 'center' } }, '-=.1')
       .add(() => intro.play(), '-=.55');
