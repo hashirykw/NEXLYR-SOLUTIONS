@@ -1004,6 +1004,16 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .tm__bar i{display:block;height:100%;background:var(--color-cyan);transform:scaleX(0);transform-origin:left}
 @media (max-width:900px){.team2__head,.team2{grid-template-columns:1fr}.team2__photo{max-width:440px;width:100%;justify-self:center}.team2__who{min-height:0}.team2__thumbs{display:flex;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter)}.team2__thumbs::-webkit-scrollbar{display:none}.tm{flex:0 0 82px}}
 .hero__after .mono{display:block;margin-top:28px;font-size:.9rem;color:var(--color-soft);text-shadow:0 2px 20px rgb(6 10 16 / .9)}
+
+/* the scroll statement: two clean lines, room to breathe, a soft dark pool behind it */
+.hero__after::before{content:"";position:absolute;inset:0;background:radial-gradient(46% 38% at 50% 50%,rgb(6 10 16 / .82),rgb(6 10 16 / .4) 55%,transparent 75%);pointer-events:none}
+.hero__after>div{position:relative;display:grid;justify-items:center;gap:clamp(26px,3.5vw,44px);padding-inline:var(--gutter)}
+.hero__after p{max-width:none;display:grid;gap:.12em;font-size:clamp(2.2rem,1rem + 4.4vw,5.2rem);line-height:1}
+.hero__after p span{display:block}
+.hero__after .hero__one{color:#18C8F0}
+.hero__cue{display:inline-flex;flex-direction:column;align-items:center;gap:12px;font-size:.92rem;color:var(--color-soft)}
+.hero__cue i{width:1px;height:42px;background:linear-gradient(var(--color-cyan),transparent);animation:drip 2s var(--ease-in-out) infinite;transform-origin:top;order:2}
+@media (max-width:620px){.hero__after p span:first-child{max-width:12ch;margin-inline:auto}}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -1102,14 +1112,13 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
       </div>
     </div>
     <div class="hero__stage">
-      <div class="hero__orbit" aria-hidden="true"><i></i></div>
       <div class="hero__globe"><canvas id="globe" role="img" aria-label="A globe of dotted continents turning slowly, with lines running between cities around the world"></canvas></div>
     </div>
   </div>
   <div class="hero__after" aria-hidden="true">
     <div>
-      <p>Websites, AI, video and brands. One team.</p>
-      <div class="mono">Scroll to see what we build</div>
+      <p><span>Websites, AI, video and brands.</span><span class="hero__one">One team.</span></p>
+      <div class="hero__cue"><i></i>Scroll to see what we build</div>
     </div>
   </div>
 </section>
@@ -1841,12 +1850,13 @@ NX.motion = api => {
   const { $, $$, RM } = api;
   /* hero: copy leaves, the globe comes forward and fills the screen */
   const heroTl = gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=110%', scrub: .6, pin: true, anticipatePin: 1, invalidateOnRefresh: true } });
-  heroTl.to('.hero__copy', { opacity: 0, y: -60, ease: 'power2.in', duration: .45 }, 0)
-        .to('.hero__stage', { x: () => { const s = document.querySelector('.hero__stage'); if (!s) return 0; const r = s.getBoundingClientRect(); return innerWidth / 2 - (r.left + r.width / 2) - (window.scrollY ? 0 : 0); }, y: () => innerWidth > 900 ? 0 : -innerHeight * .25, scale: () => innerWidth > 900 ? 1.45 : 1.3, ease: 'power2.inOut', duration: 1 }, 0)
-        .to('.hero__glow, .hero__scroll', { opacity: 0, duration: .3 }, 0)
-        .to('.hero__globe', { opacity: .28, duration: .35 }, .45)
-        .to('.hero__after', { opacity: 1, duration: .3 }, .62)
-        .from('.hero__after p', { y: 30, duration: .38, ease: 'power2.out' }, .62);
+  heroTl.fromTo('.hero__copy', { opacity: 1, y: 0 }, { opacity: 0, y: -60, ease: 'power2.in', duration: .45 }, 0)
+        .fromTo('.hero__stage', { x: 0, y: 0, scale: 1 }, { x: () => { const s = document.querySelector('.hero__stage'); if (!s) return 0; const r = s.getBoundingClientRect(); return innerWidth / 2 - (r.left + r.width / 2) - (window.scrollY ? 0 : 0); }, y: () => innerWidth > 900 ? 0 : -innerHeight * .25, scale: () => innerWidth > 900 ? 1.45 : 1.3, ease: 'power2.inOut', duration: 1 }, 0)
+        .fromTo('.hero__glow', { opacity: 1 }, { opacity: 0, duration: .3 }, 0)
+        .fromTo('.hero__globe', { opacity: 1 }, { opacity: .28, duration: .35 }, .45)
+        .fromTo('.hero__after', { opacity: 0 }, { opacity: 1, duration: .3 }, .62)
+        .fromTo('.hero__after p span', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: .38, ease: 'power2.out', stagger: .08 }, .62)
+        .fromTo('.hero__cue', { opacity: 0 }, { opacity: 1, duration: .3 }, .8);
   /* standard: beams and layer rings draw on, rows slide in */
   const std = $('#standard');
   gsap.set('#stdSvg .ring, #stdSvg .beam', { strokeDasharray: 1, strokeDashoffset: 1 });
@@ -2223,7 +2233,7 @@ const NXBoot = () => {
   if (!HAS_GSAP) { finishStill(); return; }
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
-  gsap.defaults({ overwrite: 'auto' });
+
   api.gsap = gsap;
 
   let lenis = null;

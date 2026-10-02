@@ -1410,7 +1410,7 @@ const NXBoot = () => {
   if (!HAS_GSAP) { finishStill(); return; }
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
-  gsap.defaults({ overwrite: 'auto' });
+
   api.gsap = gsap;
 
   let lenis = null;
