@@ -928,7 +928,23 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .doc__body li::marker{color:var(--color-cyan)}
 .doc__body a{color:var(--color-cyan-lt);text-decoration:underline;text-underline-offset:3px}
 .doc__body strong{color:var(--color-white)}
-@media (max-width:900px){.doc{grid-template-columns:1fr}.doc__toc{position:relative;top:0}.doc__toc ol{grid-template-columns:1fr 1fr}}
+.doc__table{margin:6px 0 18px;border:1px solid var(--color-line);border-radius:16px;overflow:hidden}
+.doc__table table{width:100%;border-collapse:collapse;font-size:var(--text-sm)}
+.doc__table th{text-align:left;font-weight:600;color:var(--color-white);padding:12px 14px;background:rgb(255 255 255 / .03);border-bottom:1px solid var(--color-line)}
+.doc__table td{padding:12px 14px;color:var(--color-soft);vertical-align:top;border-bottom:1px solid var(--color-line)}
+.doc__table tr:last-child td{border-bottom:0}
+.doc__table td:first-child{color:var(--color-white);font-family:var(--font-mono);font-size:.82em;white-space:nowrap}
+@media (max-width:900px){.doc{grid-template-columns:minmax(0,1fr)}.doc__toc{position:relative;top:0}.doc__toc ol{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:640px){
+  .doc__toc ol{grid-template-columns:minmax(0,1fr)}
+  .doc__table{border:0;border-radius:0;overflow:visible}
+  .doc__table thead{display:none}
+  .doc__table table,.doc__table tbody,.doc__table tr,.doc__table td{display:block;width:100%}
+  .doc__table tr{border:1px solid var(--color-line);border-radius:14px;padding:6px 0;margin-bottom:10px;background:rgb(255 255 255 / .02)}
+  .doc__table td{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:8px 14px;border:0;overflow-wrap:anywhere}
+  .doc__table td::before{content:attr(data-label);color:var(--color-mute);font-family:var(--font-body);font-size:.92em}
+  .doc__table td:first-child{white-space:normal}
+}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -1072,37 +1088,37 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 </section><section id="cookies">
 <h2>4. Cookies and tracking</h2>
 <p> We use a small number of cookies. Analytics and advertising cookies only load after you allow them where consent is required; visitors from regions without a consent requirement are counted by default and can opt out at any time using the control at the bottom of this section. </p>
-<table>
+<div class="doc__table"><table>
 <thead>
 <tr><th>Cookie</th><th>Set by</th><th>Purpose</th><th>Lifetime</th></tr>
 </thead>
 <tbody>
 <tr>
-<td>_ga, _ga_*</td>
-<td>Google Analytics 4</td>
-<td>Tells returning visits apart from new ones and counts page views</td>
-<td>Up to 2 years</td>
+<td data-label="Cookie">_ga, _ga_*</td>
+<td data-label="Set by">Google Analytics 4</td>
+<td data-label="Purpose">Tells returning visits apart from new ones and counts page views</td>
+<td data-label="Lifetime">Up to 2 years</td>
 </tr>
 <tr>
-<td>_fbp, _fbc</td>
-<td>Meta Pixel</td>
-<td>Measures whether our Facebook and Instagram ads produce enquiries</td>
-<td>Up to 3 months</td>
+<td data-label="Cookie">_fbp, _fbc</td>
+<td data-label="Set by">Meta Pixel</td>
+<td data-label="Purpose">Measures whether our Facebook and Instagram ads produce enquiries</td>
+<td data-label="Lifetime">Up to 3 months</td>
 </tr>
 <tr>
-<td>nx_consent_v1</td>
-<td>Nexlyr</td>
-<td>Remembers your cookie choice so we stop asking. Stored locally, not sent anywhere</td>
-<td>Until you clear your browser</td>
+<td data-label="Cookie">nx_consent_v1</td>
+<td data-label="Set by">Nexlyr</td>
+<td data-label="Purpose">Remembers your cookie choice so we stop asking. Stored locally, not sent anywhere</td>
+<td data-label="Lifetime">Until you clear your browser</td>
 </tr>
 <tr>
-<td>nx_attr</td>
-<td>Nexlyr</td>
-<td>Holds campaign tags for the length of your visit so we can attribute an enquiry correctly</td>
-<td>Until you close the tab</td>
+<td data-label="Cookie">nx_attr</td>
+<td data-label="Set by">Nexlyr</td>
+<td data-label="Purpose">Holds campaign tags for the length of your visit so we can attribute an enquiry correctly</td>
+<td data-label="Lifetime">Until you close the tab</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p> You can refuse or withdraw consent at any time, and blocking cookies in your browser works too, the site functions normally without them. </p>
 <p>
 <a href="#" id="reopen-consent">Change my cookie preferences</a>
@@ -1110,38 +1126,38 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 </section><section id="share">
 <h2>5. Who else sees your information</h2>
 <p> We do not sell, rent or trade personal information. We do rely on a handful of service providers to run the site, and your data passes through them: </p>
-<table>
+<div class="doc__table"><table>
 <thead>
 <tr><th>Provider</th><th>What it handles</th><th>Where</th></tr>
 </thead>
 <tbody>
 <tr>
-<td>Supabase</td>
-<td>Stores submitted enquiries in our database</td>
-<td>Cloud infrastructure, region selected by us</td>
+<td data-label="Provider">Supabase</td>
+<td data-label="What it handles">Stores submitted enquiries in our database</td>
+<td data-label="Where">Cloud infrastructure, region selected by us</td>
 </tr>
 <tr>
-<td>Resend</td>
-<td>Delivers the notification email when an enquiry arrives</td>
-<td>United States / EU</td>
+<td data-label="Provider">Resend</td>
+<td data-label="What it handles">Delivers the notification email when an enquiry arrives</td>
+<td data-label="Where">United States / EU</td>
 </tr>
 <tr>
-<td>Google</td>
-<td>Analytics, Search Console, web fonts</td>
-<td>Global</td>
+<td data-label="Provider">Google</td>
+<td data-label="What it handles">Analytics, Search Console, web fonts</td>
+<td data-label="Where">Global</td>
 </tr>
 <tr>
-<td>Meta</td>
-<td>Pixel measurement, and WhatsApp if you choose to message us there</td>
-<td>Global</td>
+<td data-label="Provider">Meta</td>
+<td data-label="What it handles">Pixel measurement, and WhatsApp if you choose to message us there</td>
+<td data-label="Where">Global</td>
 </tr>
 <tr>
-<td>Hosting &amp; CDN</td>
-<td>Serves the site files and a small scroll library</td>
-<td>Global</td>
+<td data-label="Provider">Hosting &amp; CDN</td>
+<td data-label="What it handles">Serves the site files and a small scroll library</td>
+<td data-label="Where">Global</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p> Because several of these operate outside Pakistan, submitting the form means your information may be transferred abroad. We only work with established providers that publish their own security and privacy commitments. </p>
 <p> We would also disclose information if a Pakistani court or regulator lawfully required it, or if it were necessary to defend a legal claim. </p>
 </section><section id="keep">

@@ -958,7 +958,8 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .obj__tabs button[aria-selected="true"] .mono{color:var(--color-ink)}
 .obj__panel{display:grid;gap:14px;min-height:380px;align-content:start}
 .obj__panel h3{font-size:clamp(1.6rem,1.2rem + 1.2vw,2.3rem)}
-@media (max-width:1000px){.obj{grid-template-columns:1fr}.obj__tabs{grid-template-columns:1fr 1fr}}
+@media (max-width:1000px){.obj{grid-template-columns:minmax(0,1fr)}.obj__tabs{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.obj__tabs button{min-width:0;padding:14px}}
+@media (max-width:360px){.obj__tabs button{gap:10px;padding:12px;font-size:.92rem}}
 
 /* ---------- posts ---------- */
 .posts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}

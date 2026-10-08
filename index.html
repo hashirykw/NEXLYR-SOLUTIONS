@@ -425,8 +425,9 @@ p{margin:0}
 .word__side{display:grid;gap:12px;justify-items:end}
 .word__side .chips li{background:rgb(6 10 16 / .45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 @media (max-width:760px){
-  .word{height:min(560px,76svh);border-radius:24px}
-  .word__foot{flex-direction:column;align-items:flex-start}
+  .word{height:min(560px,76svh);border-radius:24px;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;padding:22px 20px}
+  .word__big{position:relative;left:auto;top:auto;transform:none}
+  .word__foot{position:relative;left:auto;right:auto;bottom:auto;flex-direction:column;align-items:flex-start}
   .word__side{justify-items:start}
   .word__side .chips{display:none}
   .word__big .o{-webkit-text-stroke:1.4px rgb(238 246 251 / .9)}

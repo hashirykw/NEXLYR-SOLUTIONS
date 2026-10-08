@@ -928,7 +928,8 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .doc__body li::marker{color:var(--color-cyan)}
 .doc__body a{color:var(--color-cyan-lt);text-decoration:underline;text-underline-offset:3px}
 .doc__body strong{color:var(--color-white)}
-@media (max-width:900px){.doc{grid-template-columns:1fr}.doc__toc{position:relative;top:0}.doc__toc ol{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){.doc{grid-template-columns:minmax(0,1fr)}.doc__toc{position:relative;top:0}.doc__toc ol{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:640px){.doc__toc ol{grid-template-columns:minmax(0,1fr)}}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
