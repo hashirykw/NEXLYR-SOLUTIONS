@@ -47,28 +47,28 @@ The team frame is shaped like the logo, so the **bottom-right corner of the phot
 | `team-zamil.webp` | Use the first attached photo for the person's face and identity, and the second attached photo for the exact setting, lighting, framing and outfit. The person sits at the same office desk wearing the same black polo with blue stripes and the Nexlyr logo on the chest, laptop open, relaxed confident expression, looking at the camera. Keep the face identical to the reference. |
 | `team-hammad.webp` | Same prompt as above, with Hammad's photo as the identity reference. |
 | `team-rayyan.webp` | Same prompt as above, with Rayyan's photo as the identity reference. |
-| `team-tech.webp` | Style block + "Five people working at desks in the same office, seen from behind and the side, faces not visible, black polos with blue stripes, monitors glowing." Or a real group photo of the tech team. |
+| `team-tech.webp` | Style block + "Ten people working at desks in the same office, seen from behind and the side, faces not visible, black polos with blue stripes, monitors glowing." Or a real group photo of the tech team. |
 
 (Hashir, Raahym and Raza are already done from your existing photos.)
 
 ---
 
-## 5. Work (10 images) — do NOT generate these
+## 5. Work (10 images) — done
 
-These must be **real screenshots** of the live sites, not AI images. Take a **full-page** screenshot of each homepage (Chrome: DevTools → Ctrl+Shift+P → "Capture full size screenshot"), then resize it to **1000px wide** and keep it tall. The card shows the top of the page, and when someone hovers it, the screenshot scrolls down through the whole site.
+These are real screenshots of each site's homepage (taken from the GitHub repos), 720px wide and tall, so the card shows the top of the page and scrolls down on hover. Retake one the same way when a site changes.
 
+- `work-markaz-ouj.webp` — markaz-ouj.com
+- `work-cambridge-online.webp` — cambridgeonline.tech
 - `work-physicswithsmk.webp` — physicswithsmk.com
-- `work-cambridge-online.webp` — cambridge-online-by-swk.vercel.app
-- `work-7-spice.webp` — 7-spice.vercel.app
-- `work-infinimind.webp` — infinimind.vercel.app
-- `work-revolutionn.webp` — revolutionn.vercel.app
-- `work-one-life-fitness.webp` — onelifefitnes.vercel.app
-- `work-power-fitness-zone.webp` — power-fitness-zone-gym.vercel.app
-- `work-apexiffy.webp` — apexiffy.vercel.app
-- `work-alphaedge.webp` — alphaedge-five.vercel.app
-- `work-lotus.webp` — lotus-one-orpin.vercel.app
+- `work-maths-with-sb.webp` — saud.barlas.nexlyr.solutions
+- `work-verzish.webp` — verzish.nexlyr.solutions
+- `work-grub-coffee.webp` — grub.nexlyr.solutions
+- `work-cafe-shafe.webp` — cafe-shafe.vercel.app
+- `work-hakuna-matata.webp` — hakuna-matata.nexlyr.solutions
+- `work-wrappi.webp` — wrappi.nexlyr.solutions
+- `work-bridal-art-studio.webp` — bridal-arts-studio.vercel.app
 
-To add Verzish or any new project later, add one line to the `WORK` list at the bottom of `index.html` and one screenshot here.
+To add a project later, add one line to the `WORK` list in `index.html` (and `WORKS` in `web-development.html`) and drop its screenshot here.
 
 ---
 
