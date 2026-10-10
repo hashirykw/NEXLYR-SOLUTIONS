@@ -29,7 +29,9 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700..900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700..900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400..700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700..900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700..900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet"></noscript>
 <base href="/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@context": "https://schema.org", "@type": ["ProfessionalService", "LocalBusiness"], "@id": "https://nexlyr.solutions/#org", "name": "Nexlyr Solutions", "alternateName": "Nexlyr", "url": "https://nexlyr.solutions/", "logo": "https://nexlyr.solutions/nexlyr-logo.png", "image": "https://nexlyr.solutions/og-home.jpg", "description": "Digital agency for website design and development, AI chatbots and calling agents, SEO, business software, video editing, branding and social media marketing. Serving clients in Karachi, across Pakistan and worldwide.", "telephone": "+923053687680", "email": "nexlyr.solutions@gmail.com", "priceRange": "$$", "address": {"@type": "PostalAddress", "addressLocality": "Karachi", "addressRegion": "Sindh", "addressCountry": "PK"}, "geo": {"@type": "GeoCoordinates", "latitude": 24.8607, "longitude": 67.0011}, "areaServed": [{"@type": "City", "name": "Karachi"}, {"@type": "City", "name": "Lahore"}, {"@type": "City", "name": "Islamabad"}, {"@type": "City", "name": "Rawalpindi"}, {"@type": "City", "name": "Faisalabad"}, {"@type": "City", "name": "Hyderabad"}, {"@type": "Place", "name": "Pakistan"}, {"@type": "City", "name": "Dubai"}, {"@type": "City", "name": "Abu Dhabi"}, {"@type": "City", "name": "Riyadh"}, {"@type": "City", "name": "Doha"}, {"@type": "City", "name": "London"}, {"@type": "City", "name": "Toronto"}, {"@type": "City", "name": "New York"}, {"@type": "City", "name": "Houston"}, {"@type": "City", "name": "Sydney"}, {"@type": "Place", "name": "Worldwide"}], "knowsAbout": ["Website design", "Web development", "SEO", "Local SEO", "AI chatbots", "AI calling agents", "Business software", "POS systems", "Admin panels", "E-commerce", "Video editing", "Logo design", "Brand identity", "Social media marketing", "Meta ads", "Google ads", "NFC business cards", "Google reviews"], "sameAs": ["https://www.instagram.com/nexlyr.solution/", "https://www.linkedin.com/company/nexlyr-solutions"], "founder": [{"@type": "Person", "name": "M. Hashir", "jobTitle": "Founder, Full-Stack Web Developer & Motion Graphics Expert", "url": "https://hashir.nexlyr.solutions/"}], "employee": [{"@type": "Person", "name": "Zamil Shaikh", "jobTitle": "Co-Founder, Video Editor & AI UGC Creator", "url": "https://zamil.nexlyr.solutions/"}, {"@type": "Person", "name": "Raahym Nouman", "jobTitle": "Co-Founder, Lead & Website Backend Manager"}, {"@type": "Person", "name": "Hammad Naved", "jobTitle": "Head of Leads & Social Media Expert"}, {"@type": "Person", "name": "Syed M. Raza", "jobTitle": "Video Editor"}, {"@type": "Person", "name": "Rayyan Ali", "jobTitle": "Web Developer"}], "numberOfEmployees": {"@type": "QuantitativeValue", "value": 16}}, {"@type": "WebPage", "@id": "https://nexlyr.solutions/404#page", "url": "https://nexlyr.solutions/404", "name": "Page not found | Nexlyr Solutions", "description": "That page moved, or never existed. Here is everything Nexlyr Solutions does.", "isPartOf": {"@type": "WebSite", "@id": "https://nexlyr.solutions/#site", "name": "Nexlyr Solutions", "url": "https://nexlyr.solutions/", "publisher": {"@id": "https://nexlyr.solutions/#org"}}, "about": {"@id": "https://nexlyr.solutions/#org"}, "inLanguage": "en"}]}</script>
 <style>
@@ -1014,6 +1016,58 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .crew__notch b{font-size:clamp(2.4rem,1.6rem + 2.2vw,4rem)}
 .btn{min-height:48px}
 @media (min-width:901px){.hero__stage{max-width:min(640px,72vh)}}
+
+/* ---------- compact layouts: card groups become swipe rails on phones, long lists fold ---------- */
+@media (max-width:760px){
+  .rail{display:flex!important;grid-template-columns:none!important;flex-wrap:nowrap!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;gap:12px!important;margin-inline:calc(var(--gutter) * -1)!important;padding:4px var(--gutter) 10px!important;scroll-padding-inline:var(--gutter);scrollbar-width:none;overscroll-behavior-x:contain;align-items:stretch}
+  .rail::-webkit-scrollbar{display:none}
+  .rail>*{flex:0 0 min(84%,360px)!important;width:auto!important;max-width:none!important;min-width:0;scroll-snap-align:start;margin:0!important;grid-column:auto!important;grid-row:auto!important}
+  .rail-dots{display:flex;justify-content:center;gap:6px;margin-top:10px}
+  .rail-dots i{width:6px;height:6px;border-radius:3px;background:var(--color-line-2);transition:width .45s var(--ease-out),background-color .3s var(--ease-out)}
+  .rail-dots i.on{width:22px;background:var(--color-cyan)}
+  .founder__own{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;column-gap:14px!important}
+  .founder__own li{grid-template-columns:minmax(0,1fr)!important;gap:4px!important}
+  .founder__photo{max-height:380px;overflow:hidden}
+  .founder__photo img{object-position:50% 20%}
+  .team2__photo{max-height:340px}
+}
+@media (min-width:761px){.rail-dots{display:none}}
+.qa--more{display:none}
+.show-all .qa--more{display:block;animation:qaIn .5s var(--ease-out) both}
+@keyframes qaIn{from{opacity:0;transform:translateY(10px)}}
+.faq-more{margin:18px auto 0;display:flex}
+
+/* ---------- tabs: one panel at a time instead of a long stack ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 clamp(18px,2.4vw,28px)}
+.tabs button{position:relative;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;border-radius:var(--radius-pill);border:1px solid var(--color-line-2);background:rgb(10 17 25 / .55);color:var(--color-soft);font:600 .95rem var(--font-body);cursor:pointer;overflow:hidden;white-space:nowrap;transition:color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),background-color var(--dur-base) var(--ease-out)}
+.tabs button:hover{color:var(--color-white);border-color:var(--color-cyan)}
+.tabs button:focus-visible{outline:2px solid var(--color-cyan-lt);outline-offset:3px}
+.tabs button[aria-selected="true"]{color:var(--color-ink);background:var(--grad-bars);border-color:transparent}
+.tabs button .tabs__bar{position:absolute;left:0;bottom:0;height:3px;width:100%;background:rgb(6 10 16 / .45);transform:scaleX(0);transform-origin:left}
+.tabs button[aria-selected="true"] .tabs__bar{animation:tabRun var(--run,7s) linear forwards}
+.tabs.is-paused button .tabs__bar{animation-play-state:paused}
+@keyframes tabRun{to{transform:scaleX(1)}}
+.tab-panel[hidden]{display:none!important}
+.tab-panel.is-entering{animation:panelIn .7s var(--ease-out) both}
+@keyframes panelIn{from{opacity:0;transform:translateY(18px) scale(.985)}}
+@media (max-width:760px){.tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter)}.tabs::-webkit-scrollbar{display:none}.tabs button{flex:none;min-height:40px;padding:0 14px;font-size:.88rem}}
+@media (prefers-reduced-motion:reduce){.tab-panel.is-entering{animation:none}.tabs button .tabs__bar{display:none}}
+
+/* ---------- tighter blocks: how-to steps, contact details, portal benefits ---------- */
+@media (max-width:760px){
+  .howto{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px}
+  .howto li{padding:10px 10px 12px}
+  .howto span{font-size:11.5px}
+  .cinfo{gap:6px}
+  .cinfo a{padding:9px 12px;gap:12px}
+  .cinfo__i{width:34px;height:34px}
+}
+.pb{grid-template-columns:40px minmax(0,1fr);column-gap:14px;row-gap:4px;align-items:start}
+.pb__ico{grid-row:span 2}
+.pb h3{font-size:var(--text-md);align-self:center}
+
+.tk-more{display:none}
+@media (max-width:760px){.ticks:not(.show-all) .tk--more{display:none}.tk-more{display:inline-flex;margin-top:10px;padding:8px 14px;border-radius:var(--radius-pill);border:1px solid var(--color-line-2);background:transparent;color:var(--color-cyan-lt);font:600 .85rem var(--font-body);cursor:pointer}.show-all .tk--more{animation:qaIn .45s var(--ease-out) both}}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -1166,9 +1220,9 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
   <form class="bot__form" id="botForm"><label class="sr-only" for="botIn">Type your question</label><input id="botIn" autocomplete="off" placeholder="Ask about services, pricing, NFC cards…"><button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg></button></form>
   <a class="bot__wa" href="https://wa.me/923053687680" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2s.2-1.1.2-1.2-.2-.2-.4-.3Z" fill="currentColor" stroke="none"/></svg> Prefer a person? Chat on WhatsApp</a>
 </section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="gsap.min.js" defer></script>
+<script src="ScrollTrigger.min.js" defer></script>
+<script src="lenis.min.js" defer></script>
 
 <script>
 window.NX = window.NX || {};
@@ -1234,6 +1288,94 @@ const SERVICES = [
     c:['Custom printed','Your own profile page','QR backup'], link:'#tap' }
 ];
 
+
+/* NXCompact: shorter pages. Card groups become swipe rails on phones (with dots), long FAQs fold,
+   and NX.tabs turns a stack of big blocks into one panel at a time. Runs after the page is built. */
+window.NXTabs = function (host, panels, labels, opts) {
+  opts = opts || {};
+  if (!host || !panels.length) return null;
+  const d = document, RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const uid = 'tb' + Math.random().toString(36).slice(2, 7);
+  const bar = d.createElement('div');
+  bar.className = 'tabs'; bar.setAttribute('role', 'tablist');
+  if (opts.label) bar.setAttribute('aria-label', opts.label);
+  bar.style.setProperty('--run', (opts.auto || 7000) + 'ms');
+  bar.innerHTML = labels.map((l, i) => `<button type="button" role="tab" id="${uid}-t${i}" aria-controls="${uid}-p${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${l}${opts.auto ? '<i class="tabs__bar" aria-hidden="true"></i>' : ''}</button>`).join('');
+  host.parentNode.insertBefore(bar, host);
+  const btns = [...bar.children];
+  panels.forEach((p, i) => { p.classList.add('tab-panel'); p.id = p.id || `${uid}-p${i}`; p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', `${uid}-t${i}`); if (i) p.hidden = true; });
+  let cur = 0, timer = 0, inView = false, hold = false;
+  const show = (i, user) => {
+    i = (i + panels.length) % panels.length; if (i === cur && !user) return;
+    btns[cur].setAttribute('aria-selected', 'false'); btns[cur].tabIndex = -1; panels[cur].hidden = true; panels[cur].classList.remove('is-on');
+    cur = i;
+    btns[cur].setAttribute('aria-selected', 'true'); btns[cur].tabIndex = 0;
+    const p = panels[cur]; p.hidden = false; p.classList.remove('is-entering'); void p.offsetWidth; p.classList.add('is-entering', 'is-on');
+    if (window.gsap) gsap.set(p, { opacity: 1, y: 0, clipPath: 'none' });
+    if (opts.onShow) opts.onShow(p, cur);
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+    btns[cur].querySelector('.tabs__bar') && (btns[cur].innerHTML = btns[cur].innerHTML);
+    arm();
+  };
+  const arm = () => { clearTimeout(timer); if (!opts.auto || RM || !inView || hold) { bar.classList.add('is-paused'); return; } bar.classList.remove('is-paused'); timer = setTimeout(() => show(cur + 1), opts.auto); };
+  btns.forEach((b, i) => b.addEventListener('click', () => { show(i, true); }));
+  bar.addEventListener('keydown', e => { const k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!k) return; e.preventDefault(); show(cur + k, true); btns[cur].focus(); });
+  if (opts.auto) {
+    const zone = host;
+    zone.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hold = true; arm(); } });
+    zone.addEventListener('pointerleave', () => { hold = false; arm(); });
+    zone.addEventListener('focusin', () => { hold = true; arm(); });
+    zone.addEventListener('focusout', () => { hold = false; arm(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => { inView = es[0].isIntersecting; arm(); }, { threshold: .35 }).observe(zone);
+  }
+  if (opts.swipe) {
+    let x0 = null;
+    host.addEventListener('pointerdown', e => { x0 = e.clientX; }, { passive: true });
+    host.addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1), true); }, { passive: true });
+  }
+  panels[0].classList.add('is-on');
+  if (opts.onShow) opts.onShow(panels[0], 0);
+  return { show, get index() { return cur; } };
+};
+
+window.NXCompact = function () {
+  const d = document;
+  const RAILS = '.sec .quotes, .sec .cards, .sec .bento, .sec .numlist, .sec .sides, .sec .people, .sec .obj, .sec .week, .sec .posts, .sec .layers, .sec .more, .sec .std__list.stack';
+  d.querySelectorAll(RAILS).forEach(r => {
+    if (r.classList.contains('rail') || r.querySelector(':scope > .tab-panel')) return;
+    const items = [...r.children].filter(c => !c.matches('script,template,style'));
+    if (items.length < 3) return;
+    r.classList.add('rail');
+    const dots = d.createElement('div');
+    dots.className = 'rail-dots'; dots.setAttribute('aria-hidden', 'true');
+    dots.innerHTML = items.map(() => '<i></i>').join('');
+    r.after(dots);
+    let raf = 0;
+    const sync = () => {
+      raf = 0;
+      const max = r.scrollWidth - r.clientWidth, k = max > 4 ? Math.round(r.scrollLeft / max * (items.length - 1)) : 0;
+      [...dots.children].forEach((dot, i) => dot.classList.toggle('on', i === k));
+    };
+    r.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(sync); }, { passive: true });
+    sync();
+  });
+  /* long tick lists: first five on phones, the rest one tap away */
+  d.querySelectorAll('.sec ul.ticks').forEach(u => {
+    const li = [...u.children]; if (li.length <= 6 || u.dataset.folded) return;
+    u.dataset.folded = '1'; li.slice(5).forEach(x => x.classList.add('tk--more'));
+    const b = d.createElement('button'); b.type = 'button'; b.className = 'tk-more'; b.textContent = `+ ${li.length - 5} more`;
+    u.after(b); b.addEventListener('click', () => { u.classList.add('show-all'); b.remove(); if (window.ScrollTrigger) ScrollTrigger.refresh(); });
+  });
+  d.querySelectorAll('.faq2').forEach(f => {
+    const qs = [...f.children]; if (qs.length <= 6 || f.dataset.folded) return;
+    f.dataset.folded = '1';
+    qs.slice(6).forEach(q => q.classList.add('qa--more'));
+    const b = d.createElement('button');
+    b.type = 'button'; b.className = 'btn btn--ghost faq-more'; b.textContent = `Show ${qs.length - 6} more questions`;
+    f.after(b);
+    b.addEventListener('click', () => { f.classList.add('show-all'); b.remove(); if (window.ScrollTrigger) ScrollTrigger.refresh(); });
+  });
+};
 
 const NXBoot = () => {
   const NX = window.NX || (window.NX = {});
@@ -1519,6 +1661,8 @@ const NXBoot = () => {
     requestAnimationFrame(() => requestAnimationFrame(() => { root.classList.remove('is-covered'); root.classList.add('is-revealing'); }));
   };
 
+  if (window.NXCompact) NXCompact(api);
+
   /* ============ motion (GSAP), every page works fully without it ============ */
   const loader = $('.loader');
   const finishStill = () => { loader && loader.remove(); reveal(); NX.still && NX.still(api); };
@@ -1600,12 +1744,12 @@ const NXBoot = () => {
     gsap.ticker.add(render);
     const cnt = { v: 0 };
     gsap.timeline({ onComplete: () => { gsap.ticker.remove(render); loader.remove(); try { sessionStorage.setItem('nx_seen', 1); } catch (e) {} } })
-      .to(st, { p: 1, duration: 1.9, ease: 'none' })
-      .to(cnt, { v: 100, duration: 1.9, ease: 'power2.inOut', onUpdate: () => count.textContent = String(Math.round(cnt.v)).padStart(3, '0') }, 0)
-      .fromTo('.loader__line i', { scaleX: 0 }, { scaleX: 1, duration: 1.9, ease: 'power2.inOut' }, 0)
-      .from('.loader__tag', { opacity: 0, y: 10, duration: .8, ease: 'expo.out' }, 1.1)
-      .to('.loader__tag, .loader__foot', { opacity: 0, duration: .3 }, '+=.25')
-      .to(st, { burst: 1, fade: 0, duration: .9, ease: 'power3.in' }, '<')
+      .to(st, { p: 1, duration: 1.1, ease: 'none' })
+      .to(cnt, { v: 100, duration: 1.1, ease: 'power2.inOut', onUpdate: () => count.textContent = String(Math.round(cnt.v)).padStart(3, '0') }, 0)
+      .fromTo('.loader__line i', { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: 'power2.inOut' }, 0)
+      .from('.loader__tag', { opacity: 0, y: 10, duration: .6, ease: 'expo.out' }, .5)
+      .to('.loader__tag, .loader__foot', { opacity: 0, duration: .25 }, '+=.1')
+      .to(st, { burst: 1, fade: 0, duration: .6, ease: 'power3.in' }, '<')
       .to(loader, { backgroundColor: 'rgba(6,10,16,0)', duration: .7, ease: 'power2.inOut' }, '<.2')
       .add(() => intro.play(), '<.1');
   }
@@ -1657,7 +1801,8 @@ const NXBoot = () => {
   };
   const go = () => { pre(); NXBoot(); try { window.NXCMS && NXCMS.decorate(); } catch (e) { console.warn('[cms] settings skipped', e); } };
   const ready = window.NXCMS && NXCMS.ready ? NXCMS.ready : Promise.resolve();
-  ready.then(go, go);
+  const start = () => ready.then(go, go);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
 
 </script>
