@@ -1203,6 +1203,28 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
   .foot__links{grid-area:links}
   .foot__areas{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex-basis:100%}
 }
+
+/* ---------- ledger hover: the column lights from the top edge, the number fills in ---------- */
+.ledger li{position:relative;isolation:isolate;cursor:default}
+.ledger li::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--grad-bars);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease-out)}
+.ledger li::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgb(24 200 240 / .09),transparent 72%);opacity:0;transition:opacity .45s var(--ease-out)}
+.ledger li:first-child::after{left:-14px}
+.ledger__n{transition:color .45s var(--ease-out),-webkit-text-stroke-color .45s var(--ease-out),transform .55s var(--ease-out);transform-origin:left bottom}
+.ledger h3{transition:color .35s var(--ease-out),transform .45s var(--ease-out)}
+.ledger p{transition:color .35s var(--ease-out)}
+@media (hover:hover){
+  .ledger li:hover::before{transform:scaleX(1)}
+  .ledger li:hover::after{opacity:1}
+  .ledger li:hover .ledger__n{color:var(--color-cyan);-webkit-text-stroke-color:transparent;transform:translateY(-3px) scale(1.06)}
+  .ledger li:hover h3{color:var(--color-cyan-lt);transform:translateX(3px)}
+  .ledger li:hover p{color:var(--color-soft)}
+  .ledger:hover li:not(:hover){opacity:.55}
+}
+.ledger.is-in li{transition:opacity .45s var(--ease-out),transform .7s var(--ease-out)}
+/* phones: tap gives the same light-up briefly */
+.ledger li:active::before{transform:scaleX(1)}
+.ledger li:active .ledger__n{color:var(--color-cyan);-webkit-text-stroke-color:transparent}
+@media (prefers-reduced-motion:reduce){.ledger li::before,.ledger__n,.ledger h3{transition:none}}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
