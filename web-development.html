@@ -1084,6 +1084,16 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .pc:hover .pc__logo img,.deck__card:hover .pc__logo img{transform:scale(1.03);opacity:1}
 .deck__card .pc__logo::after{background:linear-gradient(to top,rgb(6 10 16 / .7) 0%,transparent 45%)}
 .deck__card .pc__logo img{left:20%;width:60%;top:12%;height:62%}
+
+/* ---------- blueprint: the real Nexlyr mark builds inside the image block ---------- */
+.bk--img{display:grid;place-items:center;padding:9% 0}
+.bk__logo{height:100%;max-height:270px;width:auto;display:block}
+.bk__logo .lg-word{opacity:0;transition:opacity 600ms var(--ease-out) 420ms}
+.bk__logo .lg-bar{transform-box:fill-box;transform-origin:top;transform:scaleY(0);transition:transform 900ms var(--ease-out)}
+.bk--img.on .bk__logo .lg-word{opacity:1}
+.bk--img.on .bk__logo .lg-bar{transform:none}
+.bk--img.on .bk__logo .lg-bar:nth-child(2){transition-delay:80ms}.bk--img.on .bk__logo .lg-bar:nth-child(3){transition-delay:160ms}.bk--img.on .bk__logo .lg-bar:nth-child(4){transition-delay:240ms}.bk--img.on .bk__logo .lg-bar:nth-child(5){transition-delay:320ms}
+@media (prefers-reduced-motion:reduce){.bk__logo .lg-bar,.bk__logo .lg-word{transition:none}}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -1185,7 +1195,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
           <div class="bp__row bp__nav"><i class="bk bk--logo"></i><i class="bk bk--pill"></i><i class="bk bk--pill"></i><i class="bk bk--pill"></i><i class="bk bk--btn"></i></div>
           <div class="bp__hero">
             <div class="bp__text"><i class="bk bk--h"></i><i class="bk bk--h bk--h2"></i><i class="bk bk--t"></i><i class="bk bk--t bk--t2"></i><i class="bk bk--cta"></i></div>
-            <i class="bk bk--img"><span></span><span></span><span></span><span></span><span></span></i>
+            <i class="bk bk--img"><svg class="bk__logo" viewBox="0 0 1985 3170" aria-hidden="true"><defs><linearGradient id="bkLg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1985" y2="0"><stop offset="0" stop-color="#00C4F4"/><stop offset=".45" stop-color="#02B0E6"/><stop offset=".72" stop-color="#0196D4"/><stop offset="1" stop-color="#0273B8"/></linearGradient></defs><text class="lg-word" x="992" y="314" text-anchor="middle" textLength="1963" lengthAdjust="spacingAndGlyphs" font-family="Orbitron, sans-serif" font-weight="900" font-size="430" fill="url(#bkLg)">NEXLYR</text><g fill="url(#bkLg)"><rect class="lg-bar" x="7" y="408" width="307" height="2755"/><rect class="lg-bar" x="426" y="408" width="307" height="2755"/><rect class="lg-bar" x="844" y="408" width="300" height="2755"/><rect class="lg-bar" x="1254" y="408" width="306" height="1966"/><rect class="lg-bar" x="1671" y="408" width="306" height="1966"/></g></svg></i>
           </div>
           <div class="bp__row bp__cards"><i class="bk bk--card"></i><i class="bk bk--card"></i><i class="bk bk--card"></i></div>
         </div>
@@ -1503,15 +1513,15 @@ const LAYERS = [
   { name:'Local SEO', badge:'Setup + monthly · any city you serve', p:'For a gym, clinic, restaurant, academy or studio, the map pack matters more than the blue links. This is the work that gets you into it.', items:['Google Business Profile setup and full optimisation','Categories, services, attributes and opening hours','Location and service-area landing pages','NAP consistency across directories and citations','Review architecture: asking, routing and responding','Local schema with geo coordinates and area served','Photo and post cadence on the profile','Local rank tracking by area'] }
 ];
 let WORKS = [
-  ['Markaz OUJ','Sports & martial arts','Sports, fitness and martial arts for schools, colleges and corporate teams, with a store and five academy campuses.','https://markaz-ouj.com','','logo-markaz-ouj.webp','#C9A227'],
-  ['Cambridge Online','Education','Online academy of the SWK Solutions faculty: O Level, IGCSE and A Level, run from its own admin panel.','https://cambridgeonline.tech','','logo-cambridge-online.webp','#9B6B2F'],
-  ['Physics with SMK','Education','O Level, IGCSE and A Level physics platform: student logins, notes and past papers back to 2002, and an admin panel the teacher runs himself.','https://physicswithsmk.com','','logo-physicswithsmk.webp','#2A5BA8'],
-  ['Maths With SB','Education','Sir Saud Barlas\'s maths site, with past papers, mark schemes, examiner reports and the YKW Calculator in one place.','https://saud.barlas.nexlyr.solutions','','logo-maths-with-sb.webp','#D4A72C'],
   ['The Verzish.com','Fitness','One site for three unisex gyms across Karachi, built around each branch\'s own footage.','https://verzish.nexlyr.solutions','','logo-verzish.webp','#8E99A8'],
   ['Grub Coffee Co.','Café','Coffee bar in North Nazimabad with a filmed hero, the full drinks menu and late hours up front.','https://grub.nexlyr.solutions','','logo-grub-coffee.webp','#2F7A4E'],
   ['Cafe Shafe','Café','Rooftop chai café with nine chais, twenty parathas and a menu that reads in one hand.','https://cafe-shafe.vercel.app','','logo-cafe-shafe.webp','#E8692B'],
+  ['Cambridge Online','Education','Online academy of the SWK Solutions faculty: O Level, IGCSE and A Level, run from its own admin panel.','https://cambridgeonline.tech','','logo-cambridge-online.webp','#9B6B2F'],
+  ['Wrappi','Automotive · Oslo','PPF, colour wraps and ceramic coating studio in Oslo, in English and Norwegian.','https://wrappi.nexlyr.solutions','','logo-wrappi.webp','#3A5A8C'],
+  ['Physics with SMK','Education','O Level, IGCSE and A Level physics platform: student logins, notes and past papers back to 2002, and an admin panel the teacher runs himself.','https://physicswithsmk.com','','logo-physicswithsmk.webp','#2A5BA8'],
   ['Hakuna Matata','Restaurant','Loaded fries, zinger and broast deals, with delivery one tap away.','https://hakuna-matata.nexlyr.solutions','','logo-hakuna-matata.svg','#B5301F'],
-  ['Wrappi','Automotive · Oslo','PPF, colour wraps and ceramic coating studio in Oslo, in English and Norwegian.','https://wrappi.nexlyr.solutions','','logo-wrappi.webp','#3A5A8C']
+  ['Markaz OUJ','Sports & martial arts','Sports, fitness and martial arts for schools, colleges and corporate teams, with a store and five academy campuses.','https://markaz-ouj.com','','logo-markaz-ouj.webp','#C9A227'],
+  ['Maths With SB','Education','Sir Saud Barlas\'s maths site, with past papers, mark schemes, examiner reports and the YKW Calculator in one place.','https://saud.barlas.nexlyr.solutions','','logo-maths-with-sb.webp','#D4A72C']
 ];
 const CODE = [
   '<\!-- written for this page; nothing else loads -->',
