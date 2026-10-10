@@ -1032,6 +1032,22 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .menu__logo{padding:8px 12px 2px;margin:0}
 .menu__logo .nxlogo{height:28px}
 @media (max-height:700px){.menu__main a{padding:6px 12px;font-size:.95rem}.menu__side ul{gap:1px}.menu__logo{display:none}}
+
+/* ---------- frame fit: type and spacing sized so each section fits a laptop screen ---------- */
+:root{--text-lg:clamp(1.06rem,.98rem + .3vw,1.18rem);--text-xl:clamp(1.25rem,1rem + .9vw,1.75rem);--text-2xl:min(clamp(1.9rem,1rem + 2.5vw,3.4rem),7.4vh);--text-display:min(clamp(2.4rem,1rem + 4.4vw,5.6rem),10vh)}
+.sec{padding-block:clamp(64px,8vw,120px)}
+.sec__head{margin-bottom:clamp(32px,4.4vw,56px)}
+.xl{font-size:min(clamp(2.3rem,1rem + 3.9vw,5rem),9vh)}
+.hero h1{font-size:min(clamp(2.8rem,1rem + 4.3vw,5.8rem),10.8vh)}
+.phero h1{font-size:min(clamp(2.4rem,1rem + 4vw,5rem),9.6vh)}
+.site5__h,.team2__head h2,.founder__copy h2,.contact2__side h2{font-size:min(clamp(2rem,1rem + 2.5vw,3.5rem),7.6vh)}
+.crew__who h3,.team2__who h3{font-size:clamp(1.7rem,1.1rem + 1.6vw,2.6rem)}
+.pc{height:clamp(340px,58vh,540px)}
+.pc__n{font-size:clamp(2.2rem,1.4rem + 1.8vw,3.4rem)}
+.fact b{font-size:clamp(1.3rem,1rem + .9vw,1.75rem)}
+.crew__notch b{font-size:clamp(2.4rem,1.6rem + 2.2vw,4rem)}
+.btn{min-height:48px}
+@media (min-width:901px){.hero__stage{max-width:min(640px,72vh)}}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>

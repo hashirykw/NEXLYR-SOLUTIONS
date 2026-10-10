@@ -1060,6 +1060,29 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .menu__logo{padding:8px 12px 2px;margin:0}
 .menu__logo .nxlogo{height:28px}
 @media (max-height:700px){.menu__main a{padding:6px 12px;font-size:.95rem}.menu__side ul{gap:1px}.menu__logo{display:none}}
+
+/* ---------- frame fit: type and spacing sized so each section fits a laptop screen ---------- */
+:root{--text-lg:clamp(1.06rem,.98rem + .3vw,1.18rem);--text-xl:clamp(1.25rem,1rem + .9vw,1.75rem);--text-2xl:min(clamp(1.9rem,1rem + 2.5vw,3.4rem),7.4vh);--text-display:min(clamp(2.4rem,1rem + 4.4vw,5.6rem),10vh)}
+.sec{padding-block:clamp(64px,8vw,120px)}
+.sec__head{margin-bottom:clamp(32px,4.4vw,56px)}
+.xl{font-size:min(clamp(2.3rem,1rem + 3.9vw,5rem),9vh)}
+.hero h1{font-size:min(clamp(2.8rem,1rem + 4.3vw,5.8rem),10.8vh)}
+.phero h1{font-size:min(clamp(2.4rem,1rem + 4vw,5rem),9.6vh)}
+.site5__h,.team2__head h2,.founder__copy h2,.contact2__side h2{font-size:min(clamp(2rem,1rem + 2.5vw,3.5rem),7.6vh)}
+.crew__who h3,.team2__who h3{font-size:clamp(1.7rem,1.1rem + 1.6vw,2.6rem)}
+.pc{height:clamp(340px,58vh,540px)}
+.pc__n{font-size:clamp(2.2rem,1.4rem + 1.8vw,3.4rem)}
+.fact b{font-size:clamp(1.3rem,1rem + .9vw,1.75rem)}
+.crew__notch b{font-size:clamp(2.4rem,1.6rem + 2.2vw,4rem)}
+.btn{min-height:48px}
+@media (min-width:901px){.hero__stage{max-width:min(640px,72vh)}}
+
+/* ---------- work cards: the client's own logo on its brand colour ---------- */
+.pc__logo{position:absolute;inset:0;display:block;background:radial-gradient(62% 46% at 50% 32%,color-mix(in oklab,var(--tone) 42%,transparent),transparent 74%),linear-gradient(180deg,var(--color-ink-3),var(--color-ink-2))}
+.pc__logo::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 115%,color-mix(in oklab,var(--tone) 22%,transparent),transparent 70%);pointer-events:none}
+.pc__logo img{position:absolute;left:15%;width:70%;top:clamp(64px,15%,90px);height:calc(48% - clamp(64px,15%,90px));object-fit:contain;filter:drop-shadow(0 18px 38px rgb(0 0 0 / .55));transition:transform .9s var(--ease-out)}
+.pc:hover .pc__logo img,.deck__card:hover .pc__logo img{transform:scale(1.06)}
+.deck__card .pc__logo img{left:22%;width:56%;top:12%;height:62%}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -1277,7 +1300,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 <section class="sec has-orbs" id="work">
   <div class="orbs" aria-hidden="true"><i class="orb orb--c" style="--s:40vw;left:10%;top:20%;--o:.14"></i></div>
   <div class="wrap">
-    <div class="head-row"><h2 class="split xl">55+ delivered. These ones you can open.</h2><span class="hint">Drag, swipe or use the arrows</span></div>
+    <div class="head-row"><h2 class="split xl">200+ delivered. These ones you can open.</h2><span class="hint">Drag, swipe or use the arrows</span></div>
     <div class="deck" id="deck">
       <div class="deck__stage" id="deckStage" data-cursor="Drag"></div>
       <div class="deck__info">
@@ -1287,7 +1310,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
         <a class="link mono" id="deckUrl" href="#" target="_blank" rel="noopener"></a>
         <div class="deck__ctrl">
           <button class="icon-btn" id="deckPrev" aria-label="Previous project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
-          <span class="mono" id="deckCount">01 / 10</span>
+          <span class="mono" id="deckCount">01 / 09</span>
           <button class="icon-btn" id="deckNext" aria-label="Next project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
         </div>
         <a class="btn btn--primary" id="deckOpen" href="#" target="_blank" rel="noopener">Open the live site</a>
@@ -1479,16 +1502,15 @@ const LAYERS = [
   { name:'Local SEO', badge:'Setup + monthly · any city you serve', p:'For a gym, clinic, restaurant, academy or studio, the map pack matters more than the blue links. This is the work that gets you into it.', items:['Google Business Profile setup and full optimisation','Categories, services, attributes and opening hours','Location and service-area landing pages','NAP consistency across directories and citations','Review architecture: asking, routing and responding','Local schema with geo coordinates and area served','Photo and post cadence on the profile','Local rank tracking by area'] }
 ];
 let WORKS = [
-  ['Markaz OUJ','Sports & martial arts','Sports, fitness and martial arts for schools, colleges and corporate teams, with a store and five academy campuses.','https://markaz-ouj.com','work-markaz-ouj.webp'],
-  ['Cambridge Online','Education','Online academy of the SWK Solutions faculty: O Level, IGCSE and A Level, run from its own admin panel.','https://cambridgeonline.tech','work-cambridge-online.webp'],
-  ['Physics with SMK','Education','O Level, IGCSE and A Level physics platform: student logins, notes and past papers back to 2002, and an admin panel the teacher runs himself.','https://physicswithsmk.com','work-physicswithsmk.webp'],
-  ['Maths With SB','Education','Sir Saud Barlas\'s maths site, with past papers, mark schemes, examiner reports and the YKW Calculator in one place.','https://saud.barlas.nexlyr.solutions','work-maths-with-sb.webp'],
-  ['The Verzish.com','Fitness','One site for three unisex gyms across Karachi, built around each branch\'s own footage.','https://verzish.nexlyr.solutions','work-verzish.webp'],
-  ['Grub Coffee Co.','Café','Coffee bar in North Nazimabad with a filmed hero, the full drinks menu and late hours up front.','https://grub.nexlyr.solutions','work-grub-coffee.webp'],
-  ['Cafe Shafe','Café','Rooftop chai café with nine chais, twenty parathas and a menu that reads in one hand.','https://cafe-shafe.vercel.app','work-cafe-shafe.webp'],
-  ['Hakuna Matata','Restaurant','Loaded fries, zinger and broast deals, with delivery one tap away.','https://hakuna-matata.nexlyr.solutions','work-hakuna-matata.webp'],
-  ['Wrappi','Automotive · Oslo','PPF, colour wraps and ceramic coating studio in Oslo, in English and Norwegian.','https://wrappi.nexlyr.solutions','work-wrappi.webp'],
-  ['Bridal Art Studio','Beauty · Texas','Bridal makeup and hair by Asra in Sugar Land, Texas, with bookings by date.','https://bridal-arts-studio.vercel.app','work-bridal-art-studio.webp']
+  ['Markaz OUJ','Sports & martial arts','Sports, fitness and martial arts for schools, colleges and corporate teams, with a store and five academy campuses.','https://markaz-ouj.com','','logo-markaz-ouj.webp','#C9A227'],
+  ['Cambridge Online','Education','Online academy of the SWK Solutions faculty: O Level, IGCSE and A Level, run from its own admin panel.','https://cambridgeonline.tech','','logo-cambridge-online.webp','#9B6B2F'],
+  ['Physics with SMK','Education','O Level, IGCSE and A Level physics platform: student logins, notes and past papers back to 2002, and an admin panel the teacher runs himself.','https://physicswithsmk.com','','logo-physicswithsmk.webp','#2A5BA8'],
+  ['Maths With SB','Education','Sir Saud Barlas\'s maths site, with past papers, mark schemes, examiner reports and the YKW Calculator in one place.','https://saud.barlas.nexlyr.solutions','','logo-maths-with-sb.webp','#D4A72C'],
+  ['The Verzish.com','Fitness','One site for three unisex gyms across Karachi, built around each branch\'s own footage.','https://verzish.nexlyr.solutions','','logo-verzish.webp','#8E99A8'],
+  ['Grub Coffee Co.','Café','Coffee bar in North Nazimabad with a filmed hero, the full drinks menu and late hours up front.','https://grub.nexlyr.solutions','','logo-grub-coffee.webp','#2F7A4E'],
+  ['Cafe Shafe','Café','Rooftop chai café with nine chais, twenty parathas and a menu that reads in one hand.','https://cafe-shafe.vercel.app','','logo-cafe-shafe.webp','#E8692B'],
+  ['Hakuna Matata','Restaurant','Loaded fries, zinger and broast deals, with delivery one tap away.','https://hakuna-matata.nexlyr.solutions','','logo-hakuna-matata.svg','#B5301F'],
+  ['Wrappi','Automotive · Oslo','PPF, colour wraps and ceramic coating studio in Oslo, in English and Norwegian.','https://wrappi.nexlyr.solutions','','logo-wrappi.webp','#3A5A8C']
 ];
 const CODE = [
   '<\!-- written for this page; nothing else loads -->',
@@ -1549,7 +1571,7 @@ NX.render = api => {
   $('#codePre').innerHTML = CODE.map(l => `<span class="ln">${hl(l)}</span>`).join('') + '<span class="caret" aria-hidden="true"></span>';
   // deck
   const stage = $('#deckStage'), N = WORKS.length;
-  stage.innerHTML = WORKS.map((w, i) => `<a class="deck__card" href="${w[3]}" target="_blank" rel="noopener" tabindex="-1" data-cursor="Visit">${slot(w[4], w[0] + ' website', 'auto')}<b>${esc(w[0])}</b></a>`).join('');
+  stage.innerHTML = WORKS.map((w, i) => `<a class="deck__card" href="${w[3]}" target="_blank" rel="noopener" tabindex="-1" data-cursor="Visit">${w[5] ? `<span class="pc__logo" style="--tone:${w[6]}"><img src="${w[5]}" alt="${esc(w[0])} logo" loading="lazy" decoding="async"></span>` : slot(w[4], w[0] + ' website', 'auto')}<b>${esc(w[0])}</b></a>`).join('');
   const cards = $$('.deck__card', stage); let cur = 0;
   const layout = () => {
     cards.forEach((c, i) => {

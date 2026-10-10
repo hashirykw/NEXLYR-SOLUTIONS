@@ -25,3 +25,6 @@ Placeholders show the Nexlyr mark until a real image exists. The exact file name
 
 ## Previewing on your computer
 Links between pages use clean addresses (`/web-development`), which work on Vercel. Opening the `.html` files straight from your computer shows each page, but clicking between pages needs the live site.
+
+## Hero earth
+The homepage earth loads three.js from cdnjs after the page is up and uses `earth-day.webp`, `earth-night.webp`, `earth-water.webp` and `earth-relief.webp`. Earth imagery: NASA Blue Marble and Black Marble (public domain). If WebGL or any of these files are unavailable, the dotted canvas globe shows instead.

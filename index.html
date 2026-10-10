@@ -1127,6 +1127,44 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .menu__logo{padding:8px 12px 2px;margin:0}
 .menu__logo .nxlogo{height:28px}
 @media (max-height:700px){.menu__main a{padding:6px 12px;font-size:.95rem}.menu__side ul{gap:1px}.menu__logo{display:none}}
+
+/* ---------- frame fit: type and spacing sized so each section fits a laptop screen ---------- */
+:root{--text-lg:clamp(1.06rem,.98rem + .3vw,1.18rem);--text-xl:clamp(1.25rem,1rem + .9vw,1.75rem);--text-2xl:min(clamp(1.9rem,1rem + 2.5vw,3.4rem),7.4vh);--text-display:min(clamp(2.4rem,1rem + 4.4vw,5.6rem),10vh)}
+.sec{padding-block:clamp(64px,8vw,120px)}
+.sec__head{margin-bottom:clamp(32px,4.4vw,56px)}
+.xl{font-size:min(clamp(2.3rem,1rem + 3.9vw,5rem),9vh)}
+.hero h1{font-size:min(clamp(2.8rem,1rem + 4.3vw,5.8rem),10.8vh)}
+.phero h1{font-size:min(clamp(2.4rem,1rem + 4vw,5rem),9.6vh)}
+.site5__h,.team2__head h2,.founder__copy h2,.contact2__side h2{font-size:min(clamp(2rem,1rem + 2.5vw,3.5rem),7.6vh)}
+.crew__who h3,.team2__who h3{font-size:clamp(1.7rem,1.1rem + 1.6vw,2.6rem)}
+.pc{height:clamp(340px,58vh,540px)}
+.pc__n{font-size:clamp(2.2rem,1.4rem + 1.8vw,3.4rem)}
+.fact b{font-size:clamp(1.3rem,1rem + .9vw,1.75rem)}
+.crew__notch b{font-size:clamp(2.4rem,1.6rem + 2.2vw,4rem)}
+.btn{min-height:48px}
+@media (min-width:901px){.hero__stage{max-width:min(640px,72vh)}}
+
+/* ---------- realistic earth + the statement that sits on it ---------- */
+.hero__globe canvas{transition:opacity .9s var(--ease-out)}
+.hero__globe canvas.earth{position:absolute;inset:0;width:100%;height:100%;opacity:0;transform:scale(.94);transition:opacity 1.4s var(--ease-out),transform 1.8s var(--ease-out);cursor:grab;touch-action:pan-y}
+.hero__globe canvas.earth.is-on{opacity:1;transform:none}
+.hero__glow{background:radial-gradient(34% 50% at 72% 52%,rgb(24 200 240 / .1),transparent 72%)}
+.hero__after{--stage:min(640px,72vh);inset:0 0 auto 0;height:100vh;height:100svh}
+.hero__after::before{background:radial-gradient(closest-side,rgb(6 10 16 / .62),rgb(6 10 16 / .28) 60%,transparent 100%);inset:auto;left:50%;top:50%;width:calc(var(--stage) * 1.1);height:calc(var(--stage) * 1.1);transform:translate(-50%,-50%)}
+.hero__after>div{position:relative;display:block;padding:0}
+.hero__after p{width:min(calc(var(--stage) * .8),86vw);margin:0 auto;display:grid;justify-items:center;gap:.28em;text-align:center;font-family:var(--font-display);font-weight:600;font-variation-settings:"wdth" 100,"opsz" 96;font-size:clamp(1.8rem,calc(var(--stage) * .086),4.3rem);line-height:1.04;letter-spacing:-.022em;text-wrap:balance;text-shadow:0 2px 30px rgb(6 10 16 / .85),0 0 2px rgb(6 10 16 / .6)}
+.hero__after p span{display:block;max-width:none}
+.hero__after .hero__one{font-family:var(--font-brand);font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:.74em;line-height:1;background:var(--grad-bars);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 2px 18px rgb(6 10 16 / .9))}
+.hero__cue{position:absolute;left:50%;top:calc(100% + clamp(26px,4vh,46px));transform:translateX(-50%);white-space:nowrap}
+@media (max-width:900px){.hero__after{--stage:min(470px,96vw)}}
+@media (max-width:620px){.hero__after p span:first-child{max-width:none;margin:0}}
+
+/* ---------- work cards: the client's own logo on its brand colour ---------- */
+.pc__logo{position:absolute;inset:0;display:block;background:radial-gradient(62% 46% at 50% 32%,color-mix(in oklab,var(--tone) 42%,transparent),transparent 74%),linear-gradient(180deg,var(--color-ink-3),var(--color-ink-2))}
+.pc__logo::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 115%,color-mix(in oklab,var(--tone) 22%,transparent),transparent 70%);pointer-events:none}
+.pc__logo img{position:absolute;left:15%;width:70%;top:clamp(64px,15%,90px);height:calc(48% - clamp(64px,15%,90px));object-fit:contain;filter:drop-shadow(0 18px 38px rgb(0 0 0 / .55));transition:transform .9s var(--ease-out)}
+.pc:hover .pc__logo img,.deck__card:hover .pc__logo img{transform:scale(1.06)}
+.deck__card .pc__logo img{left:22%;width:56%;top:12%;height:62%}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -1225,11 +1263,11 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
           <a class="btn btn--primary magnetic" href="#contact">Start a project</a>
           <a class="btn btn--ghost magnetic" href="https://wa.me/923053687680" target="_blank" rel="noopener">WhatsApp<span class="hide-sm">&nbsp;0305 3687680</span></a>
         </div>
-        <ul class="hero__proof"><li><b data-count="55">55</b>+ projects</li><li>Free AI chatbot with every 5-page site</li><li>Clients worldwide</li></ul>
+        <ul class="hero__proof"><li><b><span data-count="200">200</span>+</b> projects</li><li>Free AI chatbot with every 5-page site</li><li>Clients worldwide</li></ul>
       </div>
     </div>
     <div class="hero__stage">
-      <div class="hero__globe"><canvas id="globe" role="img" aria-label="A globe of dotted continents turning slowly, with lines running between cities around the world"></canvas></div>
+      <div class="hero__globe"><canvas id="globe" role="img" aria-label="A globe turning slowly, with lines running from Karachi to cities around the world"></canvas></div>
     </div>
   </div>
   <div class="hero__after" aria-hidden="true">
@@ -1246,7 +1284,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 
 <div class="wrap">
   <div class="facts">
-    <div class="fact"><b><span data-count="55">55</span>+</b><span class="fact__l">Projects delivered</span></div>
+    <div class="fact"><b><span data-count="200">200</span>+</b><span class="fact__l">Projects delivered</span></div>
     <div class="fact"><b data-count="11">11</b><span class="fact__l">Disciplines under one roof</span></div>
     <div class="fact"><b><span data-count="100">100</span>%</b><span class="fact__l">Hand-written code</span></div>
     <div class="fact"><b><span data-count="24">24</span>h</b><span class="fact__l">Typical first reply</span></div>
@@ -1399,7 +1437,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
   <div class="tour__in">
     <div class="wrap head-row" style="margin-bottom:clamp(22px,4vh,44px)"><h2 class="split xl">Sites we shipped.</h2><span class="hint">Scroll → project by project</span></div>
     <div class="tour__view" id="tourView"><div class="tour__track" id="track"></div></div>
-    <div class="wrap tour__foot"><span class="mono">55+ delivered · 10 live links</span><div class="tour__bar" aria-hidden="true"><i id="tourFill"></i></div><span class="tour__count" id="tourCount">01 / 10</span></div>
+    <div class="wrap tour__foot"><span class="mono">200+ delivered · 9 to open</span><div class="tour__bar" aria-hidden="true"><i id="tourFill"></i></div><span class="tour__count" id="tourCount">01 / 09</span></div>
   </div>
 </section>
 
@@ -1508,7 +1546,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
         <li><b>Team</b><span>Leads sixteen people across web, video, social media and leads.</span></li>
       </ul>
       <div class="founder__nums">
-        <div><b>55+</b><span>Projects delivered</span></div>
+        <div><b>200+</b><span>Projects delivered</span></div>
         <div><b>16</b><span>People on the team</span></div>
         <div><b>Same day</b><span>Replies on WhatsApp</span></div>
       </div>
@@ -1803,6 +1841,199 @@ window.NXGlobe = function (canvas, opts) {
   document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
   return { play, pause };
 };
+/* NXEarth, a realistic earth for the hero: NASA day and night imagery, ocean glints, moving clouds,
+   a soft cyan atmosphere and the Karachi arcs. Loads three.js after the page is up, fades in over the
+   dotted globe, and leaves the dotted globe running if WebGL or the files are not available. */
+window.NXEarth = function (stage, dotted, opts) {
+  opts = opts || {};
+  if (!stage) return null;
+  const probe = document.createElement('canvas');
+  let gl = null; try { gl = probe.getContext('webgl') || probe.getContext('experimental-webgl'); } catch (e) {}
+  if (!gl) return null;
+  const old = stage.querySelector('canvas');
+  const cv = document.createElement('canvas');
+  cv.className = 'earth';
+  cv.setAttribute('role', 'img');
+  cv.setAttribute('aria-label', 'A realistic earth turning slowly, with lines running from Karachi to cities around the world');
+  stage.appendChild(cv);
+  /* hide the dotted globe while the earth loads; bring it back if the earth never arrives */
+  if (old) old.style.opacity = '0';
+  if (dotted) dotted.pause();
+  const giveUp = () => { cv.remove(); if (old) old.style.opacity = ''; if (dotted) dotted.play(); };
+  const fail = setTimeout(giveUp, 9000);
+
+  const loadThree = () => new Promise((res, rej) => {
+    if (window.THREE) return res();
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    s.onload = res; s.onerror = rej; document.head.appendChild(s);
+  });
+  const start = () => loadThree().then(build).catch(() => { clearTimeout(fail); giveUp(); });
+  if (document.readyState === 'complete') setTimeout(start, 60); else addEventListener('load', () => setTimeout(start, 60));
+
+  function build() {
+    const T = window.THREE, D2R = Math.PI / 180;
+    const renderer = new T.WebGLRenderer({ canvas: cv, antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setClearColor(0x000000, 0);
+    const scene = new T.Scene();
+    const cam = new T.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+    cam.position.z = 5;
+
+    const loader = new T.TextureLoader();
+    const tex = src => new Promise((res, rej) => loader.load(src, t => { t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy()); res(t); }, undefined, rej));
+
+    Promise.all(['earth-day.webp', 'earth-night.webp', 'earth-water.webp', 'earth-relief.webp'].map(tex)).then(([day, night, water, relief]) => {
+      const tilt = new T.Group(); tilt.rotation.x = 0.38; tilt.rotation.z = -0.12; scene.add(tilt);
+      const spin = new T.Group(); tilt.add(spin);
+      const sun = new T.Vector3(-0.86, 0.32, 0.4).normalize();
+
+      /* ---- the earth ---- */
+      const earthMat = new T.ShaderMaterial({
+        uniforms: { uDay: { value: day }, uNight: { value: night }, uWater: { value: water }, uRelief: { value: relief }, uSun: { value: sun }, uTime: { value: 0 } },
+        vertexShader: `
+          varying vec2 vUv; varying vec3 vN; varying vec3 vObj;
+          void main(){ vUv = uv; vObj = position; vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+        fragmentShader: `
+          uniform sampler2D uDay, uNight, uWater, uRelief; uniform vec3 uSun; uniform float uTime;
+          varying vec2 vUv; varying vec3 vN; varying vec3 vObj;
+          float h(vec3 p){ p = fract(p * 0.3183099 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
+          float n3(vec3 x){ vec3 i = floor(x), f = fract(x); f = f*f*(3.0-2.0*f);
+            return mix(mix(mix(h(i),h(i+vec3(1,0,0)),f.x),mix(h(i+vec3(0,1,0)),h(i+vec3(1,1,0)),f.x),f.y),
+                       mix(mix(h(i+vec3(0,0,1)),h(i+vec3(1,0,1)),f.x),mix(h(i+vec3(0,1,1)),h(i+vec3(1,1,1)),f.x),f.y),f.z); }
+          float fbm(vec3 p){ float a = .5, s = 0.0; for(int k=0;k<5;k++){ s += a*n3(p); p = p*2.03 + 1.7; a *= .5; } return s; }
+          void main(){
+            vec3 n = normalize(vN);
+            /* relief: nudge the normal by the slope of the height map so mountains catch the light */
+            vec2 px = vec2(1.0/1024.0, 1.0/512.0);
+            float hx = texture2D(uRelief, vUv + vec2(px.x,0.)).r - texture2D(uRelief, vUv - vec2(px.x,0.)).r;
+            float hy = texture2D(uRelief, vUv + vec2(0.,px.y)).r - texture2D(uRelief, vUv - vec2(0.,px.y)).r;
+            n = normalize(n + vec3(-hx, -hy, 0.0) * 0.9);
+            float ndl = dot(n, uSun);
+            float dayAmt = smoothstep(-0.18, 0.28, ndl);
+            vec3 day = texture2D(uDay, vUv).rgb;
+            day = pow(day, vec3(1.08)) * vec3(0.92, 0.98, 1.06);
+            vec3 lit = day * (0.06 + 1.05 * max(ndl, 0.0));
+            vec3 lights = texture2D(uNight, vUv).rgb;
+            float city = max(0.0, lights.r - lights.b * 0.62); lights = lights * vec3(0.28, 0.32, 0.4) + vec3(1.0, 0.74, 0.42) * pow(city, 0.95) * 6.5;
+            /* clouds drift slowly over the surface */
+            vec3 cp = normalize(vObj) * 2.6 + vec3(uTime * 0.012, 0.0, uTime * 0.006);
+            float cl = smoothstep(0.52, 0.86, fbm(cp));
+            vec3 col = mix(lights * (1.0 - cl * 0.85), lit, dayAmt);
+            col = mix(col, vec3(0.9, 0.95, 1.0) * (0.04 + 0.95 * max(ndl, 0.0)), cl * 0.62 * smoothstep(-0.25, 0.2, ndl));
+            /* ocean glint */
+            float w = texture2D(uWater, vUv).r;
+            vec3 hv = normalize(uSun + vec3(0.0, 0.0, 1.0));
+            col += vec3(0.62, 0.82, 1.0) * pow(max(dot(n, hv), 0.0), 60.0) * w * (1.0 - cl) * 0.75 * dayAmt;
+            /* atmosphere on the limb */
+            float rim = pow(1.0 - max(n.z, 0.0), 3.0);
+            col += vec3(0.09, 0.62, 0.95) * rim * (0.25 + 0.75 * dayAmt) * 0.75;
+            gl_FragColor = vec4(col, 1.0);
+          }`
+      });
+      const earth = new T.Mesh(new T.SphereGeometry(1, 128, 96), earthMat);
+      spin.add(earth);
+
+      /* ---- outer glow ---- */
+      const atmo = new T.Mesh(new T.SphereGeometry(1.13, 96, 64), new T.ShaderMaterial({
+        side: T.BackSide, transparent: true, depthWrite: false, blending: T.AdditiveBlending,
+        uniforms: { uSun: { value: sun } },
+        vertexShader: `varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+        fragmentShader: `uniform vec3 uSun; varying vec3 vN; void main(){ float i = pow(clamp(-vN.z / 0.47, 0.0, 1.0), 3.2); float s = 0.22 + 0.78 * smoothstep(-0.5, 0.7, dot(-vN, uSun)); gl_FragColor = vec4(vec3(0.09, 0.62, 0.96) * i * s * 0.95, i * s * 0.8); }`
+      }));
+      tilt.add(atmo);
+
+      /* ---- Karachi arcs and city points ---- */
+      const toV = (lat, lon, r) => { const phi = (lon + 180) * D2R, th = (90 - lat) * D2R; return new T.Vector3(-Math.cos(phi) * Math.sin(th) * r, Math.cos(th) * r, Math.sin(phi) * Math.sin(th) * r); };
+      const HOME = { lat: 24.86, lon: 67.0 };
+      const CITIES = [[25.2, 55.27], [51.5, -0.12], [40.71, -74.0], [43.65, -79.38], [29.62, -95.63], [24.71, 46.68], [-33.87, 151.21], [1.35, 103.82], [59.91, 10.75]];
+      const arcMat = new T.ShaderMaterial({
+        transparent: true, depthWrite: false, blending: T.AdditiveBlending,
+        uniforms: { uTime: { value: 0 } },
+        vertexShader: `attribute float aT; attribute float aOff; varying float vT; varying float vOff; void main(){ vT = aT; vOff = aOff; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+        fragmentShader: `uniform float uTime; varying float vT; varying float vOff;
+          void main(){ float head = mod(uTime * 0.17 + vOff, 1.5); float d = head - vT; float pulse = d > 0.0 && d < 0.32 ? (1.0 - d / 0.32) : 0.0;
+            float a = 0.16 + pulse * 0.95; gl_FragColor = vec4(vec3(0.5, 0.92, 1.0) * a, a); }`
+      });
+      const H = toV(HOME.lat, HOME.lon, 1);
+      CITIES.forEach((c, i) => {
+        const B = toV(c[0], c[1], 1), om = H.angleTo(B), N = 72, pos = [], ts = [], offs = [];
+        for (let s = 0; s <= N; s++) {
+          const t = s / N, p = new T.Vector3().copy(H).multiplyScalar(Math.sin((1 - t) * om) / Math.sin(om)).add(new T.Vector3().copy(B).multiplyScalar(Math.sin(t * om) / Math.sin(om)));
+          p.multiplyScalar(1.004 + (0.06 + om * 0.07) * Math.sin(Math.PI * t));
+          pos.push(p.x, p.y, p.z); ts.push(t); offs.push(i / CITIES.length * 1.5);
+        }
+        const g = new T.BufferGeometry();
+        g.setAttribute('position', new T.Float32BufferAttribute(pos, 3));
+        g.setAttribute('aT', new T.Float32BufferAttribute(ts, 1));
+        g.setAttribute('aOff', new T.Float32BufferAttribute(offs, 1));
+        spin.add(new T.Line(g, arcMat));
+      });
+      const ptPos = [], ptSize = [], ptHome = [];
+      [[HOME.lat, HOME.lon]].concat(CITIES).forEach((c, i) => { const v = toV(c[0], c[1], 1.006); ptPos.push(v.x, v.y, v.z); ptSize.push(i ? 5 : 9); ptHome.push(i ? 0 : 1); });
+      const pg = new T.BufferGeometry();
+      pg.setAttribute('position', new T.Float32BufferAttribute(ptPos, 3));
+      pg.setAttribute('aSize', new T.Float32BufferAttribute(ptSize, 1));
+      pg.setAttribute('aHome', new T.Float32BufferAttribute(ptHome, 1));
+      const ptMat = new T.ShaderMaterial({
+        transparent: true, depthWrite: false, blending: T.AdditiveBlending,
+        uniforms: { uTime: { value: 0 }, uPR: { value: 1 } },
+        vertexShader: `attribute float aSize; attribute float aHome; uniform float uPR; uniform float uTime; varying float vHome;
+          void main(){ vHome = aHome; vec4 mv = modelViewMatrix * vec4(position,1.0); gl_Position = projectionMatrix * mv;
+            gl_PointSize = aSize * uPR * (aHome > .5 ? 2.6 : 1.0); }`,
+        fragmentShader: `uniform float uTime; varying float vHome;
+          void main(){ vec2 q = gl_PointCoord - .5; float r = length(q) * 2.0; if (r > 1.0) discard;
+            float core = smoothstep(vHome > .5 ? .34 : .9, 0.0, r);
+            float ring = 0.0; if (vHome > .5) { float k = fract(uTime * .5); ring = smoothstep(.06, 0.0, abs(r - (.3 + k * .7))) * (1.0 - k); }
+            float a = core + ring; gl_FragColor = vec4(vec3(0.6, 0.95, 1.0) * a, a); }`
+      });
+      spin.add(new T.Points(pg, ptMat));
+
+      /* face Karachi, a little to the left so Europe and Africa turn into view */
+      const k0 = toV(HOME.lat, HOME.lon, 1);
+      let rotY = Math.atan2(-k0.x, k0.z) + 0.45, vel = 0;
+
+      /* size: radius matches the dotted globe (40% of the shorter side) so nothing jumps */
+      let W = 1, Hh = 1;
+      const size = () => {
+        const r = cv.getBoundingClientRect(); W = Math.max(1, r.width); Hh = Math.max(1, r.height);
+        const pr = Math.min((window.devicePixelRatio || 1) * (innerWidth > 900 ? 1.35 : 1.1), 2.5);
+        renderer.setPixelRatio(pr); renderer.setSize(W, Hh, false); ptMat.uniforms.uPR.value = pr;
+        const R = Math.min(W, Hh) * 0.4, hw = W / 2 / R, hh = Hh / 2 / R;
+        cam.left = -hw; cam.right = hw; cam.top = hh; cam.bottom = -hh; cam.updateProjectionMatrix();
+      };
+      size();
+      if ('ResizeObserver' in window) new ResizeObserver(() => { size(); if (!running) frame(performance.now()); }).observe(cv);
+
+      let running = false, raf = 0, last = 0, dragging = false, px = 0;
+      const frame = t => {
+        const s = t / 1000;
+        earthMat.uniforms.uTime.value = s; arcMat.uniforms.uTime.value = s; ptMat.uniforms.uTime.value = s;
+        spin.rotation.y = rotY; renderer.render(scene, cam);
+      };
+      const loop = t => {
+        const dt = Math.min(.05, (t - (last || t)) / 1000); last = t;
+        if (!dragging) { vel *= .94; rotY += (opts.RM ? 0 : 0.055) * dt + vel * dt; }
+        frame(t); raf = requestAnimationFrame(loop);
+      };
+      const play = () => { if (!running) { running = true; last = 0; raf = requestAnimationFrame(loop); } };
+      const pause = () => { running = false; cancelAnimationFrame(raf); };
+
+      cv.addEventListener('pointerdown', e => { dragging = true; px = e.clientX; cv.setPointerCapture(e.pointerId); cv.style.cursor = 'grabbing'; });
+      cv.addEventListener('pointermove', e => { if (!dragging) return; const dx = e.clientX - px, R = Math.min(W, Hh) * .4; px = e.clientX; rotY += dx / R; vel = dx / R * 30; if (!running) frame(performance.now()); });
+      const up = () => { dragging = false; cv.style.cursor = ''; };
+      cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+
+      frame(0);
+      clearTimeout(fail);
+      if (old) old.remove();
+      requestAnimationFrame(() => cv.classList.add('is-on'));
+      if ('IntersectionObserver' in window) new IntersectionObserver(es => es[0].isIntersecting && !document.hidden ? play() : pause()).observe(cv); else play();
+      document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
+      NX.earth = { play, pause };
+    }).catch(() => { clearTimeout(fail); renderer.dispose(); giveUp(); });
+  }
+  return true;
+};
 
 </script>
 <script>
@@ -1837,16 +2068,15 @@ const MORE = [
 ];
 
 let WORK = [
-  { name:'Markaz OUJ', cat:'Sports & martial arts', what:'Sports, fitness and martial arts for schools, colleges and corporate teams, with a store and five academy campuses.', url:'https://markaz-ouj.com', img:'work-markaz-ouj.webp' },
-  { name:'Cambridge Online', cat:'Education', what:'Online academy of the SWK Solutions faculty: O Level, IGCSE and A Level, run from its own admin panel.', url:'https://cambridgeonline.tech', img:'work-cambridge-online.webp' },
-  { name:'Physics with SMK', cat:'Education', what:'O Level, IGCSE and A Level physics platform: student logins, notes and past papers back to 2002, and an admin panel the teacher runs himself.', url:'https://physicswithsmk.com', img:'work-physicswithsmk.webp' },
-  { name:'Maths With SB', cat:'Education', what:'Sir Saud Barlas\'s maths site, with past papers, mark schemes, examiner reports and the YKW Calculator in one place.', url:'https://saud.barlas.nexlyr.solutions', img:'work-maths-with-sb.webp' },
-  { name:'The Verzish.com', cat:'Fitness', what:'One site for three unisex gyms across Karachi, built around each branch\'s own footage.', url:'https://verzish.nexlyr.solutions', img:'work-verzish.webp' },
-  { name:'Grub Coffee Co.', cat:'Café', what:'Coffee bar in North Nazimabad with a filmed hero, the full drinks menu and late hours up front.', url:'https://grub.nexlyr.solutions', img:'work-grub-coffee.webp' },
-  { name:'Cafe Shafe', cat:'Café', what:'Rooftop chai café with nine chais, twenty parathas and a menu that reads in one hand.', url:'https://cafe-shafe.vercel.app', img:'work-cafe-shafe.webp' },
-  { name:'Hakuna Matata', cat:'Restaurant', what:'Loaded fries, zinger and broast deals, with delivery one tap away.', url:'https://hakuna-matata.nexlyr.solutions', img:'work-hakuna-matata.webp' },
-  { name:'Wrappi', cat:'Automotive · Oslo', what:'PPF, colour wraps and ceramic coating studio in Oslo, in English and Norwegian.', url:'https://wrappi.nexlyr.solutions', img:'work-wrappi.webp' },
-  { name:'Bridal Art Studio', cat:'Beauty · Texas', what:'Bridal makeup and hair by Asra in Sugar Land, Texas, with bookings by date.', url:'https://bridal-arts-studio.vercel.app', img:'work-bridal-art-studio.webp' }
+  { name:'Markaz OUJ', cat:'Sports & martial arts', what:'Sports, fitness and martial arts for schools, colleges and corporate teams, with a store and five academy campuses.', url:'https://markaz-ouj.com', logo:'logo-markaz-ouj.webp', tone:'#C9A227' },
+  { name:'Cambridge Online', cat:'Education', what:'Online academy of the SWK Solutions faculty: O Level, IGCSE and A Level, run from its own admin panel.', url:'https://cambridgeonline.tech', logo:'logo-cambridge-online.webp', tone:'#9B6B2F' },
+  { name:'Physics with SMK', cat:'Education', what:'O Level, IGCSE and A Level physics platform: student logins, notes and past papers back to 2002, and an admin panel the teacher runs himself.', url:'https://physicswithsmk.com', logo:'logo-physicswithsmk.webp', tone:'#2A5BA8' },
+  { name:'Maths With SB', cat:'Education', what:'Sir Saud Barlas\'s maths site, with past papers, mark schemes, examiner reports and the YKW Calculator in one place.', url:'https://saud.barlas.nexlyr.solutions', logo:'logo-maths-with-sb.webp', tone:'#D4A72C' },
+  { name:'The Verzish.com', cat:'Fitness', what:'One site for three unisex gyms across Karachi, built around each branch\'s own footage.', url:'https://verzish.nexlyr.solutions', logo:'logo-verzish.webp', tone:'#8E99A8' },
+  { name:'Grub Coffee Co.', cat:'Café', what:'Coffee bar in North Nazimabad with a filmed hero, the full drinks menu and late hours up front.', url:'https://grub.nexlyr.solutions', logo:'logo-grub-coffee.webp', tone:'#2F7A4E' },
+  { name:'Cafe Shafe', cat:'Café', what:'Rooftop chai café with nine chais, twenty parathas and a menu that reads in one hand.', url:'https://cafe-shafe.vercel.app', logo:'logo-cafe-shafe.webp', tone:'#E8692B' },
+  { name:'Hakuna Matata', cat:'Restaurant', what:'Loaded fries, zinger and broast deals, with delivery one tap away.', url:'https://hakuna-matata.nexlyr.solutions', logo:'logo-hakuna-matata.svg', tone:'#B5301F' },
+  { name:'Wrappi', cat:'Automotive · Oslo', what:'PPF, colour wraps and ceramic coating studio in Oslo, in English and Norwegian.', url:'https://wrappi.nexlyr.solutions', logo:'logo-wrappi.webp', tone:'#3A5A8C' }
 ];
 
 let TEAM = [
@@ -1896,7 +2126,7 @@ NX.svc = '';
 /* admin-panel content replaces the built-in lists when present */
 NX.cmsApply = c => {
   if (c.team && c.team.length) TEAM = c.team.map(m => ({ name: m.name, short: m.short_name || undefined, role: m.role || '', img: m.photo_url || '', link: m.portfolio_url || '', bio: m.bio || '', tags: m.tags || [], count: m.headcount > 1 ? m.headcount : undefined, init: m.initials || undefined }));
-  if (c.projects && c.projects.length) WORK = c.projects.map(w => ({ name: w.name, cat: w.category || '', what: w.summary || '', url: w.url || '#', img: w.image_url || '' }));
+  if (c.projects && c.projects.length) WORK = c.projects.map(w => ({ name: w.name, cat: w.category || '', what: w.summary || '', url: w.url || '#', img: w.image_url || '', logo: w.logo_url || '', tone: w.tone || '#18C8F0' }));
   if (c.testimonials && c.testimonials.length) QUOTES = c.testimonials.map(q => ({ h: q.headline || '', q: q.quote, who: q.author }));
 };
 NX.render = api => {
@@ -1933,7 +2163,7 @@ NX.render = api => {
   /* ---------- work: horizontal track ---------- */
   $('#track').innerHTML = WORK.map((w, i) => `
     <a class="pc" href="${w.url}" target="_blank" rel="noopener" data-cursor="Visit">
-      ${slot(w.img, w.name + ' website', 'auto')}
+      ${w.logo ? `<span class="pc__logo" style="--tone:${w.tone}"><img src="${w.logo}" alt="${esc(w.name)} logo" loading="lazy" decoding="async"></span>` : slot(w.img, w.name + ' website', 'auto')}
       <span class="pc__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
       <span class="pc__go" aria-hidden="true">${arrow}</span>
       <span class="pc__cap"><span class="mono">${esc(w.cat)} · ${w.url.replace(/^https?:\/\//, '')}</span><h3>${esc(w.name)}</h3><p>${esc(w.what)}</p></span>
@@ -2039,6 +2269,7 @@ NX.render = api => {
 
 
   NX.globe = window.NXGlobe ? NXGlobe($('#globe'), { RM }) : null;
+  if (window.NXEarth) NXEarth($('.hero__globe'), NX.globe, { RM });
   if (innerWidth <= 860) api.coverflow($('#tourView'), '.pc', { rot: 16, scale: .1 });
 };
 
@@ -2054,9 +2285,9 @@ NX.motion = api => {
   /* hero: copy leaves, the globe comes forward and fills the screen */
   const heroTl = gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=110%', scrub: .6, pin: true, anticipatePin: 1, invalidateOnRefresh: true } });
   heroTl.fromTo('.hero__copy', { opacity: 1, y: 0 }, { opacity: 0, y: -60, ease: 'power2.in', duration: .45 }, 0)
-        .fromTo('.hero__stage', { x: 0, y: 0, scale: 1 }, { x: () => { const s = document.querySelector('.hero__stage'); if (!s) return 0; const r = s.getBoundingClientRect(); return innerWidth / 2 - (r.left + r.width / 2) - (window.scrollY ? 0 : 0); }, y: () => innerWidth > 900 ? 0 : -innerHeight * .25, scale: () => innerWidth > 900 ? 1.45 : 1.3, ease: 'power2.inOut', duration: 1 }, 0)
+        .fromTo('.hero__stage', { x: 0, y: 0, scale: 1 }, { x: () => { const s = document.querySelector('.hero__stage'); if (!s) return 0; const r = s.getBoundingClientRect(); const a = document.querySelector('.hero__after').getBoundingClientRect(); return (a.left + a.width / 2) - (r.left + r.width / 2 - gsap.getProperty(s, 'x')); }, y: () => { const s = document.querySelector('.hero__stage'), h = document.querySelector('.hero__after'); if (!s || !h) return 0; const r = s.getBoundingClientRect(), a = h.getBoundingClientRect(); return (a.top + a.height / 2) - (r.top + r.height / 2 - gsap.getProperty(s, 'y')); }, scale: () => innerWidth > 900 ? 1.45 : 1.3, ease: 'power2.inOut', duration: 1 }, 0)
         .fromTo('.hero__glow', { opacity: 1 }, { opacity: 0, duration: .3 }, 0)
-        .fromTo('.hero__globe', { opacity: 1 }, { opacity: .28, duration: .35 }, .45)
+        .fromTo('.hero__globe', { opacity: 1 }, { opacity: .5, duration: .35 }, .45)
         .fromTo('.hero__after', { opacity: 0 }, { opacity: 1, duration: .3 }, .62)
         .fromTo('.hero__after p span', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: .38, ease: 'power2.out', stagger: .08 }, .62)
         .fromTo('.hero__cue', { opacity: 0 }, { opacity: 1, duration: .3 }, .8);

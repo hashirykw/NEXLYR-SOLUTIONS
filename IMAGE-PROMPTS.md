@@ -53,22 +53,9 @@ The team frame is shaped like the logo, so the **bottom-right corner of the phot
 
 ---
 
-## 5. Work (10 images) — done
+## 5. Work (9 cards) — done
 
-These are real screenshots of each site's homepage (taken from the GitHub repos), 720px wide and tall, so the card shows the top of the page and scrolls down on hover. Retake one the same way when a site changes.
-
-- `work-markaz-ouj.webp` — markaz-ouj.com
-- `work-cambridge-online.webp` — cambridgeonline.tech
-- `work-physicswithsmk.webp` — physicswithsmk.com
-- `work-maths-with-sb.webp` — saud.barlas.nexlyr.solutions
-- `work-verzish.webp` — verzish.nexlyr.solutions
-- `work-grub-coffee.webp` — grub.nexlyr.solutions
-- `work-cafe-shafe.webp` — cafe-shafe.vercel.app
-- `work-hakuna-matata.webp` — hakuna-matata.nexlyr.solutions
-- `work-wrappi.webp` — wrappi.nexlyr.solutions
-- `work-bridal-art-studio.webp` — bridal-arts-studio.vercel.app
-
-To add a project later, add one line to the `WORK` list in `index.html` (and `WORKS` in `web-development.html`) and drop its screenshot here.
+Each card shows the client's own logo (taken from that site's repo) on its brand colour. The files are `logo-<project>.webp` (Hakuna Matata is `logo-hakuna-matata.svg`). To add a project, add a line to `WORK` in `index.html` and `WORKS` in `web-development.html` with its logo file and a brand colour.
 
 ---
 
