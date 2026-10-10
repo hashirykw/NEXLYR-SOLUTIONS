@@ -1336,6 +1336,9 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .ledger li:active::before{transform:scaleX(1)}
 .ledger li:active .ledger__n{color:var(--color-cyan);-webkit-text-stroke-color:transparent}
 @media (prefers-reduced-motion:reduce){.ledger li::before,.ledger__n,.ledger h3{transition:none}}
+
+.team2__photo .ph.is-on{z-index:1}
+.team2__count{z-index:2}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -2381,13 +2384,18 @@ NX.render = api => {
     if (i === crewCur) return;
     $$('.tm', crewThumbs).forEach((t, k) => { t.classList.toggle('is-on', k === i); t.setAttribute('aria-selected', k === i); $('.tm__bar i', t).style.transform = 'scaleX(0)'; });
     crewCur = i; crewEl = 0;
-    const swap = () => { $$('figure[data-i]', crewPhoto).forEach(f => f.classList.toggle('is-on', +f.dataset.i === i)); crewWho.innerHTML = whoHTML(TEAM[i]); crewIdx.textContent = `${pad(i + 1)} / ${pad(TEAM.length)}`; };
+    const figs = $$('figure[data-i]', crewPhoto), next = figs.find(f => +f.dataset.i === i);
+    const swap = () => {
+      figs.forEach(f => { f.classList.toggle('is-on', f === next); if (f !== next && HAS_GSAP) gsap.set(f, { clearProps: 'opacity,transform,scale' }); });
+      crewWho.innerHTML = whoHTML(TEAM[i]); crewIdx.textContent = `${pad(i + 1)} / ${pad(TEAM.length)}`;
+    };
     if (!HAS_GSAP || RM) { swap(); return; }
+    gsap.killTweensOf(figs);
     gsap.timeline()
       .to(crewWho.children, { y: -10, opacity: 0, duration: .22, ease: 'power2.in', stagger: .02 })
       .add(swap)
-      .fromTo('#crewPhoto figure.is-on', { scale: 1.06, opacity: 0 }, { scale: 1, opacity: 1, duration: .8, ease: 'expo.out' })
-      .fromTo(crewWho.children, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: .55, ease: 'expo.out', stagger: .05 }, '<');
+      .fromTo(next, { scale: 1.06, opacity: 0 }, { scale: 1, opacity: 1, duration: .8, ease: 'expo.out', clearProps: 'opacity,transform,scale' })
+      .add(() => gsap.fromTo(crewWho.children, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: .55, ease: 'expo.out', stagger: .05 }), '<');
   }
   crewThumbs.addEventListener('click', e => { const t = e.target.closest('.tm'); if (t) showCrew(+t.dataset.i); });
   crewThumbs.addEventListener('keydown', e => {
