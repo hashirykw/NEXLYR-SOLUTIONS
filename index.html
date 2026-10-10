@@ -1205,19 +1205,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 @media (max-width:760px){.tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter)}.tabs::-webkit-scrollbar{display:none}.tabs button{flex:none;min-height:40px;padding:0 14px;font-size:.88rem}}
 @media (prefers-reduced-motion:reduce){.tab-panel.is-entering{animation:none}.tabs button .tabs__bar{display:none}}
 
-/* ---------- services: one word on stage at a time ---------- */
-@property --fill{syntax:'<percentage>';inherits:true;initial-value:0%}
-.wstage{position:relative;height:clamp(420px,66vh,620px);display:block!important}
-.wstage .word{position:absolute!important;inset:0;top:0!important;height:auto!important;margin:0!important;--fill:0%;transition:--fill 1.5s var(--ease-out) .2s}
-.wstage .word.is-on{--fill:64%}
-.wstage .word .ph img{transform:scale(1.12);transition:transform 8s linear}
-.wstage .word.is-on .ph img{transform:scale(1.02)}
-.wstage .word.is-entering .word__big{animation:wordIn .9s var(--ease-out) both}
-@keyframes wordIn{from{opacity:0;transform:translateY(-40%)}to{opacity:1}}
 .more{margin-top:clamp(28px,4vw,48px)!important}
-#services .head-row + .tabs{margin-top:-8px}
-@media (max-width:760px){.wstage{height:min(520px,72svh)}.wstage .word.is-entering .word__big{animation-name:wordInM}@keyframes wordInM{from{opacity:0;transform:translateY(16px)}}}
-@media (prefers-reduced-motion:reduce){.wstage .word{transition:none}.wstage .word.is-entering .word__big{animation:none}}
 
 /* ---------- tighter blocks: how-to steps, contact details, portal benefits ---------- */
 @media (max-width:760px){
@@ -1428,7 +1416,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 <section class="sec has-orbs" id="services" style="padding-top:clamp(40px,6vw,90px)">
   <div class="orbs" aria-hidden="true"><i class="orb orb--d" data-speed="80" style="--s:50vw;left:30%;top:20%;--o:.3"></i><i class="orb orb--c" data-speed="-40" style="--s:30vw;right:-8vw;top:60%;--o:.14;--t:28s"></i></div>
   <div class="wrap">
-    <div class="head-row"><h2 class="split xl">What we do, in five words.</h2><span class="hint">Tap a word, or let it play</span></div>
+    <div class="head-row"><h2 class="split xl">What we do, in five words.</h2><span class="hint">Scroll → service by service</span></div>
     <div class="words__stack" id="words"></div>
     <div class="head-row" style="margin:clamp(36px,5vw,64px) 0 0"><span class="kick">And five more, under the same roof</span></div>
     <div class="more" id="more" style="margin-top:22px"></div>
@@ -2337,9 +2325,6 @@ NX.render = api => {
   }
 
 
-  /* services: one big word at a time (tabs, auto-play, swipe) instead of five stacked screens */
-  { const stack = $('#words'), ws = $$('.word', stack);
-    if (stack && ws.length && window.NXTabs) { stack.classList.add('wstage'); NXTabs(stack, ws, MAIN.map(m => m.kick), { auto: 7000, swipe: true, label: 'What we do' }); } }
   /* Nexlyr Tap: NFC cards and Google reviews as two tabs */
   { const prods = $$('#tap .prod'); if (prods.length > 1 && window.NXTabs) NXTabs(prods[0], prods, ['NFC business cards', 'Google reviews'], { label: 'Nexlyr Tap products' }); }
 
@@ -2375,6 +2360,18 @@ NX.motion = api => {
     .fromTo('.std__img', { scale: .82, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'power2.out' }, 0);
   gsap.to('#stdSvg .ring', { rotation: i => (i % 2 ? -1 : 1) * (1.5 + i * 1.2), transformOrigin: '50% 50%', ease: 'none', scrollTrigger: { trigger: std, start: 'top bottom', end: 'bottom top', scrub: true } });
   gsap.from('#stdList li', { x: -28, opacity: 0, duration: .9, ease: 'expo.out', stagger: .09, scrollTrigger: { trigger: '#stdList', start: 'top 85%', once: true } });
+
+  /* services: each big word fills in as its card arrives, the one underneath sinks back */
+  const words = $$('.word');
+  words.forEach((w, i) => {
+    gsap.fromTo(w, { '--fill': '0%' }, { '--fill': '64%', ease: 'none', scrollTrigger: { trigger: w, start: 'top 85%', end: 'top 20%', scrub: .6 } });
+    const img = $('.ph img', w);
+    if (img) gsap.fromTo(img, { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: w, start: 'top bottom', end: 'bottom top', scrub: true } });
+    const next = words[i + 1];
+    if (next) gsap.timeline({ scrollTrigger: { trigger: next, start: 'top bottom', end: () => 'top ' + (92 + (i + 1) * 14) + 'px', scrub: true } })
+      .to(w, { scale: .9, ease: 'none' }, 0)
+      .to($('.word__dim', w), { opacity: .62, ease: 'none' }, 0);
+  });
 
   /* work: vertical scroll drives a horizontal track (desktop); cards tilt in, screenshots drift */
   gsap.matchMedia().add('(min-width: 861px)', () => {
