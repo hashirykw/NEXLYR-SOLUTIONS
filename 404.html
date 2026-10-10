@@ -984,6 +984,20 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 .is-leaving .curtain__label{opacity:1;transition-delay:260ms}
 .is-leaving .curtain__label span{transform:none;transition-delay:260ms}
 @media (prefers-reduced-motion:reduce){.curtain__label{display:none}}
+
+/* ---------- menu fit: smaller rows so it fits a laptop screen without scrolling ---------- */
+.menu__body{gap:10px;padding:10px}
+.menu__main{gap:0}
+.menu__main a{font-size:1rem;padding:8px 12px;border-radius:12px}
+.menu__main a span{font-size:10.5px;margin-right:12px}
+.menu__main a::after{width:14px;height:14px}
+.menu__side{gap:12px;padding:10px 12px 2px}
+.menu__side .mono{margin-bottom:6px!important}
+.menu__side ul{gap:3px}
+.menu__side a{font-size:.84rem;line-height:1.45}
+.menu__logo{padding:8px 12px 2px;margin:0}
+.menu__logo .nxlogo{height:28px}
+@media (max-height:700px){.menu__main a{padding:6px 12px;font-size:.95rem}.menu__side ul{gap:1px}.menu__logo{display:none}}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -1046,7 +1060,6 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
         <p class="mono" style="margin-bottom:12px">On the home page</p>
         <ul>
           <li><a href="/#work">Work</a></li>
-          <li><a href="/#portal">Client portal</a></li>
           <li><a href="/#team">Team</a></li>
           <li><a href="/#tap">NFC cards &amp; Google reviews</a></li>
           <li><a href="#contact">Start a project</a></li>
