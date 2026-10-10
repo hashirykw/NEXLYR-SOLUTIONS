@@ -1716,7 +1716,7 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
       <p class="lede"><span id="crewCount">Sixteen</span> of us, and you will know every one by name. No account managers, no hand-offs to strangers.</p>
     </div>
     <div class="team2">
-      <figure class="team2__photo" id="crewPhoto" aria-live="polite"><span class="team2__count" id="crewIdx">01 / 07</span></figure>
+      <figure class="team2__photo" id="crewPhoto" aria-live="polite"><span class="team2__count" id="crewIdx">02 / 07</span></figure>
       <div class="team2__info">
         <div class="team2__who" id="crewWho"></div>
         <div class="team2__thumbs" id="crewThumbs" role="tablist" aria-label="Choose a team member"></div>
@@ -2337,21 +2337,23 @@ NX.render = api => {
 
   /* ---------- team: one portrait, one bio, a row of names ---------- */
   const crewPhoto = $('#crewPhoto'), crewWho = $('#crewWho'), crewThumbs = $('#crewThumbs'), crewIdx = $('#crewIdx');
-  crewPhoto.insertAdjacentHTML('afterbegin', TEAM.map((m, i) => slot(m.img, m.name + ', ' + m.role, 'auto').replace('<figure class="ph ', `<figure data-i="${i}" class="ph ${i ? '' : 'is-on '}`)).join(''));
+  /* Hashir is already featured above, so the showcase opens on the next person; he stays first in the row */
+  const CREW0 = TEAM.length > 1 ? 1 : 0;
+  crewPhoto.insertAdjacentHTML('afterbegin', TEAM.map((m, i) => slot(m.img, m.name + ', ' + m.role, 'auto').replace('<figure class="ph ', `<figure data-i="${i}" class="ph ${i === CREW0 ? 'is-on ' : ''}`)).join(''));
   const first = m => m.short || m.name.replace(/^M\. /, '').split(/\s+/)[0];
   crewThumbs.innerHTML = TEAM.map((m, i) => `
-    <button class="tm${i ? '' : ' is-on'}" type="button" role="tab" aria-selected="${!i}" data-i="${i}">
+    <button class="tm${i === CREW0 ? ' is-on' : ''}" type="button" role="tab" aria-selected="${i === CREW0}" data-i="${i}">
       <span class="tm__pic">${m.init ? `<b>${m.init}</b>` : slot(m.img, '', 'auto')}</span>
       <span class="tm__name">${esc(first(m))}</span>
       <span class="tm__bar" aria-hidden="true"><i></i></span>
     </button>`).join('');
   const whoHTML = m => `<h3>${esc(m.name)}</h3><div class="team2__role">${esc(m.role)}</div><p>${esc(m.bio)}</p><ul class="chips">${m.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>${m.link ? `<a class="btn btn--ghost" href="${m.link}" target="_blank" rel="noopener">View portfolio</a>` : ''}`;
-  crewWho.innerHTML = whoHTML(TEAM[0]);
+  crewWho.innerHTML = whoHTML(TEAM[CREW0]);
   const WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
   const people = TEAM.reduce((n, m) => n + (m.count || 1), 0);
   $('#crewCount').textContent = WORDS[people] || String(people);
-  crewIdx.textContent = `01 / ${pad(TEAM.length)}`;
-  let crewCur = 0, crewPaused = false, crewEl = 0;
+  crewIdx.textContent = `${pad(CREW0 + 1)} / ${pad(TEAM.length)}`;
+  let crewCur = CREW0, crewPaused = false, crewEl = 0;
   const CREW_MS = 6500;
   function showCrew(i) {
     if (i === crewCur) return;
