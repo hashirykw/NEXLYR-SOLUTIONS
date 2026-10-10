@@ -1159,12 +1159,13 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 @media (max-width:900px){.hero__after{--stage:min(470px,96vw)}}
 @media (max-width:620px){.hero__after p span:first-child{max-width:none;margin:0}}
 
-/* ---------- work cards: the client's own logo on its brand colour ---------- */
-.pc__logo{position:absolute;inset:0;display:block;background:radial-gradient(62% 46% at 50% 32%,color-mix(in oklab,var(--tone) 42%,transparent),transparent 74%),linear-gradient(180deg,var(--color-ink-3),var(--color-ink-2))}
-.pc__logo::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 115%,color-mix(in oklab,var(--tone) 22%,transparent),transparent 70%);pointer-events:none}
-.pc__logo img{position:absolute;left:15%;width:70%;top:clamp(64px,15%,90px);height:calc(48% - clamp(64px,15%,90px));object-fit:contain;filter:drop-shadow(0 18px 38px rgb(0 0 0 / .55));transition:transform .9s var(--ease-out)}
-.pc:hover .pc__logo img,.deck__card:hover .pc__logo img{transform:scale(1.06)}
-.deck__card .pc__logo img{left:22%;width:56%;top:12%;height:62%}
+/* ---------- work cards: the client's own logo, sunk into a surface of its brand colour ---------- */
+.pc__logo{position:absolute;inset:0;display:block;background:linear-gradient(165deg,color-mix(in oklab,var(--tone) 34%,var(--color-ink-2)) 0%,color-mix(in oklab,var(--tone) 12%,var(--color-ink-2)) 45%,var(--color-ink) 100%)}
+.pc__logo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgb(6 10 16 / .94) 0%,rgb(6 10 16 / .55) 34%,transparent 62%);pointer-events:none}
+.pc__logo img{position:absolute;left:12%;width:76%;top:clamp(70px,16%,96px);height:calc(50% - clamp(70px,16%,96px));object-fit:contain;opacity:.94;-webkit-mask-image:linear-gradient(to bottom,#000 70%,rgb(0 0 0 / .55) 100%);mask-image:linear-gradient(to bottom,#000 70%,rgb(0 0 0 / .55) 100%);transition:transform 1.2s var(--ease-out),opacity .6s var(--ease-out)}
+.pc:hover .pc__logo img,.deck__card:hover .pc__logo img{transform:scale(1.03);opacity:1}
+.deck__card .pc__logo::after{background:linear-gradient(to top,rgb(6 10 16 / .7) 0%,transparent 45%)}
+.deck__card .pc__logo img{left:20%;width:60%;top:12%;height:62%}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
