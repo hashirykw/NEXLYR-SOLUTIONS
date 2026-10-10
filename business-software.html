@@ -1124,6 +1124,131 @@ tr.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
 
 .tk-more{display:none}
 @media (max-width:760px){.ticks:not(.show-all) .tk--more{display:none}.tk-more{display:inline-flex;margin-top:10px;padding:8px 14px;border-radius:var(--radius-pill);border:1px solid var(--color-line-2);background:transparent;color:var(--color-cyan-lt);font:600 .85rem var(--font-body);cursor:pointer}.show-all .tk--more{animation:qaIn .45s var(--ease-out) both}}
+
+/* ---------- hero dashboard v2: rolling counters, smooth curve, sales feed ---------- */
+.dash{gap:14px}
+.dash__head b{font-size:.98rem}
+.dash__kpis small{font-size:11px;color:var(--color-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dash__kpis small.is-up{color:#6EE7B7}
+.dash__kpis em{font-style:normal;font-variant-numeric:tabular-nums}
+.dash__kpis b{font-variant-numeric:tabular-nums}
+.dash__chartw{position:relative;padding-bottom:20px}
+.dash__chart{height:84px}
+.dash__vgrid line{stroke:rgb(127 235 255 / .07);stroke-width:1;vector-effect:non-scaling-stroke}
+#dLine,#dArea{transition:d .9s var(--ease-out)}
+.dash__dot{position:absolute;right:-4px;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--color-cyan-lt);box-shadow:0 0 0 0 rgb(127 235 255 / .55),0 0 12px var(--color-cyan);transition:top .9s var(--ease-out);animation:dotPing 2s var(--ease-out) infinite}
+@keyframes dotPing{70%,100%{box-shadow:0 0 0 10px rgb(127 235 255 / 0),0 0 12px var(--color-cyan)}}
+.dash__hours{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;font-size:10.5px;color:var(--color-mute)}
+.dash__cols{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px}
+.dash__sub{font-size:11.5px;color:var(--color-mute);margin:0 0 6px;letter-spacing:.02em}
+.dash__stock,.dash__feed{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.dash__stock li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:7px 0;border-top:1px solid var(--color-line)}
+.dash__stock li span{color:var(--color-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dash__stock li b{font-family:var(--font-mono);color:var(--color-white);font-weight:500;font-size:12.5px}
+.dash__stock li .lvl{grid-column:1/-1;height:4px;min-width:0}
+.dash__stock li.is-low b{color:#FFB4A0}
+.dash__stock li.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
+.dash__feed li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-radius:12px;background:rgb(6 10 16 / .5);border:1px solid var(--color-line);margin-bottom:6px}
+.dash__feed li span{display:grid;gap:1px;min-width:0}
+.dash__feed li b{color:var(--color-white);font-weight:600;font-variant-numeric:tabular-nums}
+.dash__feed li small{font-size:11px;color:var(--color-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dash__feed li em{font-style:normal;font-size:11px;color:var(--color-cyan-lt);font-family:var(--font-mono)}
+.dash__feed li.is-new{animation:feedIn .6s var(--ease-out) both;border-color:rgb(127 235 255 / .4);background:rgb(24 200 240 / .08)}
+@keyframes feedIn{from{opacity:0;transform:translateY(-12px) scale(.97)}}
+@media (max-width:520px){.dash__cols{grid-template-columns:minmax(0,1fr)}.dash__feed li:nth-child(3){display:none}}
+@media (prefers-reduced-motion:reduce){.dash__dot{animation:none}#dLine,#dArea{transition:none}.dash__feed li.is-new{animation:none}}
+
+/* ---------- index: numbered lists as a list + live detail (accordion on phones) ---------- */
+.ix{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,56px);align-items:start}
+.ix__list{display:grid;border-top:1px solid var(--color-line)}
+.ix__row{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) 20px;align-items:center;gap:12px;width:100%;text-align:left;padding:15px 4px;border:0;border-bottom:1px solid var(--color-line);background:none;color:var(--color-soft);cursor:pointer;transition:color .3s var(--ease-out),padding-left .45s var(--ease-out)}
+.ix__row:focus-visible{outline:2px solid var(--color-cyan-lt);outline-offset:2px}
+.ix__n{font-family:var(--font-mono);font-size:12px;color:var(--color-mute);transition:color .3s var(--ease-out)}
+.ix__t{font-family:var(--font-display);font-weight:700;font-size:clamp(1.02rem,.9rem + .45vw,1.28rem);letter-spacing:-.01em;line-height:1.25}
+.ix__row[aria-selected="true"]{color:var(--color-white)}
+.ix__row[aria-selected="true"] .ix__n{color:var(--color-cyan-lt)}
+.ix__run{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--grad-bars);transform:scaleX(0);transform-origin:left}
+.ix__row[aria-selected="true"] .ix__run{animation:ixRun var(--run,5s) linear forwards}
+.ix.is-paused .ix__row[aria-selected="true"] .ix__run{animation-play-state:paused}
+@keyframes ixRun{to{transform:scaleX(1)}}
+.ix__plus,.ix__a{display:none}
+.ix__stage{position:sticky;top:110px;min-height:clamp(260px,30vw,340px);padding:clamp(24px,3vw,40px);display:grid;align-content:space-between;gap:22px;overflow:hidden}
+.ix__big{font-family:var(--font-brand);font-weight:900;font-size:clamp(3.6rem,2.6rem + 3.6vw,6.8rem);line-height:.85;color:transparent;-webkit-text-stroke:1.5px rgb(127 235 255 / .55);letter-spacing:.02em}
+.ix__body h3{font-size:var(--text-xl);margin-bottom:10px;line-height:1.15}
+.ix__body p{color:var(--color-soft);max-width:46ch;line-height:1.6}
+.ix__dots{display:flex;gap:6px}
+.ix__dots i{width:6px;height:6px;border-radius:3px;background:var(--color-line-2);transition:width .45s var(--ease-out),background-color .3s var(--ease-out)}
+.ix__dots i.on{width:22px;background:var(--color-cyan)}
+.ix__stage.is-swap .ix__big{animation:ixBig .7s var(--ease-out) both}
+.ix__stage.is-swap .ix__body{animation:ixBody .6s var(--ease-out) .06s both}
+@keyframes ixBig{from{opacity:0;transform:translateY(-16px)}}
+@keyframes ixBody{from{opacity:0;transform:translateY(12px)}}
+@media (hover:hover) and (min-width:761px){.ix__row:hover{color:var(--color-white)}.ix__row[aria-selected="true"]{padding-left:14px}}
+@media (max-width:760px){
+  .ix{grid-template-columns:minmax(0,1fr)}
+  .ix__stage,.ix__run{display:none}
+  .ix__row{grid-template-columns:34px minmax(0,1fr) 18px;padding:14px 2px}
+  .ix__plus{display:block;position:relative;width:18px;height:18px}
+  .ix__plus::before,.ix__plus::after{content:"";position:absolute;left:3px;right:3px;top:8px;height:2px;border-radius:2px;background:var(--color-cyan-lt);transition:transform .4s var(--ease-out)}
+  .ix__plus::after{transform:rotate(90deg)}
+  .ix__row.is-open .ix__plus::after{transform:rotate(0)}
+  .ix__a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease-out);border-bottom:1px solid transparent}
+  .ix__a>div{overflow:hidden}
+  .ix__a p{padding:0 4px 16px 48px;color:var(--color-soft);font-size:var(--text-sm);line-height:1.6}
+  .ix__row.is-open + .ix__a{grid-template-rows:1fr}
+}
+@media (prefers-reduced-motion:reduce){.ix__stage.is-swap .ix__big,.ix__stage.is-swap .ix__body{animation:none}.ix__run{display:none}.ix__a{transition:none}}
+
+/* ---------- ledger: short numbered sets as hairline columns ---------- */
+.ledger{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);border-top:1px solid var(--color-line)}
+.ledger li{padding:22px clamp(14px,2vw,28px) 6px;border-left:1px solid var(--color-line);display:grid;gap:10px;align-content:start;opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.ledger li:first-child{border-left:0;padding-left:0}
+.ledger.is-in li{opacity:1;transform:none}
+.ledger.is-in li:nth-child(2){transition-delay:.08s}.ledger.is-in li:nth-child(3){transition-delay:.16s}.ledger.is-in li:nth-child(4){transition-delay:.24s}
+.ledger__n{font-family:var(--font-brand);font-weight:900;font-size:clamp(2rem,1.5rem + 1.6vw,3rem);line-height:1;color:transparent;-webkit-text-stroke:1.2px rgb(127 235 255 / .55)}
+.ledger h3{font-size:1.12rem;line-height:1.25}
+.ledger p{color:var(--color-mute);font-size:var(--text-sm);line-height:1.6}
+@media (max-width:760px){
+  .ledger{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ledger li{padding:18px 14px 16px}
+  .ledger li:nth-child(odd){border-left:0;padding-left:0}
+  .ledger li:nth-child(n+3){border-top:1px solid var(--color-line)}
+}
+@media (max-width:360px){.ledger{grid-template-columns:minmax(0,1fr)}.ledger li{border-left:0!important;padding-left:0;border-top:1px solid var(--color-line)}.ledger li:first-child{border-top:0}}
+@media (prefers-reduced-motion:reduce){.ledger li{opacity:1;transform:none;transition:none}}
+
+/* ---------- footer: half the height ---------- */
+.foot{padding-top:16px}
+.foot__in{gap:12px 20px}
+.foot .foot__brand .nxlogo{height:34px!important;width:auto!important}
+.foot__brand span,.foot__brand small,.foot__brand p{font-size:11.5px}
+.foot__links{gap:2px 14px}
+.foot__links a{font-size:13px}
+.foot__social{gap:6px}
+.foot__social a{width:32px;height:32px;border-radius:9px}
+.foot__social svg{width:15px;height:15px}
+.foot__base{margin-top:12px;padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));gap:4px 16px;font-size:12px}
+.foot__areas{font-size:10.5px;line-height:1.5}
+.foot__legal{gap:12px;font-size:12px}
+@media (max-width:760px){
+  .foot__in{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"brand social" "links links";align-items:center}
+  .foot__brand{grid-area:brand}
+  .foot__social{grid-area:social;justify-self:end}
+  .foot__links{grid-area:links}
+  .foot__areas{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex-basis:100%}
+}
+
+/* ---------- dashboard on phones: compact ---------- */
+@media (max-width:520px){
+  .dash{gap:12px}
+  .dash__kpis{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px}
+  .dash__kpis div{padding:9px 10px}
+  .dash__kpis div:last-child{grid-column:auto!important}
+  .dash__kpis b{font-size:.98rem}
+  .dash__kpis small{display:none}
+  .dash__chart{height:62px}
+  .dash__stock li:nth-child(4),.dash__feed li:nth-child(n+2){display:none}
+}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -1219,17 +1344,23 @@ tr.is-low .lvl i{background:linear-gradient(90deg,#FF8A6A,#FFB4A0)}
       <div class="phero__ctas"><a class="btn btn--primary magnetic" href="#contact">Describe your business</a><a class="btn btn--ghost magnetic" href="https://wa.me/923053687680" target="_blank" rel="noopener">WhatsApp 0305 3687680</a></div>
     </div>
     <div class="phero__vis">
-      <div class="dash lc" id="dash" aria-label="Illustration of a live stock dashboard">
-        <div class="dash__head"><span class="dash__live"><i></i>Live</span><b>Stock · Main branch</b><span class="mono">Example</span></div>
+      <div class="dash lc" id="dash" aria-label="Illustration of a live sales and stock dashboard">
+        <div class="dash__head"><span class="dash__live"><i></i>Live</span><b>Main branch</b><span class="mono" id="dClock">Example</span></div>
         <div class="dash__kpis">
-          <div><span>Today</span><b>Rs <em id="kToday">0</em></b></div>
-          <div><span>Orders</span><b id="kOrders">0</b></div>
-          <div><span>Low stock</span><b><em id="kLow">0</em> items</b></div>
+          <div><span>Sales today</span><b>Rs <em id="kToday">0</em></b><small class="is-up" id="kDelta">vs yesterday</small></div>
+          <div><span>Orders</span><b id="kOrders">0</b><small id="kAvg">Avg Rs 0</small></div>
+          <div><span>Low stock</span><b><em id="kLow">0</em> <em id="kLowU">items</em></b><small id="kLowS">All good</small></div>
         </div>
-        <svg class="dash__chart" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="dg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#18C8F0" stop-opacity=".35"/><stop offset="1" stop-color="#18C8F0" stop-opacity="0"/></linearGradient></defs><path id="dArea" fill="url(#dg)"/><path id="dLine" fill="none" stroke="#7FEBFF" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
-        <table class="dash__tbl"><thead><tr><th>Item</th><th>In stock</th><th>Level</th></tr></thead><tbody id="dRows"></tbody></table>
+        <div class="dash__chartw">
+          <svg class="dash__chart" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="dg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#18C8F0" stop-opacity=".38"/><stop offset="1" stop-color="#18C8F0" stop-opacity="0"/></linearGradient></defs><g class="dash__vgrid"><line x1="0" x2="0" y1="0" y2="80"/><line x1="75" x2="75" y1="0" y2="80"/><line x1="150" x2="150" y1="0" y2="80"/><line x1="225" x2="225" y1="0" y2="80"/></g><path id="dArea" fill="url(#dg)"/><path id="dLine" fill="none" stroke="#7FEBFF" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>
+          <span class="dash__dot" id="dDot" aria-hidden="true"></span>
+          <div class="dash__hours mono" aria-hidden="true"><span>9am</span><span>12pm</span><span>3pm</span><span>6pm</span><span>Now</span></div>
+        </div>
+        <div class="dash__cols">
+          <div><p class="dash__sub">Stock</p><ul class="dash__stock" id="dRows"></ul></div>
+          <div><p class="dash__sub">Latest sales</p><ul class="dash__feed" id="dFeed"></ul></div>
+        </div>
         <div class="dash__alert" id="dAlert"><i></i><span id="dAlertT">Everything above its reorder level.</span></div>
-        <div class="dash__toast" id="dToast"><b>Sale recorded</b><span id="dToastT">Counter 1 · Rs 0</span></div>
       </div>
     </div>
   </div>
@@ -1448,32 +1579,59 @@ NX.render = api => {
   $('#stackChips').innerHTML = STACKC.map(t => `<span>${t}</span>`).join('');
   $('#howSteps').insertAdjacentHTML('beforeend', HOW.map(([h, p], i) => `<li class="step"><span class="dot">${i + 1}</span><h3>${h}</h3><p>${p}</p></li>`).join(''));
 
-  // live dashboard
-  const ITEMS = [['Basmati rice 5kg', 64, 20], ['Cooking oil 3L', 38, 15], ['Sugar 1kg', 16, 18], ['Tea 950g', 30, 12], ['Detergent 2kg', 17, 14]];
+  // live dashboard: counters roll, the curve grows, sales drop into the feed, stock counts down
+  const ITEMS = [['Basmati rice 5kg', 64, 20], ['Cooking oil 3L', 38, 15], ['Sugar 1kg', 16, 18], ['Tea 950g', 30, 12], ['Detergent 2kg', 21, 14]];
+  const YESTERDAY = 44800;
   let today = 48250, orders = 31;
-  const series = Array.from({ length: 24 }, (_, i) => 20 + i * 1.6 + Math.sin(i * 1.3) * 6);
-  const rows = $('#dRows');
-  const drawRows = () => { rows.innerHTML = ITEMS.slice(0, 4).map(([n, q, r]) => `<tr class="${q < r ? 'is-low' : ''}"><td>${n}</td><td>${q}</td><td><span class="lvl"><i style="width:${Math.min(100, q / 70 * 100)}%"></i></span></td></tr>`).join('');
-    const low = ITEMS.filter(x => x[1] < x[2]); $('#kLow').textContent = low.length;
+  const series = Array.from({ length: 22 }, (_, i) => 18 + i * 1.7 + Math.sin(i * 1.25) * 5);
+  const fmt = n => Math.round(n).toLocaleString('en-PK');
+  const roll = (el, from, to, ms = 700) => { if (RM || !el) { el && (el.textContent = fmt(to)); return; } const t0 = performance.now(); const f = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(from + (to - from) * e); if (k < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); };
+  const drawRows = () => {
+    $('#dRows').innerHTML = ITEMS.slice(0, 4).map(([n, q, r]) => `<li class="${q < r ? 'is-low' : ''}"><span>${esc(n)}</span><b>${q}</b><i class="lvl"><i style="width:${Math.min(100, q / 70 * 100)}%"></i></i></li>`).join('');
+    const low = ITEMS.filter(x => x[1] < x[2]);
+    $('#kLow').textContent = low.length; $('#kLowU').textContent = low.length === 1 ? 'item' : 'items';
+    $('#kLowS').textContent = low.length ? 'Reorder list ready' : 'All good';
     $('#dAlert').classList.toggle('is-on', low.length > 0);
-    $('#dAlertT').innerHTML = low.length ? `<b>${esc(low[0][0])}</b> dropped below its reorder level. <u>Reorder</u>` : 'Everything above its reorder level.'; };
-  const drawChart = () => { const max = Math.max(...series) * 1.1, pts = series.map((v, i) => [i / (series.length - 1) * 300, 70 - v / max * 64]);
-    const d = 'M' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L'); $('#dLine').setAttribute('d', d); $('#dArea').setAttribute('d', d + ' L300 70 L0 70 Z'); };
-  const fmt = n => n.toLocaleString('en-PK');
-  const setK = () => { $('#kToday').textContent = fmt(today); $('#kOrders').textContent = orders; };
-  drawRows(); drawChart(); setK();
-  const toast = $('#dToast');
+    $('#dAlertT').innerHTML = low.length ? `<b>${esc(low[0][0])}</b> dropped below its reorder level. <u>Reorder</u>` : 'Everything above its reorder level.';
+  };
+  /* smooth curve through the points (Catmull-Rom as cubic Béziers) */
+  const drawChart = () => {
+    const max = Math.max(...series) * 1.12, min = Math.min(...series) * .7;
+    const P = series.map((v, i) => [i / (series.length - 1) * 300, 76 - (v - min) / (max - min) * 68]);
+    let d = `M${P[0][0].toFixed(1)} ${P[0][1].toFixed(1)}`;
+    for (let i = 0; i < P.length - 1; i++) {
+      const p0 = P[i - 1] || P[i], p1 = P[i], p2 = P[i + 1], p3 = P[i + 2] || p2;
+      d += ` C${(p1[0] + (p2[0] - p0[0]) / 6).toFixed(1)} ${(p1[1] + (p2[1] - p0[1]) / 6).toFixed(1)} ${(p2[0] - (p3[0] - p1[0]) / 6).toFixed(1)} ${(p2[1] - (p3[1] - p1[1]) / 6).toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+    }
+    $('#dLine').setAttribute('d', d); $('#dArea').setAttribute('d', d + ' L300 80 L0 80 Z');
+    const last = P[P.length - 1]; $('#dDot').style.top = (last[1] / 80 * 100) + '%';
+  };
+  const setK = (prevT, prevO) => {
+    roll($('#kToday'), prevT, today); roll($('#kOrders'), prevO, orders, 500);
+    $('#kAvg').textContent = 'Avg Rs ' + fmt(today / orders);
+    const pct = Math.round((today - YESTERDAY) / YESTERDAY * 100);
+    const kd = $('#kDelta'); kd.textContent = `${pct >= 0 ? '▲' : '▼'} ${Math.abs(pct)}% vs yesterday`; kd.classList.toggle('is-up', pct >= 0);
+  };
+  const feed = $('#dFeed'), FEED = [];
+  const pushFeed = (amt, n, c, fresh) => {
+    FEED.unshift({ amt, n, c, at: Date.now() }); FEED.length = Math.min(FEED.length, 3);
+    feed.innerHTML = FEED.map((f, i) => `<li class="${i === 0 && fresh ? 'is-new' : ''}"><span><b>Rs ${fmt(f.amt)}</b><small>Counter ${f.c} · ${f.n} item${f.n > 1 ? 's' : ''}</small></span><em>${i === 0 ? 'now' : Math.max(1, Math.round((Date.now() - f.at) / 1000)) + 's'}</em></li>`).join('');
+  };
+  [[1280, 2, 2], [3460, 5, 1], [740, 1, 3]].reverse().forEach(([a, n, c]) => pushFeed(a, n, c, false));
+  drawRows(); drawChart(); setK(0, 0);
+  const clock = $('#dClock'), tick = () => { const d = new Date(); clock.textContent = d.toLocaleTimeString('en-PK', { hour: 'numeric', minute: '2-digit' }); };
+  tick(); setInterval(tick, 30000);
   const sale = () => {
-    const amt = Math.round((450 + Math.random() * 3800) / 10) * 10; today += amt; orders++;
+    const pT = today, pO = orders;
+    const n = 1 + Math.floor(Math.random() * 5), amt = Math.round((350 + Math.random() * 3600) / 10) * 10; today += amt; orders++;
     const it = ITEMS[Math.floor(Math.random() * ITEMS.length)]; it[1] = Math.max(3, it[1] - 1 - Math.floor(Math.random() * 3));
     if (it[1] < 6) it[1] += 40; // restocked
-    series.push(series[series.length - 1] + (Math.random() * 10 - 3)); series.shift();
-    $('#dToastT').textContent = `Counter ${1 + Math.floor(Math.random() * 3)} · Rs ${fmt(amt)}`;
-    toast.classList.remove('is-on'); void toast.offsetWidth; toast.classList.add('is-on');
-    drawRows(); drawChart(); setK();
+    series.push(series[series.length - 1] + (Math.random() * 9 - 2.5)); series.shift();
+    pushFeed(amt, n, 1 + Math.floor(Math.random() * 3), true);
+    drawRows(); drawChart(); setK(pT, pO);
   };
   NX.dashSale = sale;
-  if (!RM) { let t = setInterval(sale, 2600); document.addEventListener('visibilitychange', () => { clearInterval(t); if (!document.hidden) t = setInterval(sale, 2600); }); }
+  if (!RM) { let t = setInterval(sale, 2800); document.addEventListener('visibilitychange', () => { clearInterval(t); if (!document.hidden) t = setInterval(sale, 2800); }); }
 };
 
 NX.motion = api => {
@@ -1593,7 +1751,52 @@ window.NXTabs = function (host, panels, labels, opts) {
 
 window.NXCompact = function () {
   const d = document;
-  const RAILS = '.sec .quotes, .sec .cards, .sec .bento, .sec .numlist, .sec .sides, .sec .people, .sec .obj, .sec .week, .sec .posts, .sec .layers, .sec .more, .sec .std__list.stack';
+  /* numbered card grids become an index (5+ items: list + live detail, accordion on phones)
+     or a ledger strip (4 or fewer: hairline columns, no boxes) */
+  d.querySelectorAll('ol.numlist').forEach((ol, k) => {
+    const items = [...ol.children].map(li => ({ t: (li.querySelector('h3') || {}).textContent || '', p: (li.querySelector('p') || {}).innerHTML || '' })).filter(x => x.t);
+    if (!items.length) return;
+    const pad = n => String(n).padStart(2, '0');
+    if (items.length <= 4) {
+      const lg = d.createElement('ol');
+      lg.className = 'ledger'; if (ol.id) lg.id = ol.id;
+      lg.innerHTML = items.map((x, i) => `<li><span class="ledger__n" aria-hidden="true">${pad(i + 1)}</span><h3>${x.t}</h3><p>${x.p}</p></li>`).join('');
+      ol.replaceWith(lg);
+      if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { lg.classList.add('is-in'); io.disconnect(); } }, { threshold: .2 }); io.observe(lg); } else lg.classList.add('is-in');
+      return;
+    }
+    const id = 'ix' + k, ix = d.createElement('div');
+    ix.className = 'ix';
+    ix.innerHTML = `<div class="ix__list" role="tablist">${items.map((x, i) => `<button type="button" class="ix__row" role="tab" id="${id}-t${i}" aria-controls="${id}-stage" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}"><span class="ix__n">${pad(i + 1)}</span><span class="ix__t">${x.t}</span><span class="ix__plus" aria-hidden="true"></span><i class="ix__run" aria-hidden="true"></i></button><div class="ix__a"><div><p>${x.p}</p></div></div>`).join('')}</div>
+      <div class="ix__stage lc" id="${id}-stage" role="tabpanel" aria-live="polite"><span class="ix__big" aria-hidden="true">01</span><div class="ix__body"><h3></h3><p></p></div><div class="ix__dots" aria-hidden="true">${items.map(() => '<i></i>').join('')}</div></div>`;
+    ol.replaceWith(ix);
+    const rows = [...ix.querySelectorAll('.ix__row')], stage = ix.querySelector('.ix__stage'), big = stage.querySelector('.ix__big'), body = stage.querySelector('.ix__body'), dots = [...stage.querySelectorAll('.ix__dots i')];
+    const RM = matchMedia('(prefers-reduced-motion: reduce)').matches, phone = matchMedia('(max-width: 760px)');
+    let cur = -1, timer = 0, inView = false, hold = false;
+    const show = (i, user) => {
+      if (i === cur && !(phone.matches && user)) return;
+      if (phone.matches && user && i === cur) { rows[cur].setAttribute('aria-selected', 'false'); rows[cur].classList.remove('is-open'); cur = -1; return; }
+      rows.forEach((r, j) => { r.setAttribute('aria-selected', String(j === i)); r.tabIndex = j === i ? 0 : -1; r.classList.toggle('is-open', j === i); });
+      cur = i;
+      big.textContent = pad(i + 1);
+      body.querySelector('h3').textContent = items[i].t; body.querySelector('p').innerHTML = items[i].p;
+      dots.forEach((dt, j) => dt.classList.toggle('on', j === i));
+      stage.classList.remove('is-swap'); void stage.offsetWidth; stage.classList.add('is-swap');
+      ix.style.setProperty('--run', '5s'); rows[i].querySelector('.ix__run').style.animation = 'none'; void rows[i].offsetWidth; rows[i].querySelector('.ix__run').style.animation = '';
+      arm();
+    };
+    const arm = () => { clearTimeout(timer); const go = !RM && inView && !hold && !phone.matches; ix.classList.toggle('is-paused', !go); if (go) timer = setTimeout(() => show((cur + 1) % items.length), 5000); };
+    rows.forEach((r, i) => {
+      r.addEventListener('click', () => show(i, true));
+      r.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse' && !phone.matches) show(i, true); });
+    });
+    ix.querySelector('.ix__list').addEventListener('keydown', e => { const s = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0; if (!s) return; e.preventDefault(); show((cur + s + items.length) % items.length, true); rows[cur].focus(); });
+    ix.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hold = true; arm(); } });
+    ix.addEventListener('pointerleave', () => { hold = false; arm(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => { inView = es[0].isIntersecting; arm(); }, { threshold: .3 }).observe(ix);
+    show(0);
+  });
+  const RAILS = '.sec .quotes, .sec .cards, .sec .bento, .sec .sides, .sec .people, .sec .week, .sec .posts, .sec .layers, .sec .more, .sec .std__list.stack';
   d.querySelectorAll(RAILS).forEach(r => {
     if (r.classList.contains('rail') || r.querySelector(':scope > .tab-panel')) return;
     const items = [...r.children].filter(c => !c.matches('script,template,style'));

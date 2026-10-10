@@ -1070,6 +1070,86 @@ button.btn[type="submit"]{--glyph:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 
 .tk-more{display:none}
 @media (max-width:760px){.ticks:not(.show-all) .tk--more{display:none}.tk-more{display:inline-flex;margin-top:10px;padding:8px 14px;border-radius:var(--radius-pill);border:1px solid var(--color-line-2);background:transparent;color:var(--color-cyan-lt);font:600 .85rem var(--font-body);cursor:pointer}.show-all .tk--more{animation:qaIn .45s var(--ease-out) both}}
+
+/* ---------- index: numbered lists as a list + live detail (accordion on phones) ---------- */
+.ix{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,56px);align-items:start}
+.ix__list{display:grid;border-top:1px solid var(--color-line)}
+.ix__row{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) 20px;align-items:center;gap:12px;width:100%;text-align:left;padding:15px 4px;border:0;border-bottom:1px solid var(--color-line);background:none;color:var(--color-soft);cursor:pointer;transition:color .3s var(--ease-out),padding-left .45s var(--ease-out)}
+.ix__row:focus-visible{outline:2px solid var(--color-cyan-lt);outline-offset:2px}
+.ix__n{font-family:var(--font-mono);font-size:12px;color:var(--color-mute);transition:color .3s var(--ease-out)}
+.ix__t{font-family:var(--font-display);font-weight:700;font-size:clamp(1.02rem,.9rem + .45vw,1.28rem);letter-spacing:-.01em;line-height:1.25}
+.ix__row[aria-selected="true"]{color:var(--color-white)}
+.ix__row[aria-selected="true"] .ix__n{color:var(--color-cyan-lt)}
+.ix__run{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--grad-bars);transform:scaleX(0);transform-origin:left}
+.ix__row[aria-selected="true"] .ix__run{animation:ixRun var(--run,5s) linear forwards}
+.ix.is-paused .ix__row[aria-selected="true"] .ix__run{animation-play-state:paused}
+@keyframes ixRun{to{transform:scaleX(1)}}
+.ix__plus,.ix__a{display:none}
+.ix__stage{position:sticky;top:110px;min-height:clamp(260px,30vw,340px);padding:clamp(24px,3vw,40px);display:grid;align-content:space-between;gap:22px;overflow:hidden}
+.ix__big{font-family:var(--font-brand);font-weight:900;font-size:clamp(3.6rem,2.6rem + 3.6vw,6.8rem);line-height:.85;color:transparent;-webkit-text-stroke:1.5px rgb(127 235 255 / .55);letter-spacing:.02em}
+.ix__body h3{font-size:var(--text-xl);margin-bottom:10px;line-height:1.15}
+.ix__body p{color:var(--color-soft);max-width:46ch;line-height:1.6}
+.ix__dots{display:flex;gap:6px}
+.ix__dots i{width:6px;height:6px;border-radius:3px;background:var(--color-line-2);transition:width .45s var(--ease-out),background-color .3s var(--ease-out)}
+.ix__dots i.on{width:22px;background:var(--color-cyan)}
+.ix__stage.is-swap .ix__big{animation:ixBig .7s var(--ease-out) both}
+.ix__stage.is-swap .ix__body{animation:ixBody .6s var(--ease-out) .06s both}
+@keyframes ixBig{from{opacity:0;transform:translateY(-16px)}}
+@keyframes ixBody{from{opacity:0;transform:translateY(12px)}}
+@media (hover:hover) and (min-width:761px){.ix__row:hover{color:var(--color-white)}.ix__row[aria-selected="true"]{padding-left:14px}}
+@media (max-width:760px){
+  .ix{grid-template-columns:minmax(0,1fr)}
+  .ix__stage,.ix__run{display:none}
+  .ix__row{grid-template-columns:34px minmax(0,1fr) 18px;padding:14px 2px}
+  .ix__plus{display:block;position:relative;width:18px;height:18px}
+  .ix__plus::before,.ix__plus::after{content:"";position:absolute;left:3px;right:3px;top:8px;height:2px;border-radius:2px;background:var(--color-cyan-lt);transition:transform .4s var(--ease-out)}
+  .ix__plus::after{transform:rotate(90deg)}
+  .ix__row.is-open .ix__plus::after{transform:rotate(0)}
+  .ix__a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease-out);border-bottom:1px solid transparent}
+  .ix__a>div{overflow:hidden}
+  .ix__a p{padding:0 4px 16px 48px;color:var(--color-soft);font-size:var(--text-sm);line-height:1.6}
+  .ix__row.is-open + .ix__a{grid-template-rows:1fr}
+}
+@media (prefers-reduced-motion:reduce){.ix__stage.is-swap .ix__big,.ix__stage.is-swap .ix__body{animation:none}.ix__run{display:none}.ix__a{transition:none}}
+
+/* ---------- ledger: short numbered sets as hairline columns ---------- */
+.ledger{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);border-top:1px solid var(--color-line)}
+.ledger li{padding:22px clamp(14px,2vw,28px) 6px;border-left:1px solid var(--color-line);display:grid;gap:10px;align-content:start;opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.ledger li:first-child{border-left:0;padding-left:0}
+.ledger.is-in li{opacity:1;transform:none}
+.ledger.is-in li:nth-child(2){transition-delay:.08s}.ledger.is-in li:nth-child(3){transition-delay:.16s}.ledger.is-in li:nth-child(4){transition-delay:.24s}
+.ledger__n{font-family:var(--font-brand);font-weight:900;font-size:clamp(2rem,1.5rem + 1.6vw,3rem);line-height:1;color:transparent;-webkit-text-stroke:1.2px rgb(127 235 255 / .55)}
+.ledger h3{font-size:1.12rem;line-height:1.25}
+.ledger p{color:var(--color-mute);font-size:var(--text-sm);line-height:1.6}
+@media (max-width:760px){
+  .ledger{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ledger li{padding:18px 14px 16px}
+  .ledger li:nth-child(odd){border-left:0;padding-left:0}
+  .ledger li:nth-child(n+3){border-top:1px solid var(--color-line)}
+}
+@media (max-width:360px){.ledger{grid-template-columns:minmax(0,1fr)}.ledger li{border-left:0!important;padding-left:0;border-top:1px solid var(--color-line)}.ledger li:first-child{border-top:0}}
+@media (prefers-reduced-motion:reduce){.ledger li{opacity:1;transform:none;transition:none}}
+
+/* ---------- footer: half the height ---------- */
+.foot{padding-top:16px}
+.foot__in{gap:12px 20px}
+.foot .foot__brand .nxlogo{height:34px!important;width:auto!important}
+.foot__brand span,.foot__brand small,.foot__brand p{font-size:11.5px}
+.foot__links{gap:2px 14px}
+.foot__links a{font-size:13px}
+.foot__social{gap:6px}
+.foot__social a{width:32px;height:32px;border-radius:9px}
+.foot__social svg{width:15px;height:15px}
+.foot__base{margin-top:12px;padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));gap:4px 16px;font-size:12px}
+.foot__areas{font-size:10.5px;line-height:1.5}
+.foot__legal{gap:12px;font-size:12px}
+@media (max-width:760px){
+  .foot__in{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"brand social" "links links";align-items:center}
+  .foot__brand{grid-area:brand}
+  .foot__social{grid-area:social;justify-self:end}
+  .foot__links{grid-area:links}
+  .foot__areas{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex-basis:100%}
+}
 </style>
 <script>(function(){try{var r=document.documentElement,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm||sessionStorage.getItem('nx_seen'))r.classList.add('no-loader');if(!rm&&sessionStorage.getItem('nx_nav')){r.classList.add('is-covered');sessionStorage.removeItem('nx_nav');setTimeout(function(){r.classList.remove('is-covered')},3000)}}catch(e){}})();</script>
 <noscript><style>.loader,.curtain{display:none}</style></noscript>
@@ -1347,7 +1427,52 @@ window.NXTabs = function (host, panels, labels, opts) {
 
 window.NXCompact = function () {
   const d = document;
-  const RAILS = '.sec .quotes, .sec .cards, .sec .bento, .sec .numlist, .sec .sides, .sec .people, .sec .obj, .sec .week, .sec .posts, .sec .layers, .sec .more, .sec .std__list.stack';
+  /* numbered card grids become an index (5+ items: list + live detail, accordion on phones)
+     or a ledger strip (4 or fewer: hairline columns, no boxes) */
+  d.querySelectorAll('ol.numlist').forEach((ol, k) => {
+    const items = [...ol.children].map(li => ({ t: (li.querySelector('h3') || {}).textContent || '', p: (li.querySelector('p') || {}).innerHTML || '' })).filter(x => x.t);
+    if (!items.length) return;
+    const pad = n => String(n).padStart(2, '0');
+    if (items.length <= 4) {
+      const lg = d.createElement('ol');
+      lg.className = 'ledger'; if (ol.id) lg.id = ol.id;
+      lg.innerHTML = items.map((x, i) => `<li><span class="ledger__n" aria-hidden="true">${pad(i + 1)}</span><h3>${x.t}</h3><p>${x.p}</p></li>`).join('');
+      ol.replaceWith(lg);
+      if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { lg.classList.add('is-in'); io.disconnect(); } }, { threshold: .2 }); io.observe(lg); } else lg.classList.add('is-in');
+      return;
+    }
+    const id = 'ix' + k, ix = d.createElement('div');
+    ix.className = 'ix';
+    ix.innerHTML = `<div class="ix__list" role="tablist">${items.map((x, i) => `<button type="button" class="ix__row" role="tab" id="${id}-t${i}" aria-controls="${id}-stage" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}"><span class="ix__n">${pad(i + 1)}</span><span class="ix__t">${x.t}</span><span class="ix__plus" aria-hidden="true"></span><i class="ix__run" aria-hidden="true"></i></button><div class="ix__a"><div><p>${x.p}</p></div></div>`).join('')}</div>
+      <div class="ix__stage lc" id="${id}-stage" role="tabpanel" aria-live="polite"><span class="ix__big" aria-hidden="true">01</span><div class="ix__body"><h3></h3><p></p></div><div class="ix__dots" aria-hidden="true">${items.map(() => '<i></i>').join('')}</div></div>`;
+    ol.replaceWith(ix);
+    const rows = [...ix.querySelectorAll('.ix__row')], stage = ix.querySelector('.ix__stage'), big = stage.querySelector('.ix__big'), body = stage.querySelector('.ix__body'), dots = [...stage.querySelectorAll('.ix__dots i')];
+    const RM = matchMedia('(prefers-reduced-motion: reduce)').matches, phone = matchMedia('(max-width: 760px)');
+    let cur = -1, timer = 0, inView = false, hold = false;
+    const show = (i, user) => {
+      if (i === cur && !(phone.matches && user)) return;
+      if (phone.matches && user && i === cur) { rows[cur].setAttribute('aria-selected', 'false'); rows[cur].classList.remove('is-open'); cur = -1; return; }
+      rows.forEach((r, j) => { r.setAttribute('aria-selected', String(j === i)); r.tabIndex = j === i ? 0 : -1; r.classList.toggle('is-open', j === i); });
+      cur = i;
+      big.textContent = pad(i + 1);
+      body.querySelector('h3').textContent = items[i].t; body.querySelector('p').innerHTML = items[i].p;
+      dots.forEach((dt, j) => dt.classList.toggle('on', j === i));
+      stage.classList.remove('is-swap'); void stage.offsetWidth; stage.classList.add('is-swap');
+      ix.style.setProperty('--run', '5s'); rows[i].querySelector('.ix__run').style.animation = 'none'; void rows[i].offsetWidth; rows[i].querySelector('.ix__run').style.animation = '';
+      arm();
+    };
+    const arm = () => { clearTimeout(timer); const go = !RM && inView && !hold && !phone.matches; ix.classList.toggle('is-paused', !go); if (go) timer = setTimeout(() => show((cur + 1) % items.length), 5000); };
+    rows.forEach((r, i) => {
+      r.addEventListener('click', () => show(i, true));
+      r.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse' && !phone.matches) show(i, true); });
+    });
+    ix.querySelector('.ix__list').addEventListener('keydown', e => { const s = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0; if (!s) return; e.preventDefault(); show((cur + s + items.length) % items.length, true); rows[cur].focus(); });
+    ix.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hold = true; arm(); } });
+    ix.addEventListener('pointerleave', () => { hold = false; arm(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => { inView = es[0].isIntersecting; arm(); }, { threshold: .3 }).observe(ix);
+    show(0);
+  });
+  const RAILS = '.sec .quotes, .sec .cards, .sec .bento, .sec .sides, .sec .people, .sec .week, .sec .posts, .sec .layers, .sec .more, .sec .std__list.stack';
   d.querySelectorAll(RAILS).forEach(r => {
     if (r.classList.contains('rail') || r.querySelector(':scope > .tab-panel')) return;
     const items = [...r.children].filter(c => !c.matches('script,template,style'));
