@@ -69,14 +69,28 @@
     saveChoice(v);
   }
 
+  /* Google and Meta's own scripts are heavy on phones, so they are fetched once the page
+     has finished loading and the browser is idle. Every gtag()/fbq() call made before
+     that is queued and sent the moment they arrive, so no event is lost. */
+  function whenIdle(fn) {
+    var run = function () {
+      if ('requestIdleCallback' in window) requestIdleCallback(fn, { timeout: 2500 });
+      else setTimeout(fn, 400);
+    };
+    if (document.readyState === 'complete') run();
+    else addEventListener('load', run);
+  }
+  function addScript(src) {
+    var s = document.createElement('script');
+    s.async = true; s.src = src;
+    document.head.appendChild(s);
+  }
+
   /* ─────────────────────────────────────────────────────────────
      2. LOAD GA4
      ───────────────────────────────────────────────────────────── */
   if (hasGA4) {
-    var g = document.createElement('script');
-    g.async = true;
-    g.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4;
-    document.head.appendChild(g);
+    whenIdle(function () { addScript('https://www.googletagmanager.com/gtag/js?id=' + GA4); });
 
     gtag('js', new Date());
     gtag('config', GA4, {
@@ -96,8 +110,7 @@
         n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
       };
       if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
-      t = b.createElement(e); t.async = !0; t.src = v;
-      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+      whenIdle(function () { addScript(v); });
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
     if (!granted) fbq('consent', 'revoke');
